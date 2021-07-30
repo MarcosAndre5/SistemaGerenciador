@@ -1,0 +1,44 @@
+	INSTALAÇÃO DO XAMPP NO LINUX
+https://www.apachefriends.org/pt_br/index.html
+chmod +x xampp-linux-x64-7.4.11-0-installer.run
+sudo ./xampp-linux-x64-7.4.11-0-installer.run
+
+	ADMINISTRANDO O XAMPP VIA TERMINAL LINUX
+sudo /opt/lampp/lampp start
+sudo /opt/lampp/lampp stop
+sudo /opt/lampp/lampp status
+sudo /opt/lampp/lampp restart
+
+sudo /opt/lampp/lampp startapache
+sudo /opt/lampp/lampp startftp
+sudo /opt/lampp/lampp startmysql
+
+sudo /opt/lampp/lampp stopapache
+sudo /opt/lampp/lampp stopfpt
+sudo /opt/lampp/lampp stopmysql
+
+sudo /opt/lampp/lampp --help
+
+Permissões
+sudo chown -c -R seu_usuario /opt/lampp/
+sudo chmod -R 755 /opt/lampp/
+	
+	REMOVER XAMPP LINUX
+sudo /opt/lampp/lampp stop
+sudo /opt/lampp/uninstall
+sudo rm -rf /opt/lampp
+
+	ERRO NO NETSTAT XAMPP LINUX
+sudo apt install net-tools
+
+	MYSQL
+snap connect mysql-workbench-community:password-manager-service
+snap connect mysql-workbench-community:ssh-keys
+
+	MYSQL não inicia
+sudo chmod 777 /opt/lampp/var/
+sudo chown -R mysql:mysql /opt/lampp/var/mysql/
+sudo lampp restart
+
+	PHPMyAdmin não inicia
+chmod 777 -R  /opt/lampp/temp
