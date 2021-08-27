@@ -21,9 +21,7 @@
                 margin: 0;
             }
 
-            .full-height {
-                height: 100vh;
-            }
+            .full-height { height: 100vh; }
 
             .flex-center {
                 align-items: center;
@@ -31,9 +29,7 @@
                 justify-content: center;
             }
 
-            .position-ref {
-                position: relative;
-            }
+            .position-ref { position: relative; }
 
             .top-right {
                 position: absolute;
@@ -71,8 +67,8 @@
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                        <a href="{{ url('/login') }}">Entrar</a>
+                        <a href="{{ url('/register') }}">Registrar-se</a>
                     @endif
                 </div>
             @endif

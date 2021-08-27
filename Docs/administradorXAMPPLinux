@@ -42,3 +42,9 @@ sudo lampp restart
 
 	PHPMyAdmin não inicia
 chmod 777 -R  /opt/lampp/temp
+
+	COMANDOS ARTISAN
+php artisan serve
+php artisan make:model NomeDoModelo -m
+php artisan migrate
+php artisan make:auth
