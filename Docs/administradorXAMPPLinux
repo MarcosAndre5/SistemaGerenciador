@@ -48,3 +48,5 @@ php artisan serve
 php artisan make:model NomeDoModelo -m
 php artisan migrate
 php artisan make:auth
+
+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
