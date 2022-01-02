@@ -39,7 +39,11 @@ class NoticiaController extends Controller
         $noticia->titulo = $request->titulo;
         $noticia->descricao = $request->descricao;
 
-        dd("caiiu");
+        if($noticia->save()){
+            return back()->with('msg', 'Dados Salvos');
+        }else{
+            return back()->with('msg', 'Erro ao Salvar');
+        }
     }
 
     /**
