@@ -2,11 +2,12 @@
 	<div class="alert alert-success" role="alert">
 		{{ session('msg') }}
 	</div>
-@else
+@elseif(session()->has('erroMsg'))
 	<div class="alert alert-danger" role="alert">
-		{{ session('msg') }}
+		{{ session('erroMsg') }}
 	</div>
 @endif
+
 <form class="form-horizontal" role="form" method="POST" action="{{ url('/noticia') }}">
 	{{ csrf_field() }}
 	<div class="form-group">
@@ -29,6 +30,6 @@
 
 	<div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">
-	<button type="submit" class="btn btn-default">Enviar</button>
+	<button type="submit" class="btn btn-primary">Enviar</button>
 	</div></div>
 </form>
