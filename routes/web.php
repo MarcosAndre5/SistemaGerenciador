@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('estoque/categoria', 'CategoriaController');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
