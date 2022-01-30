@@ -1,5 +1,5 @@
-@extends('layout.admin');
+@extends('layouts.admin')
 
-@section('conteudo');
+@section('conteudo')
 	<h3>Página Create.Categoria</h3>
 @stop
