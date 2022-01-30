@@ -20,16 +20,16 @@ class CategoriaController extends Controller
             $query = trim($request->get('buscaTexto'));
             $categorias = DB::table('categoria')
                 ->where('nome', 'LIKE', '%'.$query.'%')
-                ->where('condicao', '=', '1')
+                ->where('condicao', '=', 1)
                 ->orderBy('idcategoria', 'desc')
-                ->paginate(10);
+                ->paginate(5);
 
             return view('estoque.categoria.index', ["categorias"=>$categorias, "buscaTexto"=>$query]);
         }
     }
 
-    public function create("estoque.categoria.create"){
-
+    public function create(){
+        return view('estoque/categoria/create');
     }
 
     public function store(CategoriaFormRequest $request){
@@ -45,11 +45,11 @@ class CategoriaController extends Controller
     }
 
     public function show($id){
-        return view("estoque.categoria.show", ["categoria" = Categoria::findOrFail(&id)]);
+        return view("estoque.categoria.show", ["categoria" => Categoria::findOrFail($id)]);
     }
 
     public function edit($id){
-        return view("estoque.categoria.edit", ["categoria" = Categoria::findOrFail(&id)]);
+        return view("estoque.categoria.edit", ["categoria" => Categoria::findOrFail($id)]);
     }
 
     public function update(CategoriaFormRequest $request, $id){
