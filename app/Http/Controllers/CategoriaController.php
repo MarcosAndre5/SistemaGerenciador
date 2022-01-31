@@ -18,7 +18,7 @@ class CategoriaController extends Controller
     public function index(Request $request){
         if($request){
             $query = trim($request->get('buscaTexto'));
-            $categorias = DB::table('categoria')
+            $categorias = DB::table('categorias')
                 ->where('nome', 'LIKE', '%'.$query.'%')
                 ->where('condicao', '=', 1)
                 ->orderBy('idcategoria', 'desc')
