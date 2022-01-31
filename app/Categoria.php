@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
-    protected $tabela = 'categoria';
-    protected $chavePrimaria = 'idcategoria';
+    protected $table = 'categorias';
+    protected $primaryKey = 'idcategoria';
 
     public $timestamps = false;
 

@@ -31,10 +31,16 @@
 							<td>{{ $categoria->descricao }}</td>
 							<td>
 								<a href="{{URL::action('CategoriaController@edit', $categoria->idcategoria)}}">
-									<button class="btn btn-info">Editar</button>
+									<button class="btn btn-info">
+										Editar
+										<i class="fa fa-pencil" aria-hidden="true"></i>
+									</button>
 								</a>
 		                        <a href="" data-target="#modal-delete-{{$categoria->idcategoria}}" data-toggle="modal">
-		                        	<button class="btn btn-danger">Excluir</button>
+		                        	<button class="btn btn-danger">
+			                        	Excluir
+			                        	<i class="fa fa-trash" aria-hidden="true"></i>
+			                        </button>
 		                        </a>
 							</td>
 						</tr>
