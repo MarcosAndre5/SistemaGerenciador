@@ -6,7 +6,8 @@
 			<h3>Lista de Categorias</h3>
 			<a href="{{URL::action('CategoriaController@create')}}">
 				<button class="btn btn-success">
-					<i class="fa fa-plus" aria-hidden="true">Nova Categoria</i>
+					Adicionar Nova Categoria
+					<i class="fa fa-plus" aria-hidden="true"></i>
 				</button>
 			</a>
 			@include('estoque.categoria.search')
