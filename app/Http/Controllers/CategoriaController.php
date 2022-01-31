@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Redirect;
 use App\Categoria;
-use App\Http\Request\CategoriaFormRequest;
+use App\Http\Requests\CategoriaFormRequest;
 use DB;
 
 class CategoriaController extends Controller
@@ -29,7 +29,7 @@ class CategoriaController extends Controller
     }
 
     public function create(){
-        return view('estoque/categoria/create');
+        return view('estoque.categoria.create');
     }
 
     public function store(CategoriaFormRequest $request){
@@ -41,7 +41,7 @@ class CategoriaController extends Controller
         
         $categoria->save();
 
-        return Redirect::to('categoria/estoque');
+        return Redirect::to('estoque/categoria');
     }
 
     public function show($id){
