@@ -17,9 +17,3 @@ Route::get('/', function () {
 
 Route::resource('estoque/categoria', 'CategoriaController');
 
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('/noticia', 'NoticiaController');
