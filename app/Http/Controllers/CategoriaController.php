@@ -68,5 +68,5 @@ class CategoriaController extends Controller {
 		$categoria->update();
 
 		return Redirect::to('estoque/categoria');
-	}    
+	}
 }

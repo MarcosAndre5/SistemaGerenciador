@@ -19,7 +19,7 @@ class ProdutoController extends Controller {
 			$query = trim($request->get('buscaTexto'));
 			
 			$produtos = DB::table('produtos as prod')
-				->join('categorias.cate', 'prod.idcategoria', '=', 'cate.idcategoria')
+				->join('categorias as cate', 'prod.idcategoria', '=', 'cate.idcategoria')
 				->select('prod.idproduto', 'prod.nome', 'prod.codigo', 'prod.estoque', 'cate.nome as categorias', 'prod.descricao', 'prod.imagem', 'prod.estado')
 				->where('prod.nome', 'LIKE', '%'.$query.'%')
 				->where('condicao', '=', '1')
@@ -45,31 +45,59 @@ class ProdutoController extends Controller {
 		$produto->codigo = $request->get('codigo');
 		$produto->nome = $request->get('nome');
 		$produto->estado = 'Ativo';
-		$produto->imagem = $request->get('imagem');
+
+		if(Input::hasFile('imagem')){
+			$file = Input::file('imagem');
+			$file->move(public_patch().'img/produtos/', $file->getClienteOriginalName());
 		
-		$produto->descricao = $request->get('descricao');
-		$produto->estoque = $request->get('estoque');
-		
-		$produto->condicao = 1;
-		
+			$produto->imagem = $file->getClienteOriginalName();
+		}
+
 		$produto->save();
 
 		return Redirect::to('estoque/produto');
 	}
 
-	public function show(){
-		
+	public function show($id){
+		return view('estoque.produto.show', ['produto' => Produto::findOrFail($id)]);
 	}
 
-	public function edit(){
-		
+	public function edit($id){
+		$produto = Produto::findOrFail($id);
+
+		$categorias = DB::table('categorias')
+			->where('condicao', '=', '1')
+			->get();
+
+		return view('estoque.produto.edit', ['produto' => $produto, 'categorias' => $categorias]);
 	}
 
-	public function update(){
+	public function update(ProdutoFormRequest $request, $id){
+		$produto = Produto::findOrFail($id);
 		
+		$produto->idcategoria = $request->get('idcategoria');
+		$produto->codigo = $request->get('codigo');
+		$produto->nome = $request->get('nome');
+
+		if(Input::hasFile('imagem')){
+			$file = Input::file('imagem');
+			$file->move(public_patch().'img/produtos/', $file->getClienteOriginalName());
+		
+			$produto->imagem = $file->getClienteOriginalName();
+		}
+
+		$produto->update();
+
+		return Redirect::to('estoque/produto');
 	}
 
-	public function destroy(){
+	public function destroy($id){
+		$produto = Produto::findOrFail($id);
 		
+		$produto->condicao = 'Inativo';
+		
+		$produto->update();
+
+		return Redirect::to('estoque/produto');
 	}
 }
