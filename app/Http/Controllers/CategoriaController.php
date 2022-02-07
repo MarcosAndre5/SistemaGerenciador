@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CategoriaFormRequest;
 
-
 class CategoriaController extends Controller {
 	public function __construct(){ }
 
 	public function index(Request $request){
 		if($request){
 			$query = trim($request->get('buscaTexto'));
+			
 			$categorias = DB::table('categorias')
 				->where('nome', 'LIKE', '%'.$query.'%')
 				->where('condicao', '=', 1)

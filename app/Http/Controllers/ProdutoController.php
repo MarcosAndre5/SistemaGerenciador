@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProdutoFormRequest;
 
 class ProdutoController extends Controller {
-	public function __construct(){
-
-	}
+	public function __construct(){ }
 
 	public function index(Request $request){
 		if($request){
@@ -48,13 +46,12 @@ class ProdutoController extends Controller {
 		$produto->estado = 'Ativo';
 		
 		if(Input::hasFile('imagem')){
-    		$file=Input::file('imagem');
-    		
-    		$file->move(public_path('/imagens/produtos/'), $file->getClientOriginalName());
-    		
-    		$produto->imagem = $file->getClientOriginalName();
-    	}
-
+			$file=Input::file('imagem');
+			
+			$file->move(public_path('/imagens/produtos/'), $file->getClientOriginalName());
+			
+			$produto->imagem = $file->getClientOriginalName();
+		}
 		$produto->save();
 
 		return Redirect::to('estoque/produto');
@@ -84,10 +81,9 @@ class ProdutoController extends Controller {
 		if(Input::hasFile('imagem')){
 			$file = Input::file('imagem');
 			$file->move(public_patch().'imagens/produtos/', $file->getClienteOriginalName());
-		
+
 			$produto->imagem = $file->getClienteOriginalName();
 		}
-
 		$produto->update();
 
 		return Redirect::to('estoque/produto');
@@ -95,9 +91,9 @@ class ProdutoController extends Controller {
 
 	public function destroy($id){
 		$produto = Produto::findOrFail($id);
-		
+
 		$produto->condicao = 'Inativo';
-		
+
 		$produto->update();
 
 		return Redirect::to('estoque/produto');
