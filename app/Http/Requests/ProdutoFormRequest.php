@@ -3,10 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Validator;
 
 class ProdutoFormRequest extends FormRequest {
     public function authorize(){
-        return false;
+        return true;
     }
 
     public function rules(){
@@ -16,7 +17,7 @@ class ProdutoFormRequest extends FormRequest {
             'codigo' => 'max:45',
             'nome' => 'required|max:45',
             'descricao' => 'max:100',
-            'imagem' => 'mines:jpeg,png,bmp',
+            'imagem' => 'mimes:jpeg,jpg,png,bmp',
         ];
     }
 }

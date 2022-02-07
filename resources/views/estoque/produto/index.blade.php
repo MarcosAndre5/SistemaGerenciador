@@ -24,8 +24,8 @@
 						<th>Código</th>
 						<th>Categoria</th>
 						<th>Estoque</th>
-						<th>Imagem</th>
 						<th>Estado</th>
+						<th>Imagem</th>
 						<th>Opções</th>
 					</thead>
 	               	@foreach ($produtos as $produto)
@@ -33,10 +33,12 @@
 							<td>{{ $produto->idproduto }}</td>
 							<td>{{ $produto->nome }}</td>
 							<td>{{ $produto->codigo }}</td>
-							<td>{{ $produto->categoria }}</td>
+							<td>{{ $produto->categorias }}</td>
 							<td>{{ $produto->estoque }}</td>
-							<td>{{ $produto->imagem }}</td>
 							<td>{{ $produto->estado }}</td>
+							<td>
+								<img src="{{ asset('imagens/produtos/'.$produto->imagem) }}" alt="{{ $produto->nome }}" width="100px" heigth="100px" class="img-thumbnail">
+							</td>
 							<td>
 								<a href="{{URL::action('ProdutoController@edit', $produto->idproduto)}}">
 									<button class="btn btn-info">
