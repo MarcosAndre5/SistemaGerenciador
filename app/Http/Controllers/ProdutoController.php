@@ -22,8 +22,7 @@ class ProdutoController extends Controller {
 				->join('categorias as cate', 'prod.idcategoria', '=', 'cate.idcategoria')
 				->select('prod.idproduto', 'prod.nome', 'prod.codigo', 'prod.estoque', 'cate.nome as categorias', 'prod.descricao', 'prod.imagem', 'prod.estado')
 				->where('prod.nome', 'LIKE', '%'.$query.'%')
-				->where('condicao', '=', '1')
-				->orderBy('idcategoria', 'desc')
+				->orderBy('idproduto', 'desc')
 				->paginate(5);
 
 			return view('estoque.produto.index', ['produtos'=>$produtos, 'buscaTexto'=>$query]);
@@ -44,14 +43,17 @@ class ProdutoController extends Controller {
 		$produto->idcategoria = $request->get('idcategoria');
 		$produto->codigo = $request->get('codigo');
 		$produto->nome = $request->get('nome');
+		$produto->estoque = $request->get('estoque');
+		$produto->descricao = $request->get('descricao');
 		$produto->estado = 'Ativo';
-
-		if(Input::hasFile('imagem')){
-			$file = Input::file('imagem');
-			$file->move(public_patch().'img/produtos/', $file->getClienteOriginalName());
 		
-			$produto->imagem = $file->getClienteOriginalName();
-		}
+		if(Input::hasFile('imagem')){
+    		$file=Input::file('imagem');
+    		
+    		$file->move(public_path('/imagens/produtos/'), $file->getClientOriginalName());
+    		
+    		$produto->imagem = $file->getClientOriginalName();
+    	}
 
 		$produto->save();
 
@@ -81,7 +83,7 @@ class ProdutoController extends Controller {
 
 		if(Input::hasFile('imagem')){
 			$file = Input::file('imagem');
-			$file->move(public_patch().'img/produtos/', $file->getClienteOriginalName());
+			$file->move(public_patch().'imagens/produtos/', $file->getClienteOriginalName());
 		
 			$produto->imagem = $file->getClienteOriginalName();
 		}

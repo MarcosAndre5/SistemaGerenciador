@@ -36,7 +36,6 @@
 	            	</button>
 	            </div>
 			{!!Form::close()!!}		
-            
 		</div>
 	</div>
 @stop
