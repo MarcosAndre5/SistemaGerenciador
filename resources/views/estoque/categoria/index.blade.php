@@ -24,7 +24,7 @@
 						<th>Descrição</th>
 						<th>Opções</th>
 					</thead>
-	               	@foreach ($categorias as $categoria)
+					@foreach ($categorias as $categoria)
 						<tr>
 							<td>{{ $categoria->idcategoria }}</td>
 							<td>{{ $categoria->nome }}</td>
@@ -36,12 +36,12 @@
 										<i class="fa fa-pencil" aria-hidden="true"></i>
 									</button>
 								</a>
-		                        <a href="" data-target="#modal-delete-{{$categoria->idcategoria}}" data-toggle="modal">
-		                        	<button class="btn btn-danger">
-			                        	Excluir
-			                        	<i class="fa fa-trash" aria-hidden="true"></i>
-			                        </button>
-		                        </a>
+								<a href="" data-target="#modal-delete-{{$categoria->idcategoria}}" data-toggle="modal">
+									<button class="btn btn-danger">
+										Excluir
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</a>
 							</td>
 						</tr>
 						@include('estoque.categoria.modal')

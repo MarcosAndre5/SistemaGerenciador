@@ -16,27 +16,26 @@
 			@endif
 
 			{!!Form::model($categoria, ['method'=>'PATCH', 'route'=>['categoria.update', $categoria->idcategoria]])!!}
-	            {{Form::token()}}
-	            <div class="form-group">
-	            	<label for="nome">Nome</label>
-	            	<input type="text" name="nome" class="form-control" value="{{ $categoria->nome }}"placeholder="Nome...">
-	            </div>
-	            <div class="form-group">
-	            	<label for="descricao">Descrição</label>
-	            	<input type="text" name="descricao" class="form-control" value="{{ $categoria->descricao }}" placeholder="Descrição...">
-	            </div>
-	            <div class="form-group">
-	            	<button class="btn btn-primary" type="submit">
-	            		Atualizar Categoria
-	            		<i class="fa fa-floppy-o" aria-hidden="true"></i>
-	            	</button>
-	            	<button class="btn btn-danger" type="reset">
-	            		Cancelar
-	            		<i class="fa fa-ban" aria-hidden="true"></i>
-	            	</button>
-	            </div>
-			{!!Form::close()!!}		
-            
+				{{Form::token()}}
+				<div class="form-group">
+					<label for="nome">Nome</label>
+					<input type="text" name="nome" class="form-control" value="{{ $categoria->nome }}"placeholder="Nome...">
+				</div>
+				<div class="form-group">
+					<label for="descricao">Descrição</label>
+					<input type="text" name="descricao" class="form-control" value="{{ $categoria->descricao }}" placeholder="Descrição...">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit">
+						Atualizar Categoria
+						<i class="fa fa-floppy-o" aria-hidden="true"></i>
+					</button>
+					<button class="btn btn-danger" type="reset">
+						Cancelar
+						<i class="fa fa-ban" aria-hidden="true"></i>
+					</button>
+				</div>
+			{!!Form::close()!!}
 		</div>
 	</div>
 @stop

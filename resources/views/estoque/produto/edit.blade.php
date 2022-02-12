@@ -4,8 +4,7 @@
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<h3>Editar Produto: {{ $produto->nome }}</h3>
-			
-			@if (count($errors) > 0)
+			@if (count($errors)>0)
 				<div class="alert alert-danger">
 					<ul>
 						@foreach ($errors->all() as $error)
@@ -14,29 +13,96 @@
 					</ul>
 				</div>
 			@endif
-
-			{!!Form::model($produto, ['method'=>'PATCH'], ['route'=>'estoque.produto.update', $produto->idproduto])!!}
-	            {{Form::token()}}
-	            <div class="form-group">
-	            	<label for="nome">Nome</label>
-	            	<input type="text" name="nome" class="form-control" value="{{ $produto->nome }}"placeholder="Nome...">
-	            </div>
-	            <div class="form-group">
-	            	<label for="descricao">Descrição</label>
-	            	<input type="text" name="descricao" class="form-control" value="{{ $produto->descricao }}" placeholder="Descrição...">
-	            </div>
-	            <div class="form-group">
-	            	<button class="btn btn-primary" type="submit">
-	            		Atualizar Produto
-	            		<i class="fa fa-floppy-o" aria-hidden="true"></i>
-	            	</button>
-	            	<button class="btn btn-danger" type="reset">
-	            		Cancelar
-	            		<i class="fa fa-ban" aria-hidden="true"></i>
-	            	</button>
-	            </div>
-			{!!Form::close()!!}		
-            
 		</div>
 	</div>
+
+	{!!Form::model($produto, ['method'=>'PATCH', 'route'=>['produto.update', $produto->idproduto], 'files'=>'true'])!!}
+		{{Form::token()}}
+		<div class="row">
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<div class="form-group">
+					<label for="nome">Nome</label>
+					<input type="text" name="nome" required value="{{$produto->nome}}" class="form-control" placeholder="Nome...">
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<div class="form-group">
+					<label>Categoria</label>
+					<select name="idcategoria" class="form-control">
+						@foreach($categorias as $cat)
+							@if($cat->idcategoria == $produto->idcategoria)
+								<option value="{{$cat->idcategoria}}" selected>
+									{{$cat->nome}}
+								</option>
+							@else
+								<option value="{{$cat->idcategoria}}">
+									{{$cat->nome}}
+								</option>
+							@endif
+						@endforeach
+					</select>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<div class="form-group">
+					<label for="codigo">Código</label>
+					<input type="text" name="codigo" required value="{{$produto->codigo}}" class="form-control" placeholder="Código do Produto...">
+				</div>
+			</div>
+				
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<div class="form-group">
+					<label for="estoque">Estoque</label>
+					<input type="number" name="estoque" required value="{{$produto->estoque}}" class="form-control" placeholder="Estoque...">
+				</div>	
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<div class="form-group">
+					<label for="descricao">Descrição</label>
+					<input type="text" value="{{$produto->descricao}}" name="descricao" class="form-control" placeholder="Descrição...">
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<div class="form-group">
+					<label>Estado do Produto</label>
+					<select name="estado" class="form-control">
+						<option value="{{ $produto->estado }}">
+							Selecione...
+						</option>
+						<option value="Ativo">
+							Ativo
+						</option>
+						<option value="Desativo">
+							Desativo
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<div class="form-group">
+					<label for="imagem">Imagem</label>
+					<input type="file" name="imagem" class="form-control">
+					@if(($produto->imagem)!="")
+						<img src="{{asset('imagens/produtos/'.$produto->imagem)}}" width="200px">
+					@endif
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<button class="btn btn-primary" type="submit">
+				Alterar Produto
+				<i class="fa fa-floppy-o" aria-hidden="true"></i>
+			</button>
+			<button class="btn btn-danger" type="reset">
+				Cancelar
+				<i class="fa fa-ban" aria-hidden="true"></i>
+			</button>
+		</div>
+	{!!Form::close()!!}		
 @stop
