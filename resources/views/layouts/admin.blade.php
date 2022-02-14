@@ -86,7 +86,8 @@
             
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-laptop"></i>
+                <i class="fa fa-th"></i>
+                <!--<i class="fa fa-laptop"></i>-->
                 <span>Estoque</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -98,19 +99,20 @@
             
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-th"></i>
-                <span>Compras</span>
+                <i class="fa fa-truck"></i>
+                <!--<i class="fa fa-th"></i>-->
+                <span>Entradas</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="compras/entrada"><i class="fa fa-circle-o"></i> Entradas</a></li>
+                <li><a href="compras/entrada"><i class="fa fa-circle-o"></i> Compras</a></li>
                 <li><a href="compras/fornecedor"><i class="fa fa-circle-o"></i> Fornecedores</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-shopping-cart"></i>
-                <span>Vendas</span>
+                <span>Saídas</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -121,7 +123,9 @@
                        
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Login</span>
+                <!--<i class="fa fa-folder"></i>-->
+                <i class="fa fa-user"></i>
+                <span>Login</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -131,7 +135,9 @@
             </li>
              <li>
               <a href="#">
-                <i class="fa fa-plus-square"></i> <span>Ajuda</span>
+                <!--<i class="fa fa-plus-square">-->
+                <i class="fa fa-file-pdf-o"></i>
+                </i> <span>Ajuda</span>
                 <small class="label pull-right bg-red">PDF</small>
               </a>
             </li>

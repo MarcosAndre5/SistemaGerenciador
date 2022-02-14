@@ -20,3 +20,6 @@ Route::resource('estoque/categoria', 'CategoriaController');
 
 // Produtos
 Route::resource('estoque/produto', 'ProdutoController');
+
+// Clientes
+Route::resource('saida/cliente', 'ClienteController');
