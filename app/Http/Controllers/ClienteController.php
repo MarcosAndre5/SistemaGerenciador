@@ -15,95 +15,77 @@ class ClienteController extends Controller {
 		if($request){
 			$query = trim($request->get('buscaTexto'));
 			
-			$produtos = DB::table('produtos as prod')
-				->join('categorias as cate', 'prod.idcategoria', '=', 'cate.idcategoria')
-				->select('prod.idproduto', 'prod.nome', 'prod.codigo', 'prod.estoque', 'cate.nome as categorias', 'prod.descricao', 'prod.imagem', 'prod.estado')
-				->where('estado', '=', 'Ativo')
-				->where('prod.nome', 'LIKE', '%'.$query.'%')
-				->orderBy('idproduto', 'desc')
+			$pessoas = DB::table('pessoas')
+				->where('nome', 'LIKE', '%'.$query.'%')	
+				->where('tipo_pessoa', '=', 'Cliente')
+				->orwhere('tipo_documento', '=', '%'.$query.'%')
+				->where('tipo_pessoa', '=', 'Cliente')
+				->orderBy('idpessoa', 'desc')
 				->paginate(5);
 
-			return view('estoque.produto.index', ['produtos'=>$produtos, 'buscaTexto'=>$query]);
+			return view('saida.cliente.index', ['pessoas'=>$pessoas, 'buscaTexto'=>$query]);
 		}
 	}
 
 	public function create(){
-		$categorias = DB::table('categorias')
-			->where('condicao', '=', '1')
-			->get();
-
-		return view('estoque.produto.create', ['categorias' => $categorias]);
+		return view('saida.cliente.create');
 	}
 
-	public function store(ProdutoFormRequest $request){
-		$produto = new Produto;
+	public function store(PessoaFormRequest $request){
+		$pessoas = new Pessoa;
 		
-		$produto->idcategoria = $request->get('idcategoria');
-		$produto->codigo = $request->get('codigo');
-		$produto->nome = $request->get('nome');
-		$produto->estoque = $request->get('estoque');
-		$produto->descricao = $request->get('descricao');
-		$produto->estado = 'Ativo';
-		
-		if(Input::hasFile('imagem')){
-			$file = Input::file('imagem');
-			
-			$nomeImagem = str_replace(" ", "", $produto->nome).'.'.$file->extension();
+		$pessoas->tipo_pessoa = 'Cliente';
+		$pessoas->nome = $request->get('nome');
+		$pessoas->email = $request->get('email');
+		$pessoas->telefone = $request->get('telefone');
+		$pessoas->endereco = $request->get('endereco');
+		$pessoas->tipo_documento = $request->get('tipo_documento');
+		$pessoas->numero_documento = $request->get('numero_documento');
+				
+		$pessoas->save();
 
-			$file->move(public_path('imagens/produtos/'), $nomeImagem);
-
-			$produto->imagem = $nomeImagem;
-		}
-		$produto->save();
-
-		return Redirect::to('estoque/produto');
+		return Redirect::to('saida/cliente');
 	}
 
 	public function show($id){
-		return view('estoque.produto.show', ['produto' => Produto::findOrFail($id)]);
+		return view('saida.cliente.show', ['pessoas' => Pessoa::findOrFail($id)]);
 	}
 
 	public function edit($id){
-		$produto = Produto::findOrFail($id);
+		$pessoas = Pessoa::findOrFail($id);
 
-		$categorias = DB::table('categorias')
-			->where('condicao', '=', '1')
+		$pessoas = DB::table('pessoas')
+			->where('tipo_pessoa', '=', 'Cliente')
 			->get();
 
-		return view('estoque.produto.edit', ['produto' => $produto, 'categorias' => $categorias]);
+		//dd($pessoas);
+
+		return view('saida.cliente.edit', ['pessoa' => $pessoas]);
 	}
 
-	public function update(ProdutoFormRequest $request, $id){
-		$produto = Produto::findOrFail($id);
+	public function update(PessoaFormRequest $request, $id){
+		$pessoas = Pessoa::findOrFail($id);
 		
-		$produto->idcategoria = $request->get('idcategoria');
-		$produto->codigo = $request->get('codigo');
-		$produto->nome = $request->get('nome');
-		$produto->estoque = $request->get('estoque');
-		$produto->descricao = $request->get('descricao');
-		$produto->estado = $request->get('estado');
+		$pessoas->tipo_pessoa = 'Cliente';
+		$pessoas->nome = $request->get('nome');
+		$pessoas->email = $request->get('email');
+		$pessoas->telefone = $request->get('telefone');
+		$pessoas->endereco = $request->get('endereco');
+		$pessoas->tipo_documento = $request->get('tipo_documento');
+		$pessoas->numero_documento = $request->get('numero_documento');
 
-		if(Input::hasFile('imagem')){
-			$file = Input::file('imagem');
-			
-			$nomeImagem = str_replace(" ", "", $produto->nome).'.'.$file->extension();
+		$pessoas->update();
 
-			$file->move(public_path('imagens/produtos/'), $nomeImagem);
-
-			$produto->imagem = $nomeImagem;
-		}
-		$produto->update();
-
-		return Redirect::to('estoque/produto');
+		return Redirect::to('saida/cliente');
 	}
 
 	public function destroy($id){
-		$produto = Produto::findOrFail($id);
+		$pessoas = Pessoa::findOrFail($id);
 
-		$produto->condicao = 'Inativo';
+		$pessoas->tipo_pessoa = 'Inativo';
 
-		$produto->update();
+		$pessoas->update();
 
-		return Redirect::to('estoque/produto');
+		return Redirect::to('saida/cliente');
 	}
 }
