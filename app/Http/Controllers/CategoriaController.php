@@ -13,15 +13,15 @@ class CategoriaController extends Controller {
 
 	public function index(Request $request){
 		if($request){
-			$query = trim($request->get('buscaTexto'));
+			$palavra = trim($request->get('buscaTexto'));
 			
 			$categorias = DB::table('categorias')
-				->where('nome', 'LIKE', '%'.$query.'%')
-				->where('condicao', '=', 1)
-				->orderBy('idcategoria', 'desc')
+				->where('nome_categoria', 'LIKE', '%'.$palavra.'%')
+				->where('estado_categoria', '=', '1')
+				->orderBy('id_categoria', 'desc')
 				->paginate(5);
-
-			return view('estoque.categoria.index', ["categorias"=>$categorias, "buscaTexto"=>$query]);
+			//dd($categorias);
+			return view('estoque.categoria.index', ["categorias"=>$categorias, "buscaTexto"=>$palavra]);
 		}
 	}
 
@@ -32,9 +32,9 @@ class CategoriaController extends Controller {
 	public function store(CategoriaFormRequest $request){
 		$categoria = new Categoria;
 		
-		$categoria->nome = $request->get('nome');
-		$categoria->descricao = $request->get('descricao');
-		$categoria->condicao = 1;
+		$categoria->nome_categoria = $request->get('nome');
+		$categoria->descricao_categoria = $request->get('descricao');
+		$categoria->estado_categoria = '1';
 		
 		$categoria->save();
 
@@ -52,8 +52,8 @@ class CategoriaController extends Controller {
 	public function update(CategoriaFormRequest $request, $id){
 		$categoria = Categoria::findOrFail($id);
 		
-		$categoria->nome = $request->get('nome');
-		$categoria->descricao = $request->get('descricao');
+		$categoria->nome_categoria = $request->get('nome');
+		$categoria->descricao_categoria = $request->get('descricao');
 		
 		$categoria->update();
 
@@ -63,7 +63,7 @@ class CategoriaController extends Controller {
 	public function destroy($id){
 		$categoria = Categoria::findOrFail($id);
 		
-		$categoria->condicao = '0';
+		$categoria->estado_categoria = '0';
 		
 		$categoria->update();
 
