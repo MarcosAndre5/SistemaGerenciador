@@ -3,27 +3,25 @@
 namespace App\Http\Controllers;
 
 use DB;
-use App\Pessoa;
+use App\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\PessoaFormRequest;
+use App\Http\Requests\ClienteFormRequest;
 
 class ClienteController extends Controller {
     public function __construct(){ }
 
 	public function index(Request $request){
 		if($request){
-			$query = trim($request->get('buscaTexto'));
+			$palavra = trim($request->get('buscaTexto'));
 			
-			$pessoas = DB::table('pessoas')
-				->where('nome', 'LIKE', '%'.$query.'%')	
-				->where('tipo_pessoa', '=', 'Cliente')
-				->orwhere('tipo_documento', '=', '%'.$query.'%')
-				->where('tipo_pessoa', '=', 'Cliente')
-				->orderBy('idpessoa', 'desc')
+			$clientes = DB::table('clientes')
+				->where('nome_cliente', 'LIKE', '%'.$palavra.'%')	
+				->orwhere('tipo_documento_cliente', '=', '%'.$palavra.'%')
+				->orderBy('id_cliente', 'desc')
 				->paginate(5);
 
-			return view('saida.cliente.index', ['pessoas'=>$pessoas, 'buscaTexto'=>$query]);
+			return view('saida.cliente.index', ['clientes'=>$clientes, 'buscaTexto'=>$palavra]);
 		}
 	}
 
@@ -31,60 +29,55 @@ class ClienteController extends Controller {
 		return view('saida.cliente.create');
 	}
 
-	public function store(PessoaFormRequest $request){
-		$pessoas = new Pessoa;
+	public function store(ClienteFormRequest $request){
+		$cliente = new Cliente;
 		
-		$pessoas->tipo_pessoa = 'Cliente';
-		$pessoas->nome = $request->get('nome');
-		$pessoas->email = $request->get('email');
-		$pessoas->telefone = $request->get('telefone');
-		$pessoas->endereco = $request->get('endereco');
-		$pessoas->tipo_documento = $request->get('tipo_documento');
-		$pessoas->numero_documento = $request->get('numero_documento');
+		$cliente->tipo_cliente = 'cliente';
+		$cliente->nome_cliente = $request->get('nome');
+		$cliente->email_cliente = $request->get('email');
+		$cliente->telefone_cliente = $request->get('telefone');
+		$cliente->endereco_cliente = $request->get('endereco');
+		$cliente->documento_cliente = $request->get('tipo_documento');
+		$cliente->numero_documento_cliente = $request->get('numero_documento');
 				
-		$pessoas->save();
+		$cliente->save();
 
 		return Redirect::to('saida/cliente');
 	}
 
 	public function show($id){
-		return view('saida.cliente.show', ['pessoas' => Pessoa::findOrFail($id)]);
+		return view('saida.cliente.show', ['cliente' => Cliente::findOrFail($id)]);
 	}
 
 	public function edit($id){
-		$pessoas = Pessoa::findOrFail($id);
+		$cliente = Cliente::findOrFail($id);
 
-		$pessoas = DB::table('pessoas')
-			->where('tipo_pessoa', '=', 'Cliente')
-			->get();
+		$cliente = DB::table('clientes')->get();
 
-		//dd($pessoas);
-
-		return view('saida.cliente.edit', ['pessoa' => $pessoas]);
+		return view('saida.cliente.edit', ['cliente' => $cliente]);
 	}
 
-	public function update(PessoaFormRequest $request, $id){
-		$pessoas = Pessoa::findOrFail($id);
+	public function update(ClienteFormRequest $request, $id){
+		$cliente = Cliente::findOrFail($id);
 		
-		$pessoas->tipo_pessoa = 'Cliente';
-		$pessoas->nome = $request->get('nome');
-		$pessoas->email = $request->get('email');
-		$pessoas->telefone = $request->get('telefone');
-		$pessoas->endereco = $request->get('endereco');
-		$pessoas->tipo_documento = $request->get('tipo_documento');
-		$pessoas->numero_documento = $request->get('numero_documento');
+		$cliente->nome_cliente = $request->get('nome');
+		$cliente->email_cliente = $request->get('email');
+		$cliente->telefone_cliente = $request->get('telefone');
+		$cliente->endereco_cliente = $request->get('endereco');
+		$cliente->documento_cliente = $request->get('tipo_documento');
+		$cliente->numero_documento_cliente = $request->get('numero_documento');
 
-		$pessoas->update();
+		$cliente->update();
 
 		return Redirect::to('saida/cliente');
 	}
 
 	public function destroy($id){
-		$pessoas = Pessoa::findOrFail($id);
+		$cliente = Cliente::findOrFail($id);
 
-		$pessoas->tipo_pessoa = 'Inativo';
+		$cliente->tipo_cliente = 'Inativo';
 
-		$pessoas->update();
+		$cliente->update();
 
 		return Redirect::to('saida/cliente');
 	}

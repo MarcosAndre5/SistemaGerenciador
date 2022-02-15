@@ -14,24 +14,24 @@ class ProdutoController extends Controller {
 
 	public function index(Request $request){
 		if($request){
-			$query = trim($request->get('buscaTexto'));
+			$palavra = trim($request->get('buscaTexto'));
 			
-			$produtos = DB::table('produtos as prod')
-				->join('categorias as cate', 'prod.idcategoria', '=', 'cate.idcategoria')
-				->select('prod.idproduto', 'prod.nome', 'prod.codigo', 'prod.estoque', 'cate.nome as categorias', 'prod.descricao', 'prod.imagem', 'prod.estado')
-				->where('estado', '=', 'Ativo')
-				->where('prod.nome', 'LIKE', '%'.$query.'%')
-				->orderBy('idproduto', 'desc')
+			$produtos = DB::table('produtos as p')
+				->join('categorias as c', 'p.id_categoria_produto', '=', 'c.id_categoria')
+				->select('p.id_produto', 'p.nome_produto', 'p.codigo_produto', 'p.estoque_produto',
+					'c.nome_categoria as categorias', 'p.descricao_produto', 'p.imagem_produto', 'p.estado_produto')
+				->where('estado_produto', '=', '1')
+				->where('p.nome_produto', 'LIKE', '%'.$palavra.'%')
+				->orderBy('id_produto', 'desc')
 				->paginate(5);
 
-			return view('estoque.produto.index', ['produtos'=>$produtos, 'buscaTexto'=>$query]);
+			return view('estoque.produto.index', ['produtos'=>$produtos, 'buscaTexto'=>$palavra]);
 		}
 	}
 
 	public function create(){
 		$categorias = DB::table('categorias')
-			->where('condicao', '=', '1')
-			->get();
+			->where('estado_categoria', '=', '1')->get();
 
 		return view('estoque.produto.create', ['categorias' => $categorias]);
 	}
@@ -39,21 +39,21 @@ class ProdutoController extends Controller {
 	public function store(ProdutoFormRequest $request){
 		$produto = new Produto;
 		
-		$produto->idcategoria = $request->get('idcategoria');
-		$produto->codigo = $request->get('codigo');
-		$produto->nome = $request->get('nome');
-		$produto->estoque = $request->get('estoque');
-		$produto->descricao = $request->get('descricao');
-		$produto->estado = 'Ativo';
+		$produto->id_categoria_produto = $request->get('idcategoria');
+		$produto->codigo_produto = $request->get('codigo');
+		$produto->nome_produto = $request->get('nome');
+		$produto->estoque_produto = $request->get('estoque');
+		$produto->descricao_produto = $request->get('descricao');
+		$produto->estado_produto = '1';
 		
 		if(Input::hasFile('imagem')){
 			$file = Input::file('imagem');
 			
-			$nomeImagem = str_replace(" ", "", $produto->nome).'.'.$file->extension();
+			$nomeImagem = str_replace(" ", "", $produto->nome_produto).'.'.$file->extension();
 
 			$file->move(public_path('imagens/produtos/'), $nomeImagem);
 
-			$produto->imagem = $nomeImagem;
+			$produto->imagem_produto = $nomeImagem;
 		}
 		$produto->save();
 
@@ -67,9 +67,7 @@ class ProdutoController extends Controller {
 	public function edit($id){
 		$produto = Produto::findOrFail($id);
 
-		$categorias = DB::table('categorias')
-			->where('condicao', '=', '1')
-			->get();
+		$categorias = DB::table('categorias')->where('condicao', '=', '1')->get();
 
 		return view('estoque.produto.edit', ['produto' => $produto, 'categorias' => $categorias]);
 	}
@@ -77,21 +75,21 @@ class ProdutoController extends Controller {
 	public function update(ProdutoFormRequest $request, $id){
 		$produto = Produto::findOrFail($id);
 		
-		$produto->idcategoria = $request->get('idcategoria');
-		$produto->codigo = $request->get('codigo');
-		$produto->nome = $request->get('nome');
-		$produto->estoque = $request->get('estoque');
-		$produto->descricao = $request->get('descricao');
-		$produto->estado = $request->get('estado');
+		$produto->id_categoria_produto = $request->get('idcategoria');
+		$produto->codigo_produto = $request->get('codigo');
+		$produto->nome_produto = $request->get('nome');
+		$produto->estoque_produto = $request->get('estoque');
+		$produto->descricao_produto = $request->get('descricao');
+		$produto->estado_produto = $request->get('estado');
 
 		if(Input::hasFile('imagem')){
 			$file = Input::file('imagem');
 			
-			$nomeImagem = str_replace(" ", "", $produto->nome).'.'.$file->extension();
+			$nomeImagem = str_replace(" ", "", $produto->nome_produto).'.'.$file->extension();
 
 			$file->move(public_path('imagens/produtos/'), $nomeImagem);
 
-			$produto->imagem = $nomeImagem;
+			$produto->imagem_produto = $nomeImagem;
 		}
 		$produto->update();
 
@@ -101,7 +99,7 @@ class ProdutoController extends Controller {
 	public function destroy($id){
 		$produto = Produto::findOrFail($id);
 
-		$produto->condicao = 'Inativo';
+		$produto->estado_produto = '0';
 
 		$produto->update();
 
