@@ -8,7 +8,7 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/README-template?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=marcosandre5&exclude_repo=sistema)](https://github.com/marcosandre5/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=marcosandre5&repo=sistema)](https://github.com/marcosandre5/github-readme-stats)
 
 <img src="exemplo-image.png" alt="exemplo imagem">
 
