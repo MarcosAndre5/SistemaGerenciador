@@ -29,7 +29,7 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="telefone">Telefone</label>
-					<input type="text" name="telefone" class="form-control" placeholder="Telefone...">
+					<input type="text" name="telefone" id="telefone" class="form-control" placeholder="Telefone...">
 				</div>
 			</div>
 
@@ -38,7 +38,8 @@
 					<label>Tipo Documento</label>
 					<select name="tipo_documento" class="form-control">
 						<option value="CPF">CPF</option>
-						<option value="RG">RG </option>
+						<option value="RG">RG</option>
+						<option value="RG">CNPJ</option>
 					</select>
 				</div>
 			</div>
@@ -75,5 +76,8 @@
 				<i class="fa fa-ban" aria-hidden="true"></i>
 			</button>
 		</div>
-	{!!Form::close()!!}		
+	{!!Form::close()!!}
+	<script>
+		$("#telefone").mask("(99) 99999-9999");
+	</script>	
 @stop

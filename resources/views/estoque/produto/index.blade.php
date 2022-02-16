@@ -20,22 +20,20 @@
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
 						<th>Id</th>
-						<th>Nome</th>
 						<th>Código</th>
+						<th>Nome</th>
 						<th>Categoria</th>
 						<th>Estoque</th>
-						<th>Estado</th>
 						<th>Imagem</th>
 						<th>Opções</th>
 					</thead>
 	               	@foreach ($produtos as $produto)
 						<tr>
 							<td>{{ $produto->id_produto }}</td>
-							<td>{{ $produto->nome_produto }}</td>
 							<td>{{ $produto->codigo_produto }}</td>
+							<td>{{ $produto->nome_produto }}</td>
 							<td>{{ $produto->categorias }}</td>
 							<td>{{ $produto->estoque_produto }}</td>
-							<td>{{ $produto->estado_produto }}</td>
 							<td>
 								@if ($produto->imagem_produto != 'Sem Imagem')
 									<img src="{{ asset('imagens/produtos/'.$produto->imagem_produto) }}" alt="{{ $produto->nome_produto }}" width="70px" heigth="70px" class="img-thumbnail">

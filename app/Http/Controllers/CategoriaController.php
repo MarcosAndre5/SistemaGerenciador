@@ -20,7 +20,7 @@ class CategoriaController extends Controller {
 				->where('estado_categoria', '=', '1')
 				->orderBy('id_categoria', 'desc')
 				->paginate(5);
-			//dd($categorias);
+			
 			return view('estoque.categoria.index', ["categorias"=>$categorias, "buscaTexto"=>$palavra]);
 		}
 	}
@@ -34,7 +34,7 @@ class CategoriaController extends Controller {
 		
 		$categoria->nome_categoria = $request->get('nome');
 		$categoria->descricao_categoria = $request->get('descricao');
-		$categoria->estado_categoria = '1';
+		$categoria->estado_categoria = 1;
 		
 		$categoria->save();
 
@@ -54,6 +54,7 @@ class CategoriaController extends Controller {
 		
 		$categoria->nome_categoria = $request->get('nome');
 		$categoria->descricao_categoria = $request->get('descricao');
+		$categoria->estado_categoria = 1;
 		
 		$categoria->update();
 

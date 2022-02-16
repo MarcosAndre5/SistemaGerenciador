@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sistema com Laravel - Hugo Vasconcelos</title>
+    <title>SIGEVE</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -16,7 +16,10 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
     <link rel="apple-touch-icon" href="{{asset('img/apple-touch-icon.png')}}">
-    <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{asset('img/logo.ico')}}">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
@@ -27,9 +30,9 @@
         <!-- Logo -->
         <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>HV</b>V</span>
+          <span class="logo-mini"><b>SGV</b></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>HV - Vendas</b></span>
+          <span class="logo-lg"><b>SIGEVE</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -47,15 +50,15 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <small class="bg-red">Online</small>
-                  <span class="hidden-xs">Hugo Vasconcelos de Freitas</span>
+                  <span class="hidden-xs">Marcos André Azevedo de Assis</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     
                     <p>
-                      www.hugocursos.com.br - Desenvolvimento de Sistemas
-                      <small>www.youtube.com/tutoriais01</small>
+                      Marcos André Azevedo de Assis
+                      <small>Projeto de TCC</small>
                     </p>
                   </li>
                   
@@ -92,11 +95,21 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="/estoque/produto"><i class="fa fa-circle-o"></i> Produtos</a></li>
-                <li><a href="/estoque/categoria"><i class="fa fa-circle-o"></i> Categorias</a></li>
+              <li><a href="/estoque/categoria"><i class="fa fa-circle-o"></i> Categorias</a></li>  
+              <li><a href="/estoque/produto"><i class="fa fa-circle-o"></i> Produtos</a></li>
               </ul>
             </li>
-            
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-shopping-cart"></i>
+                <span>Saídas</span>
+                 <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/saida/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li>  
+                <li><a href="/saida/venda"><i class="fa fa-circle-o"></i> Vendas</a></li>
+              </ul>
+            </li>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-truck"></i>
@@ -111,25 +124,13 @@
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-shopping-cart"></i>
-                <span>Saídas</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="/saida/venda"><i class="fa fa-circle-o"></i> Vendas</a></li>
-                <li><a href="/saida/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li>
-              </ul>
-            </li>
-                       
-            <li class="treeview">
-              <a href="#">
                 <!--<i class="fa fa-folder"></i>-->
                 <i class="fa fa-user"></i>
                 <span>Login</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="configuracao/usuario"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                <li><a href="/configuracao/usuario"><i class="fa fa-circle-o"></i> Usuarios</a></li>
                 
               </ul>
             </li>
@@ -168,7 +169,7 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Sistema de Vendas</h3>
+                  <h3 class="box-title">Sistema Gerenciador de Vendas</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     
@@ -197,9 +198,9 @@
       <!--Fin-Contenido-->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Versão</b> 5.3.0
+          <b>Versão</b> 0.0.1
         </div>
-        <strong>Copyright &copy; 2015-2020 <a href="www.hugocursos.com.br">Q-Cursos</a>.</strong> Todos os direitos reservados.
+        <strong>Copyright &copy; 2021 - 2022 <a href="">Marcos André</a>.</strong> Todos os direitos reservados.
       </footer>
 
       
