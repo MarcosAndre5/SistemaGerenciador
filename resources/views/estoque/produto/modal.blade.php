@@ -1,5 +1,5 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$produto->idproduto}}">
-	{{Form::Open(array('action'=>array('ProdutoController@destroy',$produto->idproduto),'method'=>'delete'))}}
+<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$produto->id_produto}}">
+	{{Form::Open(array('action'=>array('ProdutoController@destroy',$produto->id_produto),'method'=>'delete'))}}
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -10,7 +10,7 @@
                 <h4 class="modal-title">Apagar Produto</h4>
 			</div>
 			<div class="modal-body">
-				<p>Confirme se deseja apagar o produto <b>{{ $produto->nome }}</b></p>
+				<p>Confirme se deseja apagar o produto <b>{{ $produto->nome_produto }}</b></p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -25,5 +25,4 @@
 		</div>
 	</div>
 	{{Form::Close()}}
-
 </div>

@@ -1,5 +1,5 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$categoria->idcategoria}}">
-	{{Form::Open(array('action'=>array('CategoriaController@destroy',$categoria->idcategoria),'method'=>'delete'))}}
+<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$categoria->id_categoria}}">
+	{{Form::Open(array('action'=>array('CategoriaController@destroy',$categoria->id_categoria),'method'=>'delete'))}}
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -9,7 +9,7 @@
 				<h4 class="modal-title">Apagar Categoria</h4>
 			</div>
 			<div class="modal-body">
-				<p>Confirme se deseja apagar a categoria <b>{{ $categoria->nome }}</b></p>
+				<p>Confirme se deseja apagar a categoria <b>{{ $categoria->nome_categoria }}</b></p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">

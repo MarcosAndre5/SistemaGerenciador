@@ -26,17 +26,17 @@
 					</thead>
 					@foreach ($categorias as $categoria)
 						<tr>
-							<td>{{ $categoria->idcategoria }}</td>
-							<td>{{ $categoria->nome }}</td>
-							<td>{{ $categoria->descricao }}</td>
+							<td>{{ $categoria->id_categoria }}</td>
+							<td>{{ $categoria->nome_categoria }}</td>
+							<td>{{ $categoria->descricao_categoria }}</td>
 							<td>
-								<a href="{{URL::action('CategoriaController@edit', $categoria->idcategoria)}}">
+								<a href="{{URL::action('CategoriaController@edit', $categoria->id_categoria)}}">
 									<button class="btn btn-info">
 										Editar
 										<i class="fa fa-pencil" aria-hidden="true"></i>
 									</button>
 								</a>
-								<a href="" data-target="#modal-delete-{{$categoria->idcategoria}}" data-toggle="modal">
+								<a href="" data-target="#modal-delete-{{$categoria->id_categoria}}" data-toggle="modal">
 									<button class="btn btn-danger">
 										Excluir
 										<i class="fa fa-trash" aria-hidden="true"></i>
