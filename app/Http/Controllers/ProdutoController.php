@@ -22,6 +22,7 @@ class ProdutoController extends Controller {
 					'c.nome_categoria as categorias', 'p.descricao_produto', 'p.imagem_produto', 'p.estado_produto')
 				->where('estado_produto', '=', '1')
 				->where('p.nome_produto', 'LIKE', '%'.$palavra.'%')
+				->orwhere('p.codigo_produto', 'LIKE', '%'.$palavra.'%')
 				->orderBy('id_produto', 'desc')
 				->paginate(5);
 

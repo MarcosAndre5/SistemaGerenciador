@@ -54,30 +54,18 @@
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-xs-12">
-				<div class="form-group">
-					<label for="descricao">Descrição</label>
-					<input type="text" name="descricao" class="form-control" placeholder="Descrição...">
-				</div>
-			</div>
-
-			<div class="col-lg-6 col-sm-6 col-xs-12">
-				<div class="form-group">
-					<label>Estado do Produto</label>
-					<select name="estado" class="form-control">
-						<option value="1">
-							Ativo
-						</option>
-						<option value="0">
-							Desativo
-						</option>
-					</select>
-				</div>
-			</div>
-
-			<div class="col-lg-6 col-sm-6 col-xs-12">
 					<div class="form-group">
 					<label for="imagem">Imagem</label>
 					<input type="file" name="imagem" class="form-control">
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<div class="form-group">
+					<label for="descricao">Descrição</label>
+					<div class="form-floating">
+						<textarea class="form-control" name="descricao" placeholder="Descrição..." style="height: 100px; resize: none"></textarea>
+					</div>
 				</div>
 			</div>
 		</div>

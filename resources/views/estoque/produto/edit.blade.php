@@ -62,21 +62,9 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
-					<input type="text" value="{{$produto->descricao_produto}}" name="descricao" class="form-control" placeholder="Descrição...">
-				</div>
-			</div>
-
-			<div class="col-lg-6 col-sm-6 col-xs-12">
-				<div class="form-group">
-					<label>Estado do Produto</label>
-					<select name="estado" class="form-control">
-						<option value="1">
-							Ativo
-						</option>
-						<option value="0">
-							Desativo
-						</option>
-					</select>
+					<div class="form-floating">
+						<textarea class="form-control" name="descricao" value="{{ $produto->descricao_produto }}" style="height: 100px; resize: none">{{$produto->descricao_produto}}</textarea>
+					</div>
 				</div>
 			</div>
 

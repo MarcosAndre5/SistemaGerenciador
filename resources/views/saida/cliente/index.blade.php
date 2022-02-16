@@ -27,23 +27,23 @@
 						<th>Número Documento</th>
 						<th>Endereço</th>
 					</thead>
-					@foreach ($pessoas as $pessoa)
+					@foreach ($clientes as $cliente)
 						<tr>
-							<td>{{ $pessoa->idpessoa }}</td>
-							<td>{{ $pessoa->nome }}</td>
-							<td>{{ $pessoa->email }}</td>
-							<td>{{ $pessoa->telefone }}</td>
-							<td>{{ $pessoa->tipo_documento }}</td>
-							<td>{{ $pessoa->numero_documento }}</td>
-							<td>{{ $pessoa->endereco }}</td>
+							<td>{{ $cliente->id_cliente }}</td>
+							<td>{{ $cliente->nome_cliente }}</td>
+							<td>{{ $cliente->email_cliente }}</td>
+							<td>{{ $cliente->telefone_cliente }}</td>
+							<td>{{ $cliente->documento_cliente }}</td>
+							<td>{{ $cliente->numero_documento_cliente }}</td>
+							<td>{{ $cliente->endereco_cliente }}</td>
 							<td>
-								<a href="{{URL::action('ClienteController@edit', $pessoa->idpessoa)}}">
+								<a href="{{URL::action('ClienteController@edit', $cliente->id_cliente)}}">
 									<button class="btn btn-info">
 										Editar
 										<i class="fa fa-pencil" aria-hidden="true"></i>
 									</button>
 								</a>
-								<a href="" data-target="#modal-delete-{{$pessoa->idpessoa}}" data-toggle="modal">
+								<a href="" data-target="#modal-delete-{{$cliente->id_cliente}}" data-toggle="modal">
 									<button class="btn btn-danger">
 										Excluir
 										<i class="fa fa-trash" aria-hidden="true"></i>
@@ -55,7 +55,7 @@
 					@endforeach
 				</table>
 			</div>
-			{{$pessoas->render()}}
+			{{$clientes->render()}}
 		</div>
 	</div>
 @stop

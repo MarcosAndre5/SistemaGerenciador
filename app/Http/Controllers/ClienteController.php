@@ -16,11 +16,12 @@ class ClienteController extends Controller {
 			$palavra = trim($request->get('buscaTexto'));
 			
 			$clientes = DB::table('clientes')
-				->where('nome_cliente', 'LIKE', '%'.$palavra.'%')	
-				->orwhere('tipo_documento_cliente', '=', '%'.$palavra.'%')
+				->where('tipo_cliente', '!=', '0')
+				->where('nome_cliente', 'LIKE', '%'.$palavra.'%')
+				->orwhere('numero_documento_cliente', 'LIKE', '%'.$palavra.'%')
 				->orderBy('id_cliente', 'desc')
 				->paginate(5);
-
+			
 			return view('saida.cliente.index', ['clientes'=>$clientes, 'buscaTexto'=>$palavra]);
 		}
 	}
@@ -38,7 +39,16 @@ class ClienteController extends Controller {
 		$cliente->telefone_cliente = $request->get('telefone');
 		$cliente->endereco_cliente = $request->get('endereco');
 		$cliente->documento_cliente = $request->get('tipo_documento');
-		$cliente->numero_documento_cliente = $request->get('numero_documento');
+		
+		$numDoc = preg_replace("/[^0-9]/", "", $request->get('numero_documento'));
+ 
+        if($request->get('documento') == 'CPF') {
+            $numDoc = substr($numDoc, 0, 3).'.'.substr($numDoc, 3, 3).'.'.substr($numDoc, 6, 3).'-'.substr($numDoc, 9, 2);
+		} else if($request->get('documento') == 'CNPJ'){
+			$numDoc = substr($numDoc, 0, 2).'.'.substr($numDoc, 2, 3).'.'.substr($numDoc, 5, 3).'/'.substr($numDoc, 8, 4).'-'.substr($numDoc, -2);
+		}
+
+		$cliente->numero_documento_cliente = $numDoc;
 				
 		$cliente->save();
 
@@ -51,9 +61,7 @@ class ClienteController extends Controller {
 
 	public function edit($id){
 		$cliente = Cliente::findOrFail($id);
-
-		$cliente = DB::table('clientes')->get();
-
+		//dd($cliente);
 		return view('saida.cliente.edit', ['cliente' => $cliente]);
 	}
 
@@ -64,8 +72,17 @@ class ClienteController extends Controller {
 		$cliente->email_cliente = $request->get('email');
 		$cliente->telefone_cliente = $request->get('telefone');
 		$cliente->endereco_cliente = $request->get('endereco');
-		$cliente->documento_cliente = $request->get('tipo_documento');
-		$cliente->numero_documento_cliente = $request->get('numero_documento');
+		$cliente->documento_cliente = $request->get('documento');
+
+		$numDoc = preg_replace("/[^0-9]/", "", $request->get('numero_documento'));
+ 
+        if($request->get('documento') == 'CPF') {
+            $numDoc = substr($numDoc, 0, 3).'.'.substr($numDoc, 3, 3).'.'.substr($numDoc, 6, 3).'-'.substr($numDoc, 9, 2);
+		} else if($request->get('documento') == 'CNPJ'){
+			$numDoc = substr($numDoc, 0, 2).'.'.substr($numDoc, 2, 3).'.'.substr($numDoc, 5, 3).'/'.substr($numDoc, 8, 4).'-'.substr($numDoc, -2);
+		}
+
+		$cliente->numero_documento_cliente = $numDoc;
 
 		$cliente->update();
 
@@ -75,7 +92,7 @@ class ClienteController extends Controller {
 	public function destroy($id){
 		$cliente = Cliente::findOrFail($id);
 
-		$cliente->tipo_cliente = 'Inativo';
+		$cliente->tipo_cliente = '0';
 
 		$cliente->update();
 

@@ -23,7 +23,9 @@
 				</div>
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
-					<input type="text" name="descricao" class="form-control" placeholder="Descrição...">
+					<div class="form-floating">
+						<textarea class="form-control" name="descricao" placeholder="Descrição..." style="height: 100px; resize: none"></textarea>
+					</div>
 				</div>
 				<div class="form-group">
 					<button class="btn btn-primary" type="submit">
