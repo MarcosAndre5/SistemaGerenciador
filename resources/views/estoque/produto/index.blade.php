@@ -30,23 +30,27 @@
 					</thead>
 	               	@foreach ($produtos as $produto)
 						<tr>
-							<td>{{ $produto->idproduto }}</td>
-							<td>{{ $produto->nome }}</td>
-							<td>{{ $produto->codigo }}</td>
+							<td>{{ $produto->id_produto }}</td>
+							<td>{{ $produto->nome_produto }}</td>
+							<td>{{ $produto->codigo_produto }}</td>
 							<td>{{ $produto->categorias }}</td>
-							<td>{{ $produto->estoque }}</td>
-							<td>{{ $produto->estado }}</td>
+							<td>{{ $produto->estoque_produto }}</td>
+							<td>{{ $produto->estado_produto }}</td>
 							<td>
-								<img src="{{ asset('imagens/produtos/'.$produto->imagem) }}" alt="{{ $produto->nome }}" width="100px" heigth="100px" class="img-thumbnail">
+								@if ($produto->imagem_produto != 'Sem Imagem')
+									<img src="{{ asset('imagens/produtos/'.$produto->imagem_produto) }}" alt="{{ $produto->nome_produto }}" width="70px" heigth="70px" class="img-thumbnail">
+								@else
+									{{ $produto->imagem_produto }}
+								@endif
 							</td>
 							<td>
-								<a href="{{URL::action('ProdutoController@edit', $produto->idproduto)}}">
+								<a href="{{URL::action('ProdutoController@edit', $produto->id_produto)}}">
 									<button class="btn btn-info">
 										Editar
 										<i class="fa fa-pencil" aria-hidden="true"></i>
 									</button>
 								</a>
-		                        <a href="" data-target="#modal-delete-{{$produto->idproduto}}" data-toggle="modal">
+		                        <a href="" data-target="#modal-delete-{{$produto->id_produto}}" data-toggle="modal">
 		                        	<button class="btn btn-danger">
 			                        	Excluir
 			                        	<i class="fa fa-trash" aria-hidden="true"></i>

@@ -54,6 +54,8 @@ class ProdutoController extends Controller {
 			$file->move(public_path('imagens/produtos/'), $nomeImagem);
 
 			$produto->imagem_produto = $nomeImagem;
+		}else{
+			$produto->imagem_produto = 'Sem Imagem';
 		}
 		$produto->save();
 
@@ -67,7 +69,7 @@ class ProdutoController extends Controller {
 	public function edit($id){
 		$produto = Produto::findOrFail($id);
 
-		$categorias = DB::table('categorias')->where('condicao', '=', '1')->get();
+		$categorias = DB::table('categorias')->where('estado_categoria', '=', '1')->get();
 
 		return view('estoque.produto.edit', ['produto' => $produto, 'categorias' => $categorias]);
 	}
@@ -90,6 +92,8 @@ class ProdutoController extends Controller {
 			$file->move(public_path('imagens/produtos/'), $nomeImagem);
 
 			$produto->imagem_produto = $nomeImagem;
+		}else{
+			$produto->imagem_produto = 'Sem Imagem';
 		}
 		$produto->update();
 

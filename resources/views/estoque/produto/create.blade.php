@@ -30,9 +30,9 @@
 				<div class="form-group">
 					<label>Categoria</label>
 					<select name="idcategoria" class="form-control">
-						@foreach($categorias as $cat)
-							<option value="{{$cat->idcategoria}}">
-								{{$cat->nome}}
+						@foreach($categorias as $categoria)
+							<option value="{{$categoria->id_categoria}}">
+								{{$categoria->nome_categoria}}
 							</option>
 						@endforeach
 					</select>
@@ -64,13 +64,10 @@
 				<div class="form-group">
 					<label>Estado do Produto</label>
 					<select name="estado" class="form-control">
-						<option value="">
-							Selecione...
-						</option>
-						<option value="Ativo">
+						<option value="1">
 							Ativo
 						</option>
-						<option value="Desativo">
+						<option value="0">
 							Desativo
 						</option>
 					</select>
@@ -95,7 +92,5 @@
 				<i class="fa fa-ban" aria-hidden="true"></i>
 			</button>
 		</div>
-	{!!Form::close()!!}		
-            
-		
+	{!!Form::close()!!}
 @stop
