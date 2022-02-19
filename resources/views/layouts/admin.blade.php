@@ -118,8 +118,8 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="/entrada/compra"><i class="fa fa-circle-o"></i> Compras</a></li>
                 <li><a href="/entrada/fornecedor"><i class="fa fa-circle-o"></i> Fornecedores</a></li>
+                <li><a href="/entrada/compra"><i class="fa fa-circle-o"></i> Compras</a></li>
               </ul>
             </li>
             <li class="treeview">

@@ -23,3 +23,6 @@ Route::resource('estoque/produto', 'ProdutoController');
 
 // Clientes
 Route::resource('saida/cliente', 'ClienteController');
+
+// Fornecedor
+Route::resource('entrada/fornecedor', 'FornecedorController');
