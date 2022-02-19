@@ -68,11 +68,12 @@ class ClienteController extends Controller {
 	public function update(ClienteFormRequest $request, $id){
 		$cliente = Cliente::findOrFail($id);
 		
+		$cliente->tipo_cliente = 'cliente';
 		$cliente->nome_cliente = $request->get('nome');
 		$cliente->email_cliente = $request->get('email');
 		$cliente->telefone_cliente = $request->get('telefone');
 		$cliente->endereco_cliente = $request->get('endereco');
-		$cliente->documento_cliente = $request->get('documento');
+		$cliente->documento_cliente = $request->get('tipo_documento');
 
 		$numDoc = preg_replace("/[^0-9]/", "", $request->get('numero_documento'));
  
