@@ -3,7 +3,7 @@
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<h3>Novo Cliente</h3>
+			<h3>Novo Fornecedor</h3>
 			@if (count($errors)>0)
 				<div class="alert alert-danger">
 					<ul>
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 
-	{!!Form::open(array('url'=>'saida/cliente','method'=>'POST','autocomplete'=>'off'))!!}
+	{!!Form::open(array('url'=>'entrada/fornecedor','method'=>'POST','autocomplete'=>'off'))!!}
 		{{Form::token()}}
 		<div class="row">
 			<div class="col-lg-6 col-sm-6 col-xs-12">
@@ -68,7 +68,7 @@
 		
 		<div class="form-group">
 			<button class="btn btn-primary" type="submit">
-				Salvar Cliente
+				Salvar Fornecedor
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
 			</button>
 			<button class="btn btn-danger" type="reset">

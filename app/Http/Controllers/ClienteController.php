@@ -42,9 +42,9 @@ class ClienteController extends Controller {
 		
 		$numDoc = preg_replace("/[^0-9]/", "", $request->get('numero_documento'));
  
-        if($request->get('documento') == 'CPF') {
+        if($request->get('tipo_documento') == 'CPF') {
             $numDoc = substr($numDoc, 0, 3).'.'.substr($numDoc, 3, 3).'.'.substr($numDoc, 6, 3).'-'.substr($numDoc, 9, 2);
-		} else if($request->get('documento') == 'CNPJ'){
+		} else if($request->get('tipo_documento') == 'CNPJ'){
 			$numDoc = substr($numDoc, 0, 2).'.'.substr($numDoc, 2, 3).'.'.substr($numDoc, 5, 3).'/'.substr($numDoc, 8, 4).'-'.substr($numDoc, -2);
 		}
 
@@ -77,9 +77,9 @@ class ClienteController extends Controller {
 
 		$numDoc = preg_replace("/[^0-9]/", "", $request->get('numero_documento'));
  
-        if($request->get('documento') == 'CPF') {
+        if($request->get('tipo_documento') == 'CPF') {
             $numDoc = substr($numDoc, 0, 3).'.'.substr($numDoc, 3, 3).'.'.substr($numDoc, 6, 3).'-'.substr($numDoc, 9, 2);
-		} else if($request->get('documento') == 'CNPJ'){
+		} else if($request->get('tipo_documento') == 'CNPJ'){
 			$numDoc = substr($numDoc, 0, 2).'.'.substr($numDoc, 2, 3).'.'.substr($numDoc, 5, 3).'/'.substr($numDoc, 8, 4).'-'.substr($numDoc, -2);
 		}
 

@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Em construção
+Route::get('/loading', function () {
+    return view('loading');
+});
+
 // Categorias
 Route::resource('estoque/categoria', 'CategoriaController');
 
