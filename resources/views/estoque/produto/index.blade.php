@@ -35,10 +35,10 @@
 							<td>{{ $produto->categorias }}</td>
 							<td>{{ $produto->estoque_produto }}</td>
 							<td>
-								@if ($produto->imagem_produto != 'Sem Imagem')
+								@if ($produto->imagem_produto)
 									<img src="{{ asset('imagens/produtos/'.$produto->imagem_produto) }}" alt="{{ $produto->nome_produto }}" width="70px" heigth="70px" class="img-thumbnail">
 								@else
-									{{ $produto->imagem_produto }}
+									Sem Imagem
 								@endif
 							</td>
 							<td>

@@ -71,7 +71,7 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="imagem">Imagem</label>
-					<input type="file" name="imagem" class="form-control">
+					<input type="file" name="imagem" class="form-control" valeu="{{ $produto->imagem_produto }}">
 					@if($produto->imagem_produto != 'Sem Imagem')
 						<img src="{{asset('imagens/produtos/'.$produto->imagem_produto)}}" width="200px">
 					@endif

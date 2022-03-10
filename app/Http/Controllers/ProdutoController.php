@@ -20,12 +20,13 @@ class ProdutoController extends Controller {
 				->join('categorias as c', 'p.id_categoria_produto', '=', 'c.id_categoria')
 				->select('p.id_produto', 'p.nome_produto', 'p.codigo_produto', 'p.estoque_produto',
 					'c.nome_categoria as categorias', 'p.descricao_produto', 'p.imagem_produto', 'p.estado_produto')
-				->where('estado_produto', '=', '1')
 				->where('p.nome_produto', 'LIKE', '%'.$palavra.'%')
+				->where('p.estado_produto', '!=', '0')
 				->orwhere('p.codigo_produto', 'LIKE', '%'.$palavra.'%')
+				->where('p.estado_produto', '!=', '0')
 				->orderBy('id_produto', 'desc')
 				->paginate(5);
-
+				
 			return view('estoque.produto.index', ['produtos'=>$produtos, 'buscaTexto'=>$palavra]);
 		}
 	}
@@ -55,8 +56,6 @@ class ProdutoController extends Controller {
 			$file->move(public_path('imagens/produtos/'), $nomeImagem);
 
 			$produto->imagem_produto = $nomeImagem;
-		}else{
-			$produto->imagem_produto = 'Sem Imagem';
 		}
 		$produto->save();
 
@@ -71,7 +70,7 @@ class ProdutoController extends Controller {
 		$produto = Produto::findOrFail($id);
 
 		$categorias = DB::table('categorias')->where('estado_categoria', '=', '1')->get();
-
+		
 		return view('estoque.produto.edit', ['produto' => $produto, 'categorias' => $categorias]);
 	}
 
@@ -83,7 +82,7 @@ class ProdutoController extends Controller {
 		$produto->nome_produto = $request->get('nome');
 		$produto->estoque_produto = $request->get('estoque');
 		$produto->descricao_produto = $request->get('descricao');
-		$produto->estado_produto = $request->get('estado');
+		$produto->estado_produto = '1';
 
 		if(Input::hasFile('imagem')){
 			$file = Input::file('imagem');
@@ -93,11 +92,9 @@ class ProdutoController extends Controller {
 			$file->move(public_path('imagens/produtos/'), $nomeImagem);
 
 			$produto->imagem_produto = $nomeImagem;
-		}else{
-			$produto->imagem_produto = 'Sem Imagem';
 		}
 		$produto->update();
-
+		
 		return Redirect::to('estoque/produto');
 	}
 
