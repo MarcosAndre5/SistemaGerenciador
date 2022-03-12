@@ -51,11 +51,9 @@ class ProdutoController extends Controller {
 		if(Input::hasFile('imagem')){
 			$file = Input::file('imagem');
 			
-			$nomeImagem = str_replace(" ", "", $produto->nome_produto).'.'.$file->extension();
+			$file->move(public_path('imagens/produtos/'), $file->getClientOriginalName());
 
-			$file->move(public_path('imagens/produtos/'), $nomeImagem);
-
-			$produto->imagem_produto = $nomeImagem;
+			$produto->imagem_produto = $file->getClientOriginalName();
 		}
 		$produto->save();
 
@@ -87,11 +85,9 @@ class ProdutoController extends Controller {
 		if(Input::hasFile('imagem')){
 			$file = Input::file('imagem');
 			
-			$nomeImagem = str_replace(" ", "", $produto->nome_produto).'.'.$file->extension();
+			$file->move(public_path('imagens/produtos/'), $file->getClientOriginalName());
 
-			$file->move(public_path('imagens/produtos/'), $nomeImagem);
-
-			$produto->imagem_produto = $nomeImagem;
+			$produto->imagem_produto = $file->getClientOriginalName();
 		}
 		$produto->update();
 		
@@ -102,6 +98,8 @@ class ProdutoController extends Controller {
 		$produto = Produto::findOrFail($id);
 
 		$produto->estado_produto = '0';
+		unlink(public_path('imagens/produtos/'.$produto->imagem_produto));
+		$produto->imagem_produto = '';
 
 		$produto->update();
 

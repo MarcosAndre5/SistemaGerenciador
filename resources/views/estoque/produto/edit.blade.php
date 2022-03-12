@@ -72,7 +72,7 @@
 				<div class="form-group">
 					<label for="imagem">Imagem</label>
 					<input type="file" name="imagem" class="form-control" valeu="{{ $produto->imagem_produto }}">
-					@if($produto->imagem_produto != 'Sem Imagem')
+					@if($produto->imagem_produto)
 						<img src="{{asset('imagens/produtos/'.$produto->imagem_produto)}}" width="200px">
 					@endif
 				</div>
