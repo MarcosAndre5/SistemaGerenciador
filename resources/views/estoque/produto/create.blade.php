@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<h3>Novo Produto</h3>
-			@if (count($errors)>0)
+			@if (count($errors) > 0)
 				<div class="alert alert-danger">
 					<ul>
 						@foreach ($errors->all() as $error)
@@ -48,24 +48,24 @@
 				
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
-					<label for="estoque">Estoque</label>
+					<label for="estoque">Quantidade</label>
 					<input type="text" name="estoque" required value="{{old('estoque')}}" class="form-control" placeholder="Estoque...">
 				</div>	
-			</div>
-
-			<div class="col-lg-6 col-sm-6 col-xs-12">
-					<div class="form-group">
-					<label for="imagem">Imagem</label>
-					<input type="file" name="imagem" class="form-control">
-				</div>
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
 					<div class="form-floating">
-						<textarea class="form-control" name="descricao" placeholder="Descrição..." style="height: 100px; resize: none"></textarea>
+						<textarea class="form-control" name="descricao" placeholder="Descrição..." style="height: 100px; resize: none" maxlength="100"></textarea>
 					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+					<div class="form-group">
+					<label for="imagem">Imagem</label>
+					<input type="file" name="imagem" class="form-control">
 				</div>
 			</div>
 		</div>
@@ -76,8 +76,8 @@
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
 			</button>
 			<button class="btn btn-danger" type="reset">
-				Cancelar
-				<i class="fa fa-ban" aria-hidden="true"></i>
+				Limpar
+				<i class="fa fa-eraser" aria-hidden="true"></i>
 			</button>
 		</div>
 	{!!Form::close()!!}
