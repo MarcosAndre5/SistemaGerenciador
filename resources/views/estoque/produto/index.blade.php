@@ -36,7 +36,9 @@
 							<td>{{ $produto->estoque_produto }}</td>
 							<td>
 								@if ($produto->imagem_produto)
-									<img src="{{ asset('imagens/produtos/'.$produto->imagem_produto) }}" alt="{{ $produto->nome_produto }}" width="70px" heigth="70px" class="img-thumbnail">
+									<a href="" data-target="#modal-imagem" data-toggle="modal">
+										<img src="{{ asset('imagens/produtos/'.$produto->imagem_produto) }}" alt="{{ $produto->nome_produto }}" width="70px" heigth="70px" class="img-thumbnail">
+									</a>
 								@else
 									Sem Imagem
 								@endif

@@ -50,11 +50,10 @@ class ProdutoController extends Controller {
 		
 		if(Input::hasFile('imagem')){
 			$file = Input::file('imagem');
-			
 			$file->move(public_path('imagens/produtos/'), $file->getClientOriginalName());
-
 			$produto->imagem_produto = $file->getClientOriginalName();
 		}
+
 		$produto->save();
 
 		return Redirect::to('estoque/produto');
@@ -66,7 +65,6 @@ class ProdutoController extends Controller {
 
 	public function edit($id){
 		$produto = Produto::findOrFail($id);
-
 		$categorias = DB::table('categorias')->where('estado_categoria', '=', '1')->get();
 		
 		return view('estoque.produto.edit', ['produto' => $produto, 'categorias' => $categorias]);
@@ -82,13 +80,20 @@ class ProdutoController extends Controller {
 		$produto->descricao_produto = $request->get('descricao');
 		$produto->estado_produto = '1';
 
-		if(Input::hasFile('imagem')){
+		if(Input::hasFile('imagem') && $produto->imagem_produto != ''){
 			$file = Input::file('imagem');
-			
 			$file->move(public_path('imagens/produtos/'), $file->getClientOriginalName());
-
+			unlink(public_path('imagens/produtos/'.$produto->imagem_produto));
 			$produto->imagem_produto = $file->getClientOriginalName();
+		}else if(Input::hasFile('imagem') && $produto->imagem_produto == ''){
+			$file = Input::file('imagem');
+			$file->move(public_path('imagens/produtos/'), $file->getClientOriginalName());
+			$produto->imagem_produto = $file->getClientOriginalName();
+		}else if($request->get('removerImagem')){
+			unlink(public_path('imagens/produtos/'.$produto->imagem_produto));
+			$produto->imagem_produto = '';
 		}
+
 		$produto->update();
 		
 		return Redirect::to('estoque/produto');

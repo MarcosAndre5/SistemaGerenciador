@@ -4,11 +4,11 @@
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<h3>Editar Produto: {{ $produto->nome_produto }}</h3>
-			@if (count($errors)>0)
+			@if (count($errors) > 0)
 				<div class="alert alert-danger">
 					<ul>
 						@foreach ($errors->all() as $error)
-							<li>{{$error}}</li>
+							<li>{{ $error }}</li>
 						@endforeach
 					</ul>
 				</div>
@@ -22,7 +22,7 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="nome">Nome</label>
-					<input type="text" name="nome" required value="{{$produto->nome_produto}}" class="form-control" placeholder="Nome...">
+					<input type="text" name="nome" value="{{$produto->nome_produto}}" class="form-control" required>
 				</div>
 			</div>
 
@@ -48,14 +48,14 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="codigo">Código</label>
-					<input type="text" name="codigo" required value="{{$produto->codigo_produto}}" class="form-control" placeholder="Código do Produto...">
+					<input type="text" name="codigo" value="{{$produto->codigo_produto}}" class="form-control" required>
 				</div>
 			</div>
 				
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
-					<label for="estoque">Estoque</label>
-					<input type="number" name="estoque" required value="{{$produto->estoque_produto}}" class="form-control" placeholder="Estoque...">
+					<label for="estoque">Quantidade</label>
+					<input type="number" name="estoque" value="{{$produto->estoque_produto}}" class="form-control" required>
 				</div>	
 			</div>
 
@@ -63,17 +63,26 @@
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
 					<div class="form-floating">
-						<textarea class="form-control" name="descricao" value="{{ $produto->descricao_produto }}" style="height: 100px; resize: none">{{$produto->descricao_produto}}</textarea>
+						<textarea class="form-control" name="descricao" value="{{ $produto->descricao_produto }}" style="height: 100px; resize: none" maxlength="100">{{$produto->descricao_produto}}</textarea>
 					</div>
 				</div>
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
-					<label for="imagem">Imagem</label>
-					<input type="file" name="imagem" class="form-control" valeu="{{ $produto->imagem_produto }}">
 					@if($produto->imagem_produto)
-						<img src="{{asset('imagens/produtos/'.$produto->imagem_produto)}}" width="200px">
+						<label for="imagem">Atualizar Imagem</label>
+						<input type="file" name="imagem" class="form-control" valeu="{{ $produto->imagem_produto }}">
+						<a href="" data-target="#modal-imagem" data-toggle="modal">
+							<img src="{{asset('imagens/produtos/'.$produto->imagem_produto)}}" width="150px">
+						</a>
+						<input class="form-check-input" type="checkbox" name="removerImagem">
+						<label class="form-check-label">
+							Remover Imagem
+						</label>
+					@else
+						<label for="imagem">Adicionar Imagem</label>
+						<input type="file" name="imagem" class="form-control" valeu="{{ $produto->imagem_produto }}">
 					@endif
 				</div>
 			</div>
@@ -81,13 +90,10 @@
 		
 		<div class="form-group">
 			<button class="btn btn-primary" type="submit">
-				Alterar Produto
+				Atualizar Produto
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
 			</button>
-			<button class="btn btn-danger" type="reset">
-				Cancelar
-				<i class="fa fa-ban" aria-hidden="true"></i>
-			</button>
 		</div>
-	{!!Form::close()!!}		
+	{!!Form::close()!!}
+	@include('estoque.produto.modal')
 @stop
