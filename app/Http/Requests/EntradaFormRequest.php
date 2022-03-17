@@ -12,8 +12,15 @@ class EntradaFormRequest extends FormRequest {
 
     public function rules(){
         return [
-            'nome' => 'required|max:50',
-            'descricao' => 'max:256',
+            'id_fornecedor' => 'required',
+            'tipo_comprovante' => 'required|max:20',
+            'serie_comprovante' => 'required|max:20',
+            'numero_comprovante' => 'required|max:20',
+            
+            'id_produto' => 'required',
+            'quantidade' => 'required|max:20',
+            'preco_compra' => 'required',
+            'preco_venda' => 'required',
         ];
     }
 }
