@@ -31,3 +31,6 @@ Route::resource('saida/cliente', 'ClienteController');
 
 // Fornecedor
 Route::resource('entrada/fornecedor', 'FornecedorController');
+
+// Compras
+Route::resource('entrada/compra', 'EntradaController');

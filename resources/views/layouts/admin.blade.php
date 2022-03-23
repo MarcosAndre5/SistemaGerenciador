@@ -121,7 +121,7 @@
               <ul class="treeview-menu">
                 <li><a href="/entrada/fornecedor"><i class="fa fa-circle-o"></i> Fornecedores</a></li>
                 <!--"/entrada/compra"-->
-                <li><a href="/loading"><i class="fa fa-circle-o"></i> Compras</a></li>
+                <li><a href="/entrada/compra"><i class="fa fa-circle-o"></i> Compras</a></li>
               </ul>
             </li>
             <li class="treeview">
