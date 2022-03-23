@@ -19,11 +19,13 @@ class EntradaController extends Controller {
 		if($request){
 			$palavra = trim($request->get('buscaTexto'));
 			
-			$categorias = DB::table('categorias')
-				->where('nome_categoria', 'LIKE', '%'.$palavra.'%')
-				->where('estado_categoria', '=', '1')
-				->orderBy('id_categoria', 'desc')
-				->paginate(5);
+			$entradas = DB::table('entradas as e')
+				->join('fornecedores as f', 'f.id_fornecedor', '=', 'e.id_fornecedor_entrada')
+				->join('informacoesEntrada as i', 'i.id_entrada_informacoesEntrada', '=', 'e.id_entrada')
+				->select('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
+					'e.serie_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada',
+					DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada as total)'));
+			dd($entradas);
 			
 			return view('estoque.categoria.index', ["categorias"=>$categorias, "buscaTexto"=>$palavra]);
 		}
