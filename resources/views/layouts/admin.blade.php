@@ -108,7 +108,7 @@
               <ul class="treeview-menu">
                 <li><a href="/saida/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li>  
                 <!--"/saida/venda"-->
-                <li><a href="/loading"><i class="fa fa-circle-o"></i> Vendas</a></li>
+                <li><a href="/"><i class="fa fa-circle-o"></i> Vendas</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -133,7 +133,7 @@
               </a>
               <ul class="treeview-menu">
                 <!--"/configuracao/usuario"-->
-                <li><a href="/loading"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                <li><a href="/"><i class="fa fa-circle-o"></i> Usuarios</a></li>
               </ul>
             </li>
              <li>
