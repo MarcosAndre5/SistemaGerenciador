@@ -24,27 +24,56 @@ class EntradaController extends Controller {
 				->join('informacoesEntrada as i', 'i.id_entrada_informacoesEntrada', '=', 'e.id_entrada')
 				->select('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
 					'e.serie_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada',
-					DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada as total)'));
-			dd($entradas);
+					DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada as total)'))
+				->where('e.numero_comprovante_entrada', 'LIKE', '%'.$palavra.'%')
+				->orderBy('e.id_entrada', 'desc')
+				->groupBy('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
+					'e.serie_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada')
+				->paginate(5);
 			
-			return view('estoque.categoria.index', ["categorias"=>$categorias, "buscaTexto"=>$palavra]);
+				dd($entradas);
+			
+			return view('entrada.compra.index', ['entradas' => $entradas, 'buscaTexto' => $palavra]);
 		}
 	}
 
 	public function create(){
-		return view('estoque.categoria.create');
+		$fornecedores = DB::table('fornecedores')->get();
+		$produtos = DB::table('produtos as p')
+			->select(DB::raw('CONCAT(p.codigo_produto, " ", p.nome_produto) as produtos'), 'p.id_produto')
+			->where('p.estado_produto', '=', '1')
+			->get();
+		dd($produtos);
+		return view('entrada.compra.create');
 	}
 
 	public function store(CategoriaFormRequest $request){
-		$categoria = new Categoria;
-		
-		$categoria->nome_categoria = $request->get('nome');
-		$categoria->descricao_categoria = $request->get('descricao');
-		$categoria->estado_categoria = 1;
-		
-		$categoria->save();
 
-		return Redirect::to('estoque/categoria');
+		try{
+			DB::beginTransaction();
+
+			$entrada = new Entrada;
+			$informacoesEntrada = new InformacoesEntrada;
+		
+			$entrada->id_fornecedor_entrada = $request->get('idfornecedor');
+			$entrada->tipo_comprovante_entrada = $request->get('tipo_comprovante');
+			$entrada->serie_comprovante_entrada = $request->get('serie_comprovante');
+			$entrada->numero_comprovante_entrada = $request->get('numero_comprovante');
+			$entrada->_entrada = $request->get('');
+			$entrada->_entrada = $request->get('');
+
+			$data = Carbon::row('America/Recife');
+
+			$entrada->save();
+
+			return Redirect::to('estoque/categoria');
+
+			DB::commit();
+		}catch(\Exception $excecao){
+
+		}
+
+		
 	}
 
 	public function show($id){
