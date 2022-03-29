@@ -51,33 +51,56 @@ class EntradaController extends Controller {
 
 		try{
 			DB::beginTransaction();
-
 			$entrada = new Entrada;
-			$informacoesEntrada = new InformacoesEntrada;
-		
-			$entrada->id_fornecedor_entrada = $request->get('idfornecedor');
+			
+			$entrada->id_fornecedor_entrada = $request->get('id_fornecedor');
 			$entrada->tipo_comprovante_entrada = $request->get('tipo_comprovante');
 			$entrada->serie_comprovante_entrada = $request->get('serie_comprovante');
 			$entrada->numero_comprovante_entrada = $request->get('numero_comprovante');
-			$entrada->_entrada = $request->get('');
-			$entrada->_entrada = $request->get('');
+			$entrada->taxa_entrada = $request->get('taxa_entrada');
+			$entrada->estado_entrada = 1;
 
+			dd(Carbon::row('America/Recife'));
 			$data = Carbon::row('America/Recife');
-
+			$entrada->data_hora_entrada = $data->toDateTimeString();
+			
 			$entrada->save();
 
-			return Redirect::to('estoque/categoria');
+			$id_produto_informacoesEntrada->get('id_produto');
+			$quantidade_informacoesEntrada->get('quantidade');
+			$valor_entrada_informacoesEntrada->get('valor_compra');
+			$valor_saida_informacoesEntrada->get('valor_venda');
 
+			$contador = 0;
+			while($contador < count($id_produto_informacoesEntrada)){
+				$informacoesEntrada = new InformacoesEntrada;
+
+				$informacoesEntrada->id_entrada_informacoesEntrada = $entrada->id_entrada;
+				$informacoesEntrada->id_produto_informacoesEntrada = $id_produto->$contador;
+				$informacoesEntrada->quantidade_informacoesEntrada = $quantidade->$contador;
+				$informacoesEntrada->valor_entrada_informacoesEntrada = $valor_entrada->$contador;
+				$informacoesEntrada->valor_saida_informacoesEntrada = $valor_saida->$contador;
+
+				$informacoesEntrada->save();
+				
+				$contador++;
+			}
 			DB::commit();
 		}catch(\Exception $excecao){
-
+			DB::rollback();
 		}
-
-		
+		return Redirect::to('entrada/compra');
 	}
 
 	public function show($id){
-		return view("estoque.categoria.show", ["categoria" => Categoria::findOrFail($id)]);
+		$entrada = DB::table('entradas as e')
+			->join('fornecedores as f', 'f.id_fornecedor', '=', 'e.id_fornecedor_entrada')
+			->join('informacoesEntrada as i', 'i.id_entrada_informacoesEntrada', '=', 'e.id_entrada')
+			->select('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
+				'e.serie_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada',
+				DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada as total)'));
+
+		return view("entrada.compra.show", ["categoria" => Categoria::findOrFail($id)]);
 	}
 
 	public function edit($id){
