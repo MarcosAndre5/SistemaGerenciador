@@ -31,8 +31,6 @@ class EntradaController extends Controller {
 					'e.serie_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada')
 				->paginate(5);
 			
-				dd($entradas);
-			
 			return view('entrada.compra.index', ['entradas' => $entradas, 'buscaTexto' => $palavra]);
 		}
 	}
@@ -98,34 +96,25 @@ class EntradaController extends Controller {
 			->join('informacoesEntrada as i', 'i.id_entrada_informacoesEntrada', '=', 'e.id_entrada')
 			->select('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
 				'e.serie_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada',
-				DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada as total)'));
+				DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada as total)'))
+			->where('e.id_entrada', '=', $id)
+			->first();
 
-		return view("entrada.compra.show", ["categoria" => Categoria::findOrFail($id)]);
-	}
+		$info = DB::table('informacoesEntrada as i')
+			->join('produtos as p', 'i.id_produto_informacoesEntrada', '=', 'p.id_produto')
+			->select('p.nome_produto as produto', 'i.quantidade_informacoesEntrada', 'i.valor_entrada_informacoesEntrada', 'i.valor_saida_informacoesEntrada')
+			->get();
 
-	public function edit($id){
-		return view("estoque.categoria.edit", ["categoria" => Categoria::findOrFail($id)]);
-	}
-
-	public function update(CategoriaFormRequest $request, $id){
-		$categoria = Categoria::findOrFail($id);
-		
-		$categoria->nome_categoria = $request->get('nome');
-		$categoria->descricao_categoria = $request->get('descricao');
-		$categoria->estado_categoria = 1;
-		
-		$categoria->update();
-
-		return Redirect::to('estoque/categoria');
+		return view('entrada.compra.show', ['entrada' => $entrada, 'informacoes' => $info]);
 	}
 
 	public function destroy($id){
-		$categoria = Categoria::findOrFail($id);
+		$entrada = Entrada::findOrFail($id);
 		
-		$categoria->estado_categoria = '0';
+		$entrada->estado_entrada = '0';
 		
-		$categoria->update();
+		$entrada->update();
 
-		return Redirect::to('estoque/categoria');
+		return Redirect::to('entrada/compra');
 	}
 }
