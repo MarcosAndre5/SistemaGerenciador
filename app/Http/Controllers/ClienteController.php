@@ -22,7 +22,7 @@ class ClienteController extends Controller {
 				->orderBy('id_cliente', 'desc')
 				->paginate(5);
 			
-			return view('saida.cliente.index', ['clientes'=>$clientes, 'buscaTexto'=>$palavra]);
+			return view('saida.cliente.index', ['clientes' => $clientes, 'buscaTexto' => $palavra]);
 		}
 	}
 
@@ -39,16 +39,7 @@ class ClienteController extends Controller {
 		$cliente->telefone_cliente = $request->get('telefone');
 		$cliente->endereco_cliente = $request->get('endereco');
 		$cliente->documento_cliente = $request->get('tipo_documento');
-		
-		$numDoc = preg_replace("/[^0-9]/", "", $request->get('numero_documento'));
- 
-        if($request->get('tipo_documento') == 'CPF') {
-            $numDoc = substr($numDoc, 0, 3).'.'.substr($numDoc, 3, 3).'.'.substr($numDoc, 6, 3).'-'.substr($numDoc, 9, 2);
-		} else if($request->get('tipo_documento') == 'CNPJ'){
-			$numDoc = substr($numDoc, 0, 2).'.'.substr($numDoc, 2, 3).'.'.substr($numDoc, 5, 3).'/'.substr($numDoc, 8, 4).'-'.substr($numDoc, -2);
-		}
-
-		$cliente->numero_documento_cliente = $numDoc;
+		$cliente->numero_documento_cliente = $request->get('numero_documento');
 				
 		$cliente->save();
 
@@ -61,7 +52,7 @@ class ClienteController extends Controller {
 
 	public function edit($id){
 		$cliente = Cliente::findOrFail($id);
-		//dd($cliente);
+		
 		return view('saida.cliente.edit', ['cliente' => $cliente]);
 	}
 
@@ -74,16 +65,7 @@ class ClienteController extends Controller {
 		$cliente->telefone_cliente = $request->get('telefone');
 		$cliente->endereco_cliente = $request->get('endereco');
 		$cliente->documento_cliente = $request->get('tipo_documento');
-
-		$numDoc = preg_replace("/[^0-9]/", "", $request->get('numero_documento'));
- 
-        if($request->get('tipo_documento') == 'CPF') {
-            $numDoc = substr($numDoc, 0, 3).'.'.substr($numDoc, 3, 3).'.'.substr($numDoc, 6, 3).'-'.substr($numDoc, 9, 2);
-		} else if($request->get('tipo_documento') == 'CNPJ'){
-			$numDoc = substr($numDoc, 0, 2).'.'.substr($numDoc, 2, 3).'.'.substr($numDoc, 5, 3).'/'.substr($numDoc, 8, 4).'-'.substr($numDoc, -2);
-		}
-
-		$cliente->numero_documento_cliente = $numDoc;
+		$cliente->numero_documento_cliente = $request->get('numero_documento');
 
 		$cliente->update();
 

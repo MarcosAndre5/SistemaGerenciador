@@ -71,10 +71,12 @@
 				Salvar Fornecedor
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
 			</button>
+			<a href="{{ url('estoque/categoria') }}">
 			<button class="btn btn-danger" type="reset">
 				Cancelar
 				<i class="fa fa-ban" aria-hidden="true"></i>
 			</button>
+</a>
 		</div>
 	{!!Form::close()!!}
 	<script>
