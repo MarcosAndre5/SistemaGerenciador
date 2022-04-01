@@ -21,7 +21,7 @@ class CategoriaController extends Controller {
 				->orderBy('id_categoria', 'desc')
 				->paginate(5);
 			
-			return view('estoque.categoria.index', ["categorias"=>$categorias, "buscaTexto"=>$palavra]);
+			return view('estoque.categoria.index', ['categorias' => $categorias, 'buscaTexto' => $palavra]);
 		}
 	}
 
