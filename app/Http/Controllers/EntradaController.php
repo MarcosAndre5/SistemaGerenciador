@@ -41,7 +41,7 @@ class EntradaController extends Controller {
 			->select(DB::raw('CONCAT(p.codigo_produto, " ", p.nome_produto) as produtos'), 'p.id_produto')
 			->where('p.estado_produto', '=', '1')
 			->get();
-		dd($produtos);
+		
 		return view('entrada.compra.create');
 	}
 
@@ -74,10 +74,10 @@ class EntradaController extends Controller {
 				$informacoesEntrada = new InformacoesEntrada;
 
 				$informacoesEntrada->id_entrada_informacoesEntrada = $entrada->id_entrada;
-				$informacoesEntrada->id_produto_informacoesEntrada = $id_produto->$contador;
-				$informacoesEntrada->quantidade_informacoesEntrada = $quantidade->$contador;
-				$informacoesEntrada->valor_entrada_informacoesEntrada = $valor_entrada->$contador;
-				$informacoesEntrada->valor_saida_informacoesEntrada = $valor_saida->$contador;
+				$informacoesEntrada->id_produto_informacoesEntrada = $id_produto[$contador];
+				$informacoesEntrada->quantidade_informacoesEntrada = $quantidade[$contador];
+				$informacoesEntrada->valor_entrada_informacoesEntrada = $valor_entrada[$contador];
+				$informacoesEntrada->valor_saida_informacoesEntrada = $valor_saida[$contador];
 
 				$informacoesEntrada->save();
 				
