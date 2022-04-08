@@ -6,10 +6,10 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					 <span aria-hidden="true">×</span>
 				</button>
-				<h4 class="modal-title">Cancelar Entrada</h4>
+				<h4 class="modal-title">Cancelar Compra</h4>
 			</div>
 			<div class="modal-body">
-				<p>Confirme se deseja cancelar a entrada <b>{{ $entrada->id_entrada }}</b></p>
+				<p>Confirme se deseja cancelar a compra <b>{{ $entrada->id_entrada }}</b></p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">

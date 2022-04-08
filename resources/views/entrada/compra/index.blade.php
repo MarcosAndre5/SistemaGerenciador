@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Lista de Entradas</h3>
-			<a href="entrada/create">
+			<a href="compra/create">
 				<button class="btn btn-success">
 					Cadastrar Nova Entrada
 					<i class="fa fa-plus" aria-hidden="true"></i>
@@ -46,7 +46,7 @@
 								</a>
 								<a href="" data-target="#modal-delete-{{$entrada->id_entrada}}" data-toggle="modal">
 									<button class="btn btn-danger">
-										Excluir
+										Cancelar Compra
 										<i class="fa fa-trash" aria-hidden="true"></i>
 									</button>
 								</a>
