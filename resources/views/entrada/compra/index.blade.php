@@ -25,17 +25,19 @@
 						<th>Série do Comprovante</th>
 						<th>Número Comprovante</th>
 						<th>Taxa</th>
+						<th>Total</th>
 						<th>Status</th>
 						<th>Opções</th>
 					</thead>
 					@foreach ($entradas as $entrada)
 						<tr>
-							<td>{{ $entrada->data_entrada }}</td>
+							<td>{{ $entrada->data_hora_entrada }}</td>
 							<td>{{ $entrada->nome_fornecedor }}</td>
 							<td>{{ $entrada->tipo_comprovante_entrada }}</td>
 							<td>{{ $entrada->serie_comprovante_entrada }}</td>
 							<td>{{ $entrada->numero_comprovante_entrada }}</td>
 							<td>{{ $entrada->taxa_entrada }}</td>
+							<td>{{ $entrada->total }}</yd>
 							<td>{{ $entrada->estado_entrada }}</td>
 							<td>
 								<a href="{{ URL::action('EntradaController@show', $entrada->id_entrada) }}">
