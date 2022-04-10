@@ -20,17 +20,17 @@ class EntradaController extends Controller {
 			$palavra = trim($request->get('buscaTexto'));
 			
 			$entradas = DB::table('entradas as e')
-				->join('fornecedores as f', 'f.id_fornecedor', '=', 'e.id_fornecedor_entrada')
+				->join('fornecedores as f', 'e.id_fornecedor_entrada', '=', 'f.id_fornecedor')
 				->join('informacoesEntrada as i', 'i.id_entrada_informacoesEntrada', '=', 'e.id_entrada')
 				->select('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
-					'e.serie_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada',
-					DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada as total)'))
+					'e.serie_comprovante_entrada', 'e.numero_comprovante_entrada','e.taxa_entrada', 'e.estado_entrada',
+					DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada) as total'))
 				->where('e.numero_comprovante_entrada', 'LIKE', '%'.$palavra.'%')
 				->orderBy('e.id_entrada', 'desc')
 				->groupBy('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
-					'e.serie_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada')
+					'e.serie_comprovante_entrada', 'e.numero_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada')
 				->paginate(5);
-			
+				
 			return view('entrada.compra.index', ['entradas' => $entradas, 'buscaTexto' => $palavra]);
 		}
 	}
@@ -95,8 +95,8 @@ class EntradaController extends Controller {
 			->join('fornecedores as f', 'f.id_fornecedor', '=', 'e.id_fornecedor_entrada')
 			->join('informacoesEntrada as i', 'i.id_entrada_informacoesEntrada', '=', 'e.id_entrada')
 			->select('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
-				'e.serie_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada',
-				DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada as total)'))
+				'e.serie_comprovante_entrada', 'e.numero_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada',
+				DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada) as total'))
 			->where('e.id_entrada', '=', $id)
 			->first();
 
