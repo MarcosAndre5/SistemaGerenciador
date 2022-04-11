@@ -9,7 +9,7 @@
 				<h4 class="modal-title">Cancelar Compra</h4>
 			</div>
 			<div class="modal-body">
-				<p>Confirme se deseja cancelar a compra <b>{{ $entrada->id_entrada }}</b></p>
+				<p>Confirme se deseja cancelar a compra de <b>{{\Carbon\Carbon::parse($entrada->data_hora_entrada)->format('d/m/Y') }}</b></p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">
