@@ -21,9 +21,7 @@
 					<thead>
 						<th>Data</th>
 						<th>Fornecedor</th>
-						<th>Tipo de Comprovante</th>
-						<th>Série do Comprovante</th>
-						<th>Número Comprovante</th>
+						<th>Comprovante</th>
 						<th>Taxa</th>
 						<th>Total</th>
 						<th>Status</th>
@@ -31,11 +29,9 @@
 					</thead>
 					@foreach ($entradas as $entrada)
 						<tr>
-							<td>{{ $entrada->data_hora_entrada }}</td>
+							<td>{{ \Carbon\Carbon::parse($entrada->data_hora_entrada)->format('d/m/Y') }}</td>
 							<td>{{ $entrada->nome_fornecedor }}</td>
-							<td>{{ $entrada->tipo_comprovante_entrada }}</td>
-							<td>{{ $entrada->serie_comprovante_entrada }}</td>
-							<td>{{ $entrada->numero_comprovante_entrada }}</td>
+							<td>{{ $entrada->tipo_comprovante_entrada.' - '.$entrada->serie_comprovante_entrada.' - '.$entrada->numero_comprovante_entrada }}</td>
 							<td>{{ $entrada->taxa_entrada }}</td>
 							<td>{{ $entrada->total }}</yd>
 							<td>{{ $entrada->estado_entrada }}</td>
