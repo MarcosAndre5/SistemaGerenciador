@@ -43,7 +43,7 @@ class EntradaController extends Controller {
 			->where('p.estado_produto', '=', '1')
 			->get();
 		
-		return view('entrada.compra.create');
+		return view('entrada.compra.create', ['fornecedores' => $fornecedores, 'produtos' => $produtos]);
 	}
 
 	public function store(CategoriaFormRequest $request){
