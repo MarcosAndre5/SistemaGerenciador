@@ -4,11 +4,11 @@
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<h3>Nova Entrada de Produtos</h3>
-			@if (count($errors) > 0)
+			@if(count($errors) > 0)
 				<div class="alert alert-danger">
 					<ul>
-						@foreach ($errors->all() as $error)
-							<li>{{$error}}</li>
+						@foreach($errors->all() as $error)
+							<li>{{ $error }}</li>
 						@endforeach
 					</ul>
 				</div>
@@ -17,23 +17,23 @@
 	</div>
 
 	{!!Form::open(array('url'=>'entrada/compra','method'=>'POST','autocomplete'=>'off'))!!}
-		{{Form::token()}}
+		{{ Form::token() }}
 		<div class="row">
-			<div class="col-lg-12 col-sm-12 col-xs-12">
+			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="nome">Fornecedor</label>
 					<select name="id_fornecedor" id="id_fornecedor" class="form-control selectpicker" data-live-search="true" required>
 						<option value="">Selecione...</option>
 						@foreach($fornecedores as $fornecedor)
 							<option value="{{ $fornecedor->id_fornecedor }}">
-								{{$fornecedor->nome_fornecedor}}
+								{{ $fornecedor->nome_fornecedor }}
 							</option>
 						@endforeach
 					</select>
 				</div>
 			</div>
 
-			<div class="col-lg-4 col-sm-4 col-xs-12">
+			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label>Tipo Comprovante</label>
 					<select name="tipo_comprovante" id="tipo_comprovante" class="form-control" required>
@@ -45,17 +45,17 @@
 				</div>
 			</div>
 			
-			<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+			<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 				<div class="form-group">
 					<label for="num_doc">Série Comprovante</label>
-					<input type="text" name="serie_comprovante" required value="{{old('serie_comprovante')}}" class="form-control" placeholder="Série do comprovante...">
+					<input type="text" name="serie_comprovante" required value="{{ old('serie_comprovante') }}" class="form-control" placeholder="Série do comprovante...">
 				</div>
 			</div>
 				
-			<div class="col-lg-4 col-sm-4 col-xs-12">
+			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="num_doc">Número Comprovante</label>
-					<input type="text" name="numero_comprovante" required value="{{old('numero_comprovante')}}" class="form-control" placeholder="Número do comprovante...">
+					<input type="text" name="numero_comprovante" required value="{{ old('numero_comprovante') }}" class="form-control" placeholder="Número do comprovante...">
 				</div>
 			</div>
 		</div>
@@ -67,43 +67,38 @@
 						<div class="form-group">
 							<label for="nome">Produto</label>
 							<select name="pidproduto" id="pidproduto" class="form-control selectpicker" data-live-search="true">
-								@foreach($produtos as $pro)
-									<option value="{{$pro->id_produto}}">
-										{{$pro->produtos}}
+								<option value="">Selecione...</option>
+								@foreach($produtos as $produto)
+									<option value="{{ $produto->id_produto }}">
+										{{ $produto->codigo_nome_produto }}
 									</option>
 								@endforeach
 							</select>
 						</div>
 					</div>
 
-					<div class="col-lg-2 col-sm-2 col-md-2  col-xs-12">
+					<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 						<div class="form-group">
 							<label for="num_doc">Quantidade</label>
-							<input type="number" name="quantidade" value="{{old('quantidade')}}" id="pquantidade" class="form-control" placeholder="Quantidade...">
+							<input type="number" name="quantidade" value="{{ old('quantidade') }}" id="pquantidade" class="form-control" placeholder="Quantidade...">
 						</div>
 					</div>
 
-					<div class="col-lg-2 col-sm-2 col-md-2  col-xs-12">
+					<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 						<div class="form-group">
 							<label for="num_doc">Preço Compra</label>
 							<input type="number" name="preco_compra" value="{{old('preco_compra')}}" id="ppreco_compra" class="form-control" placeholder="Preço de Compra...">
 						</div>
 					</div>
 
-					<div class="col-lg-2 col-sm-2 col-md-2  col-xs-12">
+					<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 						<div class="form-group">
 							<label for="num_doc">Preço Venda</label>
-							<input type="number" name="preco_venda" value="{{old('preco_venda')}}" id="ppreco_venda" class="form-control" placeholder="Preço de Venda...">
+							<input type="number" name="preco_venda" value="{{ old('preco_venda') }}" id="ppreco_venda" class="form-control" placeholder="Preço de Venda...">
 						</div>
 					</div>
 
-					<div class="col-lg-2 col-sm-2 col-md-2  col-xs-12">
-						<div class="form-group">
-							<button type="button" id="bt_add" class="btn btn-primary">
-								Adicionar
-							</button>
-						</div>
-					</div>
+					
 
 					<div class="col-lg-12 col-sm-12 col-md-12  col-xs-12">
                         <table id="detalhes" class="table table-striped table-bordered table-condensed table-hover">
@@ -111,8 +106,8 @@
 								<th>Opções</th>
 								<th>Produtos</th>
 								<th>Quantidade</th>
-								<th>Preço Compra</th>
-								<th>Preço Venda</th>
+								<th>Preço de Compra</th>
+								<th>Preço de Venda</th>
 								<th>Total</th>
 							</thead>
 							<tfoot>
@@ -125,14 +120,28 @@
 							</tfoot>
                         </table>
 					</div>
+					<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
+						<div class="form-group">
+							<button type="button" id="bt_add" class="btn btn-primary">
+								<i class="fa fa-plus" aria-hidden="true"></i>	
+								Adicionar
+							</button>
+						</div>
+					</div>
 				</div>
             </div>
 
 			<div class="col-lg-12 col-sm-12 col-md-12  col-xs-12" id="salvar">
 				<div class="form-group">
 					<input name="_token" value="{{ csrf_token() }}" type="hidden">
-                  	<button class="btn btn-primary" id="salvar" type="submit">Salvar</button>
-                  	<button class="btn btn-danger" type="reset">Cancelar</button>
+                  	<button class="btn btn-primary" id="salvar" type="submit">
+					  	<i class="fa fa-floppy-o" aria-hidden="true"></i>
+						Salvar
+					</button>
+                  	<button class="btn btn-danger" type="reset">
+					  	<i class="fa fa-ban" aria-hidden="true"></i>
+					  	Cancelar
+					</button>
 				</div>
 			</div>
 		</div>	
@@ -145,8 +154,7 @@
 				});
 			});
 
-			var cont = 0;
-			total = 0;
+			var cont = total = 0;
 			subtotal = [];
 
 			$("#salvar").hide();
@@ -173,13 +181,16 @@
 						'</tr>';
 					
 					cont++;
+					
 					limpar();
+					
 					$("#total").html("R$: " + total);
+					
 					ocultar();
+					
 					$('#detalhes').append(linha);
-				}else{
-					alert("Erro ao inserir os detalhes, preencha os campos corretamente!!");
-				}
+				}else
+					alert("Erro ao inserir os detalhes. Preencha os campos corretamente.");
 			}
 
 			function limpar(){
@@ -189,17 +200,18 @@
 			}
 
 			function ocultar(){
-				if(total>0){
+				if(total > 0)
 					$("#salvar").show();
-				} else{
+				else
 					$("#salvar").hide();
-				}
 			}
 
 			function apagar(index){
 				total = total - subtotal[index];
+				
 				$("#total").html("R$: " + total);
 				$("#linha" + index).remove();
+				
 				ocultar();
 			}
 		</script>
