@@ -39,7 +39,7 @@ class EntradaController extends Controller {
 	public function create(){
 		$fornecedores = DB::table('fornecedores')->get();
 		$produtos = DB::table('produtos as p')
-			->select(DB::raw('CONCAT(p.codigo_produto, " ", p.nome_produto) as produtos'), 'p.id_produto')
+			->select(DB::raw('CONCAT(p.codigo_produto, " ", p.nome_produto) as codigo_nome_produto'), 'p.id_produto')
 			->where('p.estado_produto', '=', '1')
 			->get();
 		
@@ -47,7 +47,6 @@ class EntradaController extends Controller {
 	}
 
 	public function store(CategoriaFormRequest $request){
-
 		try{
 			DB::beginTransaction();
 			$entrada = new Entrada;
