@@ -6,8 +6,8 @@
 			<h3>Lista de Entradas</h3>
 			<a href="compra/create">
 				<button class="btn btn-success">
-					Cadastrar Nova Entrada
 					<i class="fa fa-plus" aria-hidden="true"></i>
+					Cadastrar Nova Entrada
 				</button>
 			</a>
 			@include('entrada.compra.search')
@@ -38,14 +38,14 @@
 							<td>
 								<a href="{{ URL::action('EntradaController@show', $entrada->id_entrada) }}">
 									<button class="btn btn-info">
-										Detalhes
 										<i class="fa fa-pencil" aria-hidden="true"></i>
+										Detalhes
 									</button>
 								</a>
 								<a href="" data-target="#modal-delete-{{$entrada->id_entrada}}" data-toggle="modal">
 									<button class="btn btn-danger">
-										Cancelar Compra
 										<i class="fa fa-trash" aria-hidden="true"></i>
+										Cancelar Compra
 									</button>
 								</a>
 							</td>
