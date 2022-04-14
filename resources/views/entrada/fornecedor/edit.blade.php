@@ -68,12 +68,12 @@
            
 		<div class="form-group">
 			<button class="btn btn-primary" type="submit">
-				Alterar Fornecedor
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
+				Alterar Fornecedor
 			</button>
 			<button class="btn btn-danger" type="reset">
-				Cancelar
 				<i class="fa fa-ban" aria-hidden="true"></i>
+				Cancelar
 			</button>
 		</div>
 	{!!Form::close()!!}		

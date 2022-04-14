@@ -6,8 +6,8 @@
 			<h3>Lista de Fornecedores</h3>
 			<a href="{{URL::action('FornecedorController@create')}}">
 				<button class="btn btn-success">
-					Adicionar Novo Fornecedor
 					<i class="fa fa-plus" aria-hidden="true"></i>
+					Adicionar Novo Fornecedor
 				</button>
 			</a>
 			@include('entrada.fornecedor.search')
@@ -39,14 +39,14 @@
 							<td>
 								<a href="{{URL::action('FornecedorController@edit', $fornecedor->id_fornecedor)}}">
 									<button class="btn btn-info">
-										Editar
 										<i class="fa fa-pencil" aria-hidden="true"></i>
+										Editar
 									</button>
 								</a>
 								<a href="" data-target="#modal-delete-{{$fornecedor->id_fornecedor}}" data-toggle="modal">
 									<button class="btn btn-danger">
-										Excluir
 										<i class="fa fa-trash" aria-hidden="true"></i>
+										Excluir
 									</button>
 								</a>
 							</td>
