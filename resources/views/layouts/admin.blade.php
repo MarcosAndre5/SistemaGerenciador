@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
         <link rel="apple-touch-icon" href="{{asset('img/apple-touch-icon.png')}}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     </head>
@@ -187,5 +188,6 @@
         <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
         <script src="{{asset('js/bootstrap.min.js')}}"></script>
         <script src="{{asset('js/app.min.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     </body>
 </html>

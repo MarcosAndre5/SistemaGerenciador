@@ -63,7 +63,7 @@
       	<div class="row">
             <div class="panel panel-primary">
 				<div class="panel-body">
-					<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
 							<label for="nome">Produto</label>
 							<select name="pidproduto" id="pidproduto" class="form-control selectpicker" data-live-search="true">
@@ -77,21 +77,21 @@
 						</div>
 					</div>
 
-					<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
 							<label for="num_doc">Quantidade</label>
 							<input type="number" name="quantidade" value="{{ old('quantidade') }}" id="pquantidade" class="form-control" placeholder="Quantidade...">
 						</div>
 					</div>
 
-					<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
 							<label for="num_doc">Preço Compra</label>
 							<input type="number" name="preco_compra" value="{{old('preco_compra')}}" id="ppreco_compra" class="form-control" placeholder="Preço de Compra...">
 						</div>
 					</div>
 
-					<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
 							<label for="num_doc">Preço Venda</label>
 							<input type="number" name="preco_venda" value="{{ old('preco_venda') }}" id="ppreco_venda" class="form-control" placeholder="Preço de Venda...">

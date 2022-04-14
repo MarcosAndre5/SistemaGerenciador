@@ -68,13 +68,13 @@
 		
 		<div class="form-group">
 			<button class="btn btn-primary" type="submit">
-				Salvar Fornecedor
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
+				Salvar Fornecedor
 			</button>
 			<a href="{{ url('estoque/categoria') }}">
 			<button class="btn btn-danger" type="reset">
-				Cancelar
 				<i class="fa fa-ban" aria-hidden="true"></i>
+				Cancelar
 			</button>
 </a>
 		</div>
