@@ -39,7 +39,7 @@ class EntradaController extends Controller {
 	public function create(){
 		$fornecedores = DB::table('fornecedores')->get();
 		$produtos = DB::table('produtos as p')
-			->select(DB::raw('CONCAT(p.nome_produto, " - ", p.codigo_produto) as codigo_nome_produto'), 'p.id_produto')
+			->select('p.id_produto', 'p.codigo_produto', 'p.nome_produto')
 			->where('p.estado_produto', '=', '1')
 			->get();
 		
