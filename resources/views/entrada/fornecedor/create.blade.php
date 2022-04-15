@@ -71,15 +71,13 @@
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
 				Salvar Fornecedor
 			</button>
-			<a href="{{ url('estoque/categoria') }}">
 			<button class="btn btn-danger" type="reset">
 				<i class="fa fa-ban" aria-hidden="true"></i>
 				Cancelar
 			</button>
-</a>
 		</div>
 	{!!Form::close()!!}
 	<script>
 		$("#telefone").mask("(99) 99999-9999");
-	</script>	
+	</script>
 @stop
