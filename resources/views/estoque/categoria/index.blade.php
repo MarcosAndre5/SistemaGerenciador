@@ -6,8 +6,8 @@
 			<h3>Lista de Categorias</h3>
 			<a href="{{URL::action('CategoriaController@create')}}">
 				<button class="btn btn-success">
-					Adicionar Nova Categoria
 					<i class="fa fa-plus" aria-hidden="true"></i>
+					Adicionar Nova Categoria
 				</button>
 			</a>
 			@include('estoque.categoria.search')
@@ -32,14 +32,14 @@
 							<td>
 								<a href="{{URL::action('CategoriaController@edit', $categoria->id_categoria)}}">
 									<button class="btn btn-info">
-										Editar
 										<i class="fa fa-pencil" aria-hidden="true"></i>
+										Editar
 									</button>
 								</a>
 								<a href="" data-target="#modal-delete-{{$categoria->id_categoria}}" data-toggle="modal">
 									<button class="btn btn-danger">
-										Excluir
 										<i class="fa fa-trash" aria-hidden="true"></i>
+										Excluir
 									</button>
 								</a>
 							</td>
