@@ -94,7 +94,7 @@
 					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
 							<label for="num_doc">Preço Venda</label>
-							<input type="number" name="preco_venda" value="{{ old('preco_venda') }}" id="ppreco_venda" class="form-control" placeholder="Preço de Venda...">
+							<input type="number" name="preco_venda" value="{{ old('preco_venda') }}" id="preco_venda" class="form-control" placeholder="Preço de Venda...">
 						</div>
 					</div>
 
@@ -114,13 +114,13 @@
 								<th></th>
 								<th></th>
 								<th></th>
-								<th id="total">R$ 0,00</th>     
+								<th id="campoTotal">R$ 0,00</th>
 							</tfoot>
                         </table>
 					</div>
 					<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 						<div class="form-group">
-							<button type="button" id="bt_add" class="btn btn-primary">
+							<button type="button" id="botaoAdicionar" class="btn btn-primary">
 								<i class="fa fa-plus" aria-hidden="true"></i>	
 								Adicionar
 							</button>
@@ -129,7 +129,7 @@
 				</div>
             </div>
 
-			<div class="col-lg-12 col-sm-12 col-md-12  col-xs-12" id="salvar">
+			<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" id="divSalvarCancelar">
 				<div class="form-group">
 					<input name="_token" value="{{ csrf_token() }}" type="hidden">
                   	<button class="btn btn-primary" id="salvar" type="submit">
@@ -142,20 +142,20 @@
 					</button>
 				</div>
 			</div>
-		</div>	
+		</div>
 	{!!Form::close()!!}
 	@push('scripts')
 		<script>
 			$(document).ready(function(){
-				$('#bt_add').click(function(){
+				$('#botaoAdicionar').click(function(){
 					adicionar();
 				});
 			});
 
-			var cont = total = 0;
+			var cont = totalEntrada = 0;
 			subtotal = [];
 
-			$("#salvar").hide();
+			$("#divSalvarCancelar").hide();
 
 			function adicionar(){
 				idproduto = $("#id_produto").val();
@@ -166,10 +166,10 @@
 				
 				if(idproduto != "" && quantidade != "" && quantidade > 0 && preco_compra != "" && preco_venda != ""){
 					subtotal[cont] = quantidade * preco_compra;
-					total += subtotal[cont];
+					totalEntrada += subtotal[cont];
 					
-					var linha = 
-						'<tr class="selected" id="linha'+cont+'">'+
+					var linhaTabela = 
+						'<tr class="selected" id="linhaTabela'+cont+'">'+
 							'<td>'+
 								'<button type="button" class="btn btn-danger" onclick="apagar('+cont+');">X</button>'+
 							'</td>'+
@@ -193,37 +193,37 @@
 					
 					cont++;
 					
-					limpar();
+					limparCampos();
 					
-					$("#total").html("R$: " + total);
+					$("#campoTotal").html("R$: " + totalEntrada);
 					
-					ocultar();
+					ocultarBotaoSalvar();
 					
-					$('#detalhes').append(linha);
+					$('#detalhes').append(linhaTabela);
 				}else
 					alert("Erro ao inserir os detalhes. Preencha os campos corretamente.");
 			}
 
-			function limpar(){
+			function limparCampos(){
 				$("#quantidade").val("");
 				$("#preco_venda").val("");
 				$("#preco_compra").val("");
 			}
 
-			function ocultar(){
-				if(total > 0)
-					$("#salvar").show();
+			function ocultarBotaoSalvar(){
+				if(totalEntrada > 0)
+					$("#divSalvarCancelar").show();
 				else
-					$("#salvar").hide();
+					$("#divSalvarCancelar").hide();
 			}
 
 			function apagar(index){
-				total = total - subtotal[index];
+				totalEntrada -= subtotal[index];
 				
-				$("#total").html("R$: " + total);
-				$("#linha" + index).remove();
+				$("#campoTotal").html("R$: " + totalEntrada);
+				$("#linhaTabela" + index).remove();
 				
-				ocultar();
+				ocultarBotaoSalvar();
 			}
 		</script>
 	@endpush
