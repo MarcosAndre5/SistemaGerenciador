@@ -4,17 +4,19 @@ Route::get('/', function () {
     return view('loading');
 });
 
-// ESTOQUE
+/* ESTOQUE */
 // Categorias
 Route::resource('estoque/categoria', 'CategoriaController');
 // Produtos
 Route::resource('estoque/produto', 'ProdutoController');
 
-// SAÍDAS
+/* SAÍDAS */
 // Clientes
 Route::resource('saida/cliente', 'ClienteController');
+// Vendas
+//Route::resource('saida/vendas', 'VendasController');
 
-// ENTRADAS
+/* ENTRADAS */
 // Fornecedor
 Route::resource('entrada/fornecedor', 'FornecedorController');
 // Compras
