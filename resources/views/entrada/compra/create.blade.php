@@ -136,12 +136,10 @@
 						<i class="fa fa-floppy-o" aria-hidden="true"></i>
 						Salvar
 					</button>
-					<button class="btn btn-danger" type="reset">
+					<a class="btn btn-danger" href="{{ url('entrada/compra') }}" role="button">
 						<i class="fa fa-ban" aria-hidden="true"></i>
-						<a href="{{ url('entrada/compra') }}" style="color:white;">
-							Cancelar
-						</a>
-					</button>
+						Cancelar
+					</a>
 				</div>
 			</div>
 		</div>
@@ -150,7 +148,7 @@
 		<script>
 			$(document).ready(function(){
 				$('#botaoAdicionar').click(function(){
-					adicionarTabelaEntrada();
+					adicionarLinhaTabela();
 				});
 			});
 
@@ -159,7 +157,7 @@
 
 			$("#botaoSalvar").hide();
 
-			function adicionarTabelaEntrada(){
+			function adicionarLinhaTabela(){
 				idproduto = $("#id_produto").val();
 				produto = $("#id_produto option:selected").text();
 				quantidade = $("#quantidade").val();

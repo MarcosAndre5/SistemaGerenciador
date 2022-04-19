@@ -90,8 +90,8 @@
 		
 		<div class="form-group">
 			<button class="btn btn-primary" type="submit">
-				Atualizar Produto
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
+				Atualizar Produto
 			</button>
 		</div>
 	{!!Form::close()!!}

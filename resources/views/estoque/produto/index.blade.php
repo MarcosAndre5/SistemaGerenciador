@@ -6,8 +6,8 @@
 			<h3>Lista de Produtos</h3>
 			<a href="produto/create">
 				<button class="btn btn-success">
-					Adicionar Novo Produto
 					<i class="fa fa-plus" aria-hidden="true"></i>
+					Adicionar Novo Produto
 				</button>
 			</a>
 			@include('estoque.produto.search')
@@ -46,14 +46,14 @@
 							<td>
 								<a href="{{URL::action('ProdutoController@edit', $produto->id_produto)}}">
 									<button class="btn btn-info">
-										Editar
 										<i class="fa fa-pencil" aria-hidden="true"></i>
+										Editar
 									</button>
 								</a>
 		                        <a href="" data-target="#modal-delete-{{$produto->id_produto}}" data-toggle="modal">
 		                        	<button class="btn btn-danger">
-			                        	Excluir
 			                        	<i class="fa fa-trash" aria-hidden="true"></i>
+										Excluir
 			                        </button>
 		                        </a>
 							</td>
