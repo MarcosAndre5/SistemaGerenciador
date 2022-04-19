@@ -72,12 +72,12 @@
            
 		<div class="form-group">
 			<button class="btn btn-primary" type="submit">
-				Salvar Produto
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
+				Salvar Produto
 			</button>
 			<button class="btn btn-danger" type="reset">
-				Limpar
 				<i class="fa fa-eraser" aria-hidden="true"></i>
+				Limpar
 			</button>
 		</div>
 	{!!Form::close()!!}

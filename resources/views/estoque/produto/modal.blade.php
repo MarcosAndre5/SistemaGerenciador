@@ -14,12 +14,12 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">
-					Fechar
 					<i class="fa fa-times" aria-hidden="true"></i>
+					Fechar
 				</button>
 				<button type="submit" class="btn btn-primary">
-					Confirmar
 					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+					Confirmar
 				</button>
 			</div>
 		</div>
@@ -41,8 +41,8 @@
 			</div>
 			<div class="modal-footer">
 				<button type="submit" class="btn btn-primary" data-dismiss="modal">
-					Confirmar
 					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+					Confirmar
 				</button>
 			</div>
 		</div>
