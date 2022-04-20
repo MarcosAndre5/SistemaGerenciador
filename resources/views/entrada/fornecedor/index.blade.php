@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Lista de Fornecedores</h3>
-			<a href="{{URL::action('FornecedorController@create')}}">
+			<a href="{{ URL::action('FornecedorController@create') }}">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
 					Adicionar Novo Fornecedor
@@ -27,7 +27,7 @@
 						<th>Número Documento</th>
 						<th>Endereço</th>
 					</thead>
-					@foreach ($fornecedores as $fornecedor)
+					@foreach($fornecedores as $fornecedor)
 						<tr>
 							<td>{{ $fornecedor->id_fornecedor }}</td>
 							<td>{{ $fornecedor->nome_fornecedor }}</td>
@@ -55,7 +55,7 @@
 					@endforeach
 				</table>
 			</div>
-			{{$fornecedores->render()}}
+			{{ $fornecedores->render() }}
 		</div>
 	</div>
 @stop
