@@ -35,7 +35,7 @@ class ProdutoController extends Controller {
 		$categorias = DB::table('categorias')
 			->where('estado_categoria', '=', '1')->get();
 
-		return view('estoque.produto.create', ['categorias' => $categorias]);
+		return view('estoque.produto.create', ['categorias'=>$categorias]);
 	}
 
 	public function store(ProdutoFormRequest $request){
@@ -53,14 +53,14 @@ class ProdutoController extends Controller {
 			$file->move(public_path('imagens/produtos/'), $file->getClientOriginalName());
 			$produto->imagem_produto = $file->getClientOriginalName();
 		}
-
+		
 		$produto->save();
 
 		return Redirect::to('estoque/produto');
 	}
 
 	public function show($id){
-		return view('estoque.produto.show', ['produto' => Produto::findOrFail($id)]);
+		return view('estoque.produto.show', ['produto'=>Produto::findOrFail($id)]);
 	}
 
 	public function edit($id){

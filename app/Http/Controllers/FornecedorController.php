@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\FornecedorFormRequest;
 
 class FornecedorController extends Controller {
-    public function __construct(){ }
+	public function __construct(){ }
 
 	public function index(Request $request){
 		if($request){
@@ -22,7 +22,7 @@ class FornecedorController extends Controller {
 				->orderBy('id_fornecedor', 'desc')
 				->paginate(5);
 			
-			return view('entrada.fornecedor.index', ['fornecedores' => $fornecedores, 'buscaTexto' => $palavra]);
+			return view('entrada.fornecedor.index', ['fornecedores'=>$fornecedores, 'buscaTexto'=>$palavra]);
 		}
 	}
 
@@ -42,12 +42,11 @@ class FornecedorController extends Controller {
 		$fornecedor->estado_fornecedor = '1';
 		
 		$numDoc = preg_replace("/[^0-9]/", "", $request->get('numero_documento'));
- 
-        if($request->get('tipo_documento') == 'CPF') {
-            $numDoc = substr($numDoc, 0, 3).'.'.substr($numDoc, 3, 3).'.'.substr($numDoc, 6, 3).'-'.substr($numDoc, 9, 2);
-		} else if($request->get('tipo_documento') == 'CNPJ'){
+
+		if($request->get('tipo_documento') == 'CPF')
+			$numDoc = substr($numDoc, 0, 3).'.'.substr($numDoc, 3, 3).'.'.substr($numDoc, 6, 3).'-'.substr($numDoc, 9, 2);
+		else if($request->get('tipo_documento') == 'CNPJ')
 			$numDoc = substr($numDoc, 0, 2).'.'.substr($numDoc, 2, 3).'.'.substr($numDoc, 5, 3).'/'.substr($numDoc, 8, 4).'-'.substr($numDoc, -2);
-		}
 
 		$fornecedor->numero_documento_fornecedor = $numDoc;
 				
@@ -57,13 +56,13 @@ class FornecedorController extends Controller {
 	}
 
 	public function show($id){
-		return view('entrada.fornecedor.show', ['fornecedor' => Fornecedor::findOrFail($id)]);
+		return view('entrada.fornecedor.show', ['fornecedor'=>Fornecedor::findOrFail($id)]);
 	}
 
 	public function edit($id){
 		$fornecedor = Fornecedor::findOrFail($id);
 		
-		return view('entrada.fornecedor.edit', ['fornecedor' => $fornecedor]);
+		return view('entrada.fornecedor.edit', ['fornecedor'=>$fornecedor]);
 	}
 
 	public function update(FornecedorFormRequest $request, $id){
@@ -79,14 +78,13 @@ class FornecedorController extends Controller {
 		
 		$numDoc = preg_replace("/[^0-9]/", "", $request->get('numero_documento'));
  
-        if($request->get('tipo_documento') == 'CPF') {
-            $numDoc = substr($numDoc, 0, 3).'.'.substr($numDoc, 3, 3).'.'.substr($numDoc, 6, 3).'-'.substr($numDoc, 9, 2);
-		} else if($request->get('tipo_documento') == 'CNPJ'){
+		if($request->get('tipo_documento') == 'CPF')
+			$numDoc = substr($numDoc, 0, 3).'.'.substr($numDoc, 3, 3).'.'.substr($numDoc, 6, 3).'-'.substr($numDoc, 9, 2);
+		else if($request->get('tipo_documento') == 'CNPJ')
 			$numDoc = substr($numDoc, 0, 2).'.'.substr($numDoc, 2, 3).'.'.substr($numDoc, 5, 3).'/'.substr($numDoc, 8, 4).'-'.substr($numDoc, -2);
-		}
 
 		$fornecedor->numero_documento_fornecedor = $numDoc;
-				
+		
 		$fornecedor->update();
 
 		return Redirect::to('entrada/fornecedor');

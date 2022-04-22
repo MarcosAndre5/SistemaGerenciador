@@ -21,7 +21,7 @@ class CategoriaController extends Controller {
 				->orderBy('id_categoria', 'desc')
 				->paginate(5);
 			
-			return view('estoque.categoria.index', ['categorias' => $categorias, 'buscaTexto' => $palavra]);
+			return view('estoque.categoria.index', ['categorias'=>$categorias, 'buscaTexto'=>$palavra]);
 		}
 	}
 
@@ -42,11 +42,11 @@ class CategoriaController extends Controller {
 	}
 
 	public function show($id){
-		return view("estoque.categoria.show", ["categoria" => Categoria::findOrFail($id)]);
+		return view("estoque.categoria.show", ["categoria"=>Categoria::findOrFail($id)]);
 	}
 
 	public function edit($id){
-		return view("estoque.categoria.edit", ["categoria" => Categoria::findOrFail($id)]);
+		return view("estoque.categoria.edit", ["categoria"=>Categoria::findOrFail($id)]);
 	}
 
 	public function update(CategoriaFormRequest $request, $id){

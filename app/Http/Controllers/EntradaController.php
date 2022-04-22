@@ -32,7 +32,7 @@ class EntradaController extends Controller {
 					'e.serie_comprovante_entrada', 'e.numero_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada')
 				->paginate(5);
 				
-			return view('entrada.compra.index', ['entradas' => $entradas, 'buscaTexto' => $palavra]);
+			return view('entrada.compra.index', ['entradas'=>$entradas, 'buscaTexto'=>$palavra]);
 		}
 	}
 
@@ -43,7 +43,7 @@ class EntradaController extends Controller {
 			->where('p.estado_produto', '=', '1')
 			->get();
 		
-		return view('entrada.compra.create', ['fornecedores' => $fornecedores, 'produtos' => $produtos]);
+		return view('entrada.compra.create', ['fornecedores'=>$fornecedores, 'produtos'=>$produtos]);
 	}
 
 	public function store(CategoriaFormRequest $request){
@@ -105,7 +105,7 @@ class EntradaController extends Controller {
 			->select('p.nome_produto as produto', 'i.quantidade_informacoesEntrada', 'i.valor_entrada_informacoesEntrada', 'i.valor_saida_informacoesEntrada')
 			->get();
 
-		return view('entrada.compra.show', ['entrada' => $entrada, 'informacoes' => $info]);
+		return view('entrada.compra.show', ['entrada'=>$entrada, 'informacoes'=>$info]);
 	}
 
 	public function destroy($id){
