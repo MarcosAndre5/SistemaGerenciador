@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ClienteFormRequest;
 
 class ClienteController extends Controller {
-    public function __construct(){ }
+	public function __construct(){ }
 
 	public function index(Request $request){
 		if($request){
@@ -22,7 +22,7 @@ class ClienteController extends Controller {
 				->orderBy('id_cliente', 'desc')
 				->paginate(5);
 			
-			return view('saida.cliente.index', ['clientes' => $clientes, 'buscaTexto' => $palavra]);
+			return view('saida.cliente.index', ['clientes'=>$clientes, 'buscaTexto'=>$palavra]);
 		}
 	}
 
@@ -40,20 +40,20 @@ class ClienteController extends Controller {
 		$cliente->endereco_cliente = $request->get('endereco');
 		$cliente->documento_cliente = $request->get('tipo_documento');
 		$cliente->numero_documento_cliente = $request->get('numero_documento');
-				
+		
 		$cliente->save();
 
 		return Redirect::to('saida/cliente');
 	}
 
 	public function show($id){
-		return view('saida.cliente.show', ['cliente' => Cliente::findOrFail($id)]);
+		return view('saida.cliente.show', ['cliente'=>Cliente::findOrFail($id)]);
 	}
 
 	public function edit($id){
 		$cliente = Cliente::findOrFail($id);
 		
-		return view('saida.cliente.edit', ['cliente' => $cliente]);
+		return view('saida.cliente.edit', ['cliente'=>$cliente]);
 	}
 
 	public function update(ClienteFormRequest $request, $id){
