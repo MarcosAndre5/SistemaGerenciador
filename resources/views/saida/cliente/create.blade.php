@@ -47,7 +47,7 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="numero_documento">Número Documento</label>
-					<input type="text" name="numero_documento" required value="{{old('numero_documento')}}" class="form-control" placeholder="Número do Documento...">
+					<input type="text" name="numero_documento" required value="{{ old('numero_documento') }}" class="form-control" placeholder="Número do Documento...">
 				</div>
 			</div>
 			
@@ -61,7 +61,7 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="endereco">Endereço</label>
-					<input type="text" name="endereco" required value="{{old('endereco')}}" class="form-control" placeholder="Endereço...">
+					<input type="text" name="endereco" required value="{{ old('endereco') }}" class="form-control" placeholder="Endereço...">
 				</div>
 			</div>
 		</div>
@@ -76,7 +76,7 @@
 				Cancelar
 			</button>
 		</div>
-	{!!Form::close()!!}
+	{!! Form::close() !!}
 	<script>
 		$("#telefone").mask("(99) 99999-9999");
 	</script>

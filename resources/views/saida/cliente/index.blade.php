@@ -4,10 +4,10 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Lista de Clientes</h3>
-			<a href="{{URL::action('ClienteController@create')}}">
+			<a href="{{ URL::action('ClienteController@create') }}">
 				<button class="btn btn-success">
-					Adicionar Novo Cliente
 					<i class="fa fa-plus" aria-hidden="true"></i>
+					Adicionar Novo Cliente
 				</button>
 			</a>
 			@include('saida.cliente.search')
@@ -37,16 +37,16 @@
 							<td>{{ $cliente->numero_documento_cliente }}</td>
 							<td>{{ $cliente->endereco_cliente }}</td>
 							<td>
-								<a href="{{URL::action('ClienteController@edit', $cliente->id_cliente)}}">
+								<a href="{{ URL::action('ClienteController@edit', $cliente->id_cliente) }}">
 									<button class="btn btn-info">
-										Editar
 										<i class="fa fa-pencil" aria-hidden="true"></i>
+										Editar
 									</button>
 								</a>
-								<a href="" data-target="#modal-delete-{{$cliente->id_cliente}}" data-toggle="modal">
+								<a href="" data-target="#modal-delete-{{ $cliente->id_cliente }}" data-toggle="modal">
 									<button class="btn btn-danger">
-										Excluir
 										<i class="fa fa-trash" aria-hidden="true"></i>
+										Excluir
 									</button>
 								</a>
 							</td>
@@ -55,7 +55,7 @@
 					@endforeach
 				</table>
 			</div>
-			{{$clientes->render()}}
+			{{ $clientes->render() }}
 		</div>
 	</div>
 @stop

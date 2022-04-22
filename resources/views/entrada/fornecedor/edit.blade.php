@@ -41,7 +41,7 @@
 							{{ $fornecedor->documento_fornecedor }}
 						</option>
 						@if($fornecedor->documento_fornecedor != 'CPF')
-							<option value="CPF">CPF</option>
+							<option value="CPF">CP</option>
 						@endif
 						@if($fornecedor->documento_fornecedor != 'RG')
 							<option value="RG">RG</option>
