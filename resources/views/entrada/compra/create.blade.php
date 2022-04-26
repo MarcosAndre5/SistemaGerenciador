@@ -101,12 +101,12 @@
 					<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 						<table id="detalhes" class="table table-striped table-bordered table-condensed table-hover">
 							<thead style="background-color:#A9D0F5">
-								<th>Opções</th>
-								<th>Produtos</th>
+								<th>Deletar Linha</th>
+								<th>Produto</th>
 								<th>Quantidade</th>
 								<th>Preço de Compra</th>
 								<th>Preço de Venda</th>
-								<th>Total</th>
+								<th>Total Compra</th>
 							</thead>
 							<tfoot>
 								<th>Total</th>
@@ -171,20 +171,25 @@
 					var linhaTabela = 
 						'<tr class="selected" id="linhaTabela'+contador+'">'+
 							'<td>'+
-								'<button type="button" class="btn btn-danger" onclick="apagar('+contador+');">X</button>'+
+								'<button type="button" class="btn btn-danger" onclick="apagar('+contador+');">'+
+									'X'+
+								'</button>'+
 							'</td>'+
 							'<td>'+
 								'<input type="hidden" name="idproduto[]" value="'+idproduto+'">'+
 								produto+
 							'</td>'+
 							'<td>'+
-								'<input type="number" name="quantidade[]" value="'+quantidade+'">'+
+								'<input type="hidden" name="quantidade[]" value="'+quantidade+'">'+
+								quantidade+
 							'</td>'+
 							'<td>'+
-								'<input type="number" name="preco_compra[]" value="'+preco_compra+'">'+
+								'<input type="hidden" name="preco_compra[]" value="'+preco_compra+'">'+
+								preco_compra+
 							'</td>'+
 							'<td>'+
-								'<input type="number" name="preco_venda[]" value="'+preco_venda+'">'+
+								'<input type="hidden" name="preco_venda[]" value="'+preco_venda+'">'+
+								preco_venda+
 							'</td>'+
 							'<td>'+
 								subtotal[contador]+
@@ -211,10 +216,7 @@
 			}
 
 			function ocultarBotaoSalvar(){
-				if(totalEntrada > 0)
-					$("#botaoSalvar").show();
-				else
-					$("#botaoSalvar").hide();
+				totalEntrada > 0 ? $("#botaoSalvar").show() : $("#botaoSalvar").hide();
 			}
 
 			function apagar(index){
