@@ -200,13 +200,13 @@
 					
 					limparCampos();
 					
-					$("#campoTotal").html("R$: " + totalEntrada);
+					$('#campoTotal').html('R$: ' + totalEntrada);
 					
 					ocultarBotaoSalvar();
 					
 					$('#detalhes').append(linhaTabela);
-				}else
-					alert("Erro ao inserir os detalhes. Preencha os campos corretamente.");
+				} else
+					alert('Erro ao inserir entrada. Existe um ou mais campos vázios.');
 			}
 
 			function limparCampos(){
