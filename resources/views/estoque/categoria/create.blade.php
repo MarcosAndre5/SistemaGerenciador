@@ -5,7 +5,7 @@
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<h3>Nova Categoria</h3>
 			
-			@if (count($errors) > 0)
+			@if(count($errors) > 0)
 				<div class="alert alert-danger">
 					<ul>
 						@foreach ($errors->all() as $error)
@@ -15,8 +15,8 @@
 				</div>
 			@endif
 
-			{!!Form::open(array('url'=>'estoque/categoria','method'=>'POST','autocomplete'=>'off'))!!}
-				{{Form::token()}}
+			{!! Form::open(array('url'=>'estoque/categoria','method'=>'POST','autocomplete'=>'off')) !!}
+				{{ Form::token() }}
 				<div class="form-group">
 					<label for="nome">Nome</label>
 					<input type="text" name="nome" class="form-control" placeholder="Nome...">
@@ -32,12 +32,12 @@
 						<i class="fa fa-floppy-o" aria-hidden="true"></i>
 						Salvar Categoria
 					</button>
-					<button class="btn btn-danger" type="reset">
+					<a class="btn btn-danger" href="{{ url('estoque/categoria') }}" role="button">
 						<i class="fa fa-ban" aria-hidden="true"></i>
 						Cancelar
-					</button>
+					</a>
 				</div>
-			{!!Form::close()!!}
+			{!! Form::close() !!}
 		</div>
 	</div>
 @stop
