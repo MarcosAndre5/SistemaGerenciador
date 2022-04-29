@@ -4,12 +4,13 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Lista de Categorias</h3>
-			<a href="{{URL::action('CategoriaController@create')}}">
+			<a href="{{ URL::action('CategoriaController@create') }}">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
 					Adicionar Nova Categoria
 				</button>
 			</a>
+			<br></br>
 			@include('estoque.categoria.search')
 		</div>
 	</div>
@@ -24,19 +25,19 @@
 						<th>Descrição</th>
 						<th>Opções</th>
 					</thead>
-					@foreach ($categorias as $categoria)
+					@foreach($categorias as $categoria)
 						<tr>
 							<td>{{ $categoria->id_categoria }}</td>
 							<td>{{ $categoria->nome_categoria }}</td>
 							<td>{{ $categoria->descricao_categoria }}</td>
 							<td>
-								<a href="{{URL::action('CategoriaController@edit', $categoria->id_categoria)}}">
+								<a href="{{ URL::action('CategoriaController@edit', $categoria->id_categoria) }}">
 									<button class="btn btn-info">
 										<i class="fa fa-pencil" aria-hidden="true"></i>
 										Editar
 									</button>
 								</a>
-								<a href="" data-target="#modal-delete-{{$categoria->id_categoria}}" data-toggle="modal">
+								<a href="" data-target="#modal-delete-{{ $categoria->id_categoria }}" data-toggle="modal">
 									<button class="btn btn-danger">
 										<i class="fa fa-trash" aria-hidden="true"></i>
 										Excluir
@@ -48,7 +49,7 @@
 					@endforeach
 				</table>
 			</div>
-			{{$categorias->render()}}
+			{{ $categorias->render() }}
 		</div>
 	</div>
 @stop

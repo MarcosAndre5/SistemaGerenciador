@@ -206,7 +206,7 @@
 					
 					$('#detalhes').append(linhaTabela);
 				} else
-					alert('Erro ao inserir entrada. Existe um ou mais campos vázios.');
+					alert('Erro ao inserir dados. Existe um ou mais campos vazios.');
 			}
 
 			function limparCampos(){
