@@ -25,7 +25,7 @@
 						<th>Descrição</th>
 						<th>Opções</th>
 					</thead>
-					@foreach($categorias as $categoria)
+					@foreach ($categorias as $categoria)
 						<tr>
 							<td>{{ $categoria->id_categoria }}</td>
 							<td>{{ $categoria->nome_categoria }}</td>
