@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Estoque / Categoria / Editar Categoria')
+
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -19,12 +21,12 @@
 				{{ Form::token() }}
 				<div class="form-group">
 					<label for="nome">Nome</label>
-					<input type="text" name="nome" class="form-control" value="{{ $categoria->nome_categoria }}">
+					<input type="text" name="nome" class="form-control" value="{{ $categoria->nome_categoria }}" required>
 				</div>
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
 					<div class="form-floating">
-						<textarea class="form-control" name="descricao" value="{{ $categoria->descricao_categoria }}" style="height: 100px; resize: none;">{{ $categoria->descricao_categoria }}</textarea>
+						<textarea class="form-control" name="descricao" value="{{ $categoria->descricao_categoria }}" placeholder="Descrição da Categoria..." style="height: 100px; resize: none;">{{ $categoria->descricao_categoria }}</textarea>
 					</div>
 				</div>
 				<div class="form-group">

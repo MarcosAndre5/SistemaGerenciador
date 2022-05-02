@@ -1,10 +1,12 @@
 @extends('layouts.admin')
 
+@section('title', 'Estoque / Categoria')
+
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Lista de Categorias</h3>
-			<a href="{{ URL::action('CategoriaController@create') }}">
+			<a href="{{ url('estoque/categoria/create') }}">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
 					Adicionar Nova Categoria
@@ -31,7 +33,7 @@
 							<td>{{ $categoria->nome_categoria }}</td>
 							<td>{{ $categoria->descricao_categoria }}</td>
 							<td>
-								<a href="{{ URL::action('CategoriaController@edit', $categoria->id_categoria) }}">
+								<a href="{{ url('estoque/categoria/edit/'.$categoria->id_categoria) }}">
 									<button class="btn btn-info">
 										<i class="fa fa-pencil" aria-hidden="true"></i>
 										Editar
