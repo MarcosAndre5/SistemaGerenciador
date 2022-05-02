@@ -5,11 +5,11 @@
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<h3>Editar Categoria: {{ $categoria->nome_categoria }}</h3>
 			
-			@if(count($errors) > 0)
+			@if (count($errors) > 0)
 				<div class="alert alert-danger">
 					<ul>
 						@foreach ($errors->all() as $error)
-							<li>{{$error}}</li>
+							<li>{{ $error }}</li>
 						@endforeach
 					</ul>
 				</div>
@@ -24,9 +24,7 @@
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
 					<div class="form-floating">
-						<textarea class="form-control" name="descricao" value="{{ $categoria->descricao_categoria }}" style="height: 100px; resize: none">
-							{{ $categoria->descricao_categoria }}
-						</textarea>
+						<textarea class="form-control" name="descricao" value="{{ $categoria->descricao_categoria }}" style="height: 100px; resize: none;">{{ $categoria->descricao_categoria }}</textarea>
 					</div>
 				</div>
 				<div class="form-group">
