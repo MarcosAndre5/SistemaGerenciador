@@ -9,7 +9,7 @@
 				<h4 class="modal-title">Deletar Categoria</h4>
 			</div>
 			<div class="modal-body">
-				<p>Confirme se deseja apagar a categoria <b>{{ $categoria->nome_categoria }}</b></p>
+				<p>Confirme se deseja deletar a categoria <b>{{ $categoria->nome_categoria }}</b></p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">

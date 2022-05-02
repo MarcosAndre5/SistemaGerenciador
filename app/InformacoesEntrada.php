@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class InformacoesEntrada extends Model {
-	protected $table = 'informacoesEntradas';
+	protected $table = 'informacoesEntrada';
 	protected $primaryKey = 'id_informacoesEntrada';
 
 	public $timestamps = false;

@@ -46,7 +46,7 @@ class EntradaController extends Controller {
 		return view('entrada.compra.create', ['fornecedores'=>$fornecedores, 'produtos'=>$produtos]);
 	}
 
-	public function store(CategoriaFormRequest $request){
+	public function store(EntradaFormRequest $request){
 		try{
 			DB::beginTransaction();
 			$entrada = new Entrada;
@@ -58,30 +58,26 @@ class EntradaController extends Controller {
 			$entrada->taxa_entrada = $request->get('taxa_entrada');
 			$entrada->estado_entrada = 1;
 
-			dd(Carbon::row('America/Recife'));
-			$data = Carbon::row('America/Recife');
+			$data = Carbon::now('America/Recife');
 			$entrada->data_hora_entrada = $data->toDateTimeString();
 			
 			$entrada->save();
 
-			$id_produto_informacoesEntrada->get('id_produto');
-			$quantidade_informacoesEntrada->get('quantidade');
-			$valor_entrada_informacoesEntrada->get('valor_compra');
-			$valor_saida_informacoesEntrada->get('valor_venda');
+			$id_produto = $request->get('idproduto');
+			$quantidade = $request->get('quantidade');
+			$valor_entrada = $request->get('preco_compra');
+			$valor_saida = $request->get('preco_venda');
 
-			$contador = 0;
-			while($contador < count($id_produto_informacoesEntrada)){
+			for($i = 0; $i < count($id_produto); $i++){
 				$informacoesEntrada = new InformacoesEntrada;
 
 				$informacoesEntrada->id_entrada_informacoesEntrada = $entrada->id_entrada;
-				$informacoesEntrada->id_produto_informacoesEntrada = $id_produto[$contador];
-				$informacoesEntrada->quantidade_informacoesEntrada = $quantidade[$contador];
-				$informacoesEntrada->valor_entrada_informacoesEntrada = $valor_entrada[$contador];
-				$informacoesEntrada->valor_saida_informacoesEntrada = $valor_saida[$contador];
+				$informacoesEntrada->id_produto_informacoesEntrada = $id_produto[$i];
+				$informacoesEntrada->quantidade_informacoesEntrada = $quantidade[$i];
+				$informacoesEntrada->valor_entrada_informacoesEntrada = $valor_entrada[$i];
+				$informacoesEntrada->valor_saida_informacoesEntrada = $valor_saida[$i];
 
 				$informacoesEntrada->save();
-				
-				$contador++;
 			}
 			DB::commit();
 		}catch(\Exception $excecao){

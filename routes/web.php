@@ -7,6 +7,7 @@ Route::get('/', function () {
 /* ESTOQUE */
 // Categorias
 Route::resource('estoque/categoria', 'CategoriaController');
+Route::get('estoque/categoria/edit/{id}', 'CategoriaController@edit');
 // Produtos
 Route::resource('estoque/produto', 'ProdutoController');
 
