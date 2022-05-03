@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Estoque > Produto > ADICIONAR NOVO PRODUTO')
+
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -23,14 +25,15 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="nome">Nome</label>
-					<input type="text" name="nome" required value="{{ old('nome') }}" class="form-control" placeholder="Nome...">
+					<input type="text" name="nome" value="{{ old('nome') }}" class="form-control" placeholder="Nome do Produto..." required>
 				</div>
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label>Categoria</label>
-					<select name="idcategoria" class="form-control">
+					<select name="idcategoria" class="form-control" required>
+						<option value="">Selecione...</option>
 						@foreach ($categorias as $categoria)
 							<option value="{{ $categoria->id_categoria }}">
 								{{ $categoria->nome_categoria }}
@@ -43,14 +46,14 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="codigo">Código</label>
-					<input type="text" name="codigo" required value="{{ old('codigo') }}" class="form-control" placeholder="Código do Produto...">
+					<input type="number" name="codigo" value="{{ old('codigo') }}" class="form-control" placeholder="Código do Produto..." required>
 				</div>
 			</div>
 			
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
-					<label for="estoque">Quantidade</label>
-					<input type="text" name="estoque" required value="{{ old('estoque') }}" class="form-control" placeholder="Estoque...">
+					<label for="estoque">Quantidade Em Estoque</label>
+					<input type="number" name="estoque" value="{{ old('estoque') }}" class="form-control" placeholder="Quantidade do Produto..." required>
 				</div>
 			</div>
 
@@ -58,7 +61,7 @@
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
 					<div class="form-floating">
-						<textarea class="form-control" name="descricao" placeholder="Descrição..." style="height: 100px; resize: none;" maxlength="100"></textarea>
+						<textarea class="form-control" name="descricao" placeholder="Descrição do Produto..." style="height: 100px; resize: none;" maxlength="100"></textarea>
 					</div>
 				</div>
 			</div>

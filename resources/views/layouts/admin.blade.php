@@ -183,8 +183,8 @@
 							<div class="box">
 								<div class="box-header with-border">
 									<h3 class="box-title">
-										Sistema Gerenciador de Vendas - @yield('title')
-
+										<!-- Sistema Gerenciador de Vendas > --> 
+										@yield('title')
 									</h3>
 									<div class="box-tools pull-right">
 										<button class="btn btn-box-tool" data-widget="collapse">
