@@ -1,10 +1,12 @@
 @extends('layouts.admin')
 
+@section('title', 'Estoque > PRODUTO')
+
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Lista de Produtos</h3>
-			<a href="{{ URL::action('ProdutoController@create') }}">
+			<a href="{{ url('estoque/produto/create') }}">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
 					Adicionar Novo Produto
@@ -22,9 +24,9 @@
 					<thead>
 						<th>Id</th>
 						<th>Código</th>
-						<th>Nome</th>
+						<th>Nome Produto</th>
 						<th>Categoria</th>
-						<th>Estoque</th>
+						<th>Qtd. Estoque</th>
 						<th>Imagem</th>
 						<th>Opções</th>
 					</thead>
@@ -38,14 +40,14 @@
 							<td>
 								@if ($produto->imagem_produto)
 									<a href="" data-target="#modal-imagem-{{ $produto->id_produto }}" data-toggle="modal">
-										<img src="{{ asset('imagens/produtos/'.$produto->imagem_produto) }}" alt="{{ $produto->nome_produto }}" width="70px" heigth="70px" class="img-thumbnail">
+										<img src="{{ asset('imagens/produtos/'.$produto->imagem_produto) }}" alt="{{ $produto->nome_produto }}" width="50px" heigth="50px" class="img-thumbnail">
 									</a>
 								@else
-									Sem Imagem
+									Nenhuma Imagem Cadastrada
 								@endif
 							</td>
 							<td>
-								<a href="{{ URL::action('ProdutoController@edit', $produto->id_produto) }}">
+								<a href="{{ url('estoque/produto/editar/'.$produto->id_produto) }}">
 									<button class="btn btn-info">
 										<i class="fa fa-pencil" aria-hidden="true"></i>
 										Editar

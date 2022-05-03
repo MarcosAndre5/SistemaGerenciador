@@ -20,10 +20,9 @@ class ProdutoController extends Controller {
 				->join('categorias as c', 'p.id_categoria_produto', '=', 'c.id_categoria')
 				->select('p.id_produto', 'p.nome_produto', 'p.codigo_produto', 'p.estoque_produto',
 					'c.nome_categoria as categorias', 'p.descricao_produto', 'p.imagem_produto', 'p.estado_produto')
+				->where('p.estado_produto', '=', '1')
 				->where('p.nome_produto', 'LIKE', '%'.$palavra.'%')
-				->where('p.estado_produto', '!=', '0')
 				->orwhere('p.codigo_produto', 'LIKE', '%'.$palavra.'%')
-				->where('p.estado_produto', '!=', '0')
 				->orderBy('id_produto', 'desc')
 				->paginate(5);
 				

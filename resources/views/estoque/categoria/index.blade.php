@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Estoque / Categoria')
+@section('title', 'Estoque > CATEGORIA')
 
 @section('conteudo')
 	<div class="row">
@@ -33,7 +33,7 @@
 							<td>{{ $categoria->nome_categoria }}</td>
 							<td>{{ $categoria->descricao_categoria }}</td>
 							<td>
-								<a href="{{ url('estoque/categoria/edit/'.$categoria->id_categoria) }}">
+								<a href="{{ url('estoque/categoria/editar/'.$categoria->id_categoria) }}">
 									<button class="btn btn-info">
 										<i class="fa fa-pencil" aria-hidden="true"></i>
 										Editar

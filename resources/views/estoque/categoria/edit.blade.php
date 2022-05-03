@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Estoque / Categoria / Editar Categoria')
+@section('title', 'Estoque > Categoria > EDITAR CATEGORIA')
 
 @section('conteudo')
 	<div class="row">

@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Estoque > Produto > EDITAR PRODUTO')
+
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -23,7 +25,7 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="nome">Nome</label>
-					<input type="text" name="nome" value="{{ $produto->nome_produto }}" class="form-control" required>
+					<input type="text" name="nome" value="{{ $produto->nome_produto }}" class="form-control" placeholder="Nome do Produto..." required>
 				</div>
 			</div>
 
@@ -33,7 +35,7 @@
 					<select name="idcategoria" class="form-control">
 						@foreach ($categorias as $categoria)
 							@if ($categoria->id_categoria == $produto->id_categoria)
-								<option value="{{ $categoria->id_categoria }}" selected>
+								<option value="{{ $categoria->id_categoria }}" selected required>
 									{{$categoria->nome_categoria}}
 								</option>
 							@else
@@ -49,14 +51,14 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="codigo">Código</label>
-					<input type="text" name="codigo" value="{{ $produto->codigo_produto }}" class="form-control" required>
+					<input type="number" name="codigo" value="{{ $produto->codigo_produto }}" class="form-control" placeholder="Código do Produto..." required>
 				</div>
 			</div>
 			
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
-					<label for="estoque">Quantidade</label>
-					<input type="number" name="estoque" value="{{ $produto->estoque_produto }}" class="form-control" required>
+					<label for="estoque">Quantidade Em Estoque</label>
+					<input type="number" name="estoque" value="{{ $produto->estoque_produto }}" class="form-control" placeholder="Quantidade do Produto..." required>
 				</div>
 			</div>
 
@@ -64,7 +66,7 @@
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
 					<div class="form-floating">
-						<textarea class="form-control" name="descricao" value="{{ $produto->descricao_produto }}" style="height: 100px; resize: none;" maxlength="100">{{$produto->descricao_produto}}</textarea>
+						<textarea class="form-control" name="descricao" value="{{ $produto->descricao_produto }}" placeholder="Descrição do Produto..." style="height: 100px; resize: none;" maxlength="100">{{$produto->descricao_produto}}</textarea>
 					</div>
 				</div>
 			</div>
