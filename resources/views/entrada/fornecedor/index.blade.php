@@ -7,7 +7,7 @@
 			<a href="{{ URL::action('FornecedorController@create') }}">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
-					Adicionar Novo Fornecedor
+					Cadastrar Novo Fornecedor
 				</button>
 			</a>
 			@include('entrada.fornecedor.search')

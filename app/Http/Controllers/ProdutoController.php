@@ -23,7 +23,7 @@ class ProdutoController extends Controller {
 				->where('p.estado_produto', '=', '1')
 				->where('p.nome_produto', 'LIKE', '%'.$palavra.'%')
 				->orwhere('p.codigo_produto', 'LIKE', '%'.$palavra.'%')
-				->orderBy('id_produto', 'desc')
+				->orderBy('estoque_produto', 'asc')
 				->paginate(5);
 				
 			return view('estoque.produto.index', ['produtos'=>$produtos, 'buscaTexto'=>$palavra]);

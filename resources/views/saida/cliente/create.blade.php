@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Saídas > Clientes > NOVO CLIENTE')
+
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -71,10 +73,10 @@
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
 				Salvar Cliente
 			</button>
-			<button class="btn btn-danger" type="reset">
+			<a class="btn btn-danger" href="{{ url('saida/cliente') }}" role="button">
 				<i class="fa fa-ban" aria-hidden="true"></i>
 				Cancelar
-			</button>
+			</a>
 		</div>
 	{!! Form::close() !!}
 	<script>
