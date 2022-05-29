@@ -9,7 +9,7 @@
 			<a href="{{ url('estoque/categoria/create') }}">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
-					Adicionar Nova Categoria
+					Cadastrar Nova Categoria
 				</button>
 			</a>
 			<br></br>

@@ -16,9 +16,10 @@ class ClienteController extends Controller {
 			$palavra = trim($request->get('buscaTexto'));
 			
 			$clientes = DB::table('clientes')
-				->where('tipo_cliente', '!=', '0')
 				->where('nome_cliente', 'LIKE', '%'.$palavra.'%')
+				->where('estado_cliente', '=', '1')
 				->orwhere('numero_documento_cliente', 'LIKE', '%'.$palavra.'%')
+				->where('estado_cliente', '=', '1')
 				->orderBy('id_cliente', 'desc')
 				->paginate(5);
 			
@@ -33,7 +34,7 @@ class ClienteController extends Controller {
 	public function store(ClienteFormRequest $request){
 		$cliente = new Cliente;
 		
-		$cliente->tipo_cliente = 'cliente';
+		$cliente->estado_cliente = '1';
 		$cliente->nome_cliente = $request->get('nome');
 		$cliente->email_cliente = $request->get('email');
 		$cliente->telefone_cliente = $request->get('telefone');
@@ -59,7 +60,7 @@ class ClienteController extends Controller {
 	public function update(ClienteFormRequest $request, $id){
 		$cliente = Cliente::findOrFail($id);
 		
-		$cliente->tipo_cliente = 'cliente';
+		$cliente->estado_cliente = '1';
 		$cliente->nome_cliente = $request->get('nome');
 		$cliente->email_cliente = $request->get('email');
 		$cliente->telefone_cliente = $request->get('telefone');
@@ -75,7 +76,7 @@ class ClienteController extends Controller {
 	public function destroy($id){
 		$cliente = Cliente::findOrFail($id);
 
-		$cliente->tipo_cliente = '0';
+		$cliente->estado_cliente = '0';
 
 		$cliente->update();
 
