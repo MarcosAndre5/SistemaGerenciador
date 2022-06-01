@@ -96,7 +96,7 @@ class EntradaController extends Controller {
 			->where('e.id_entrada', '=', $id)
 			->first();
 
-		$info = DB::table('informacoesEntrada as i')
+		$informacoesEntrada = DB::table('informacoesEntrada as i')
 			->join('produtos as p', 'i.id_produto_informacoesEntrada', '=', 'p.id_produto')
 			->select('p.nome_produto as produto', 'i.quantidade_informacoesEntrada', 'i.valor_entrada_informacoesEntrada', 'i.valor_saida_informacoesEntrada')
 			->get();
