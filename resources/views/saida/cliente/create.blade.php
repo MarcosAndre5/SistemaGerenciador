@@ -24,21 +24,22 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="nome">Nome</label>
-					<input type="text" name="nome" required value="{{ old('nome') }}" class="form-control" placeholder="Nome...">
+					<input type="text" name="nome" required value="{{ old('nome') }}" class="form-control" placeholder="Nome do Cliente...">
 				</div>
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="telefone">Telefone</label>
-					<input type="text" name="telefone" id="telefone" class="form-control" placeholder="Telefone...">
+					<input type="text" name="telefone" id="telefone" class="form-control" placeholder="Telefone do Cliente..." required>
 				</div>
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label>Tipo Documento</label>
-					<select name="tipo_documento" class="form-control">
+					<select name="tipo_documento" class="form-control" required>
+						<option value="">Selecione...</option>
 						<option value="CPF">CPF</option>
 						<option value="RG">RG</option>
 						<option value="RG">CNPJ</option>
@@ -56,14 +57,14 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="email">Email</label>
-					<input type="text" name="email" class="form-control" placeholder="Email...">
+					<input type="text" name="email" class="form-control" placeholder="Email do Cliente...">
 				</div>
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="endereco">Endereço</label>
-					<input type="text" name="endereco" required value="{{ old('endereco') }}" class="form-control" placeholder="Endereço...">
+					<input type="text" name="endereco" required value="{{ old('endereco') }}" class="form-control" placeholder="Endereço do Cliente...">
 				</div>
 			</div>
 		</div>

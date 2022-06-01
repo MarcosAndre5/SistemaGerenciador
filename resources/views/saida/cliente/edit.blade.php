@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Saídas > Clientes > EDITAR CLIENTE')
+
 @section('conteudo')
 <div class="row">
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -22,14 +24,14 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="nome">Nome</label>
-					<input type="text" name="nome" required value="{{ $cliente->nome_cliente }}" class="form-control" placeholder="Nome...">
+					<input type="text" name="nome" required value="{{ $cliente->nome_cliente }}" class="form-control" placeholder="Nome do Cliente...">
 				</div>
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="telefone">Telefone</label>
-					<input type="text" name="telefone" id="telefone" class="form-control" value="{{ $cliente->telefone_cliente }}" placeholder="Telefone...">
+					<input type="text" name="telefone" id="telefone" class="form-control" value="{{ $cliente->telefone_cliente }}" placeholder="Telefone do Cliente...">
 				</div>
 			</div>
 
@@ -63,14 +65,14 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="email">Email</label>
-					<input type="text" name="email" value="{{ $cliente->email_cliente }}" class="form-control">
+					<input type="text" name="email" value="{{ $cliente->email_cliente }}" class="form-control" placeholder="Email do Cliente...">
 				</div>
 			</div>
 			
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="endereco">Endereço</label>
-					<input type="text" name="endereco" required value="{{ $cliente->endereco_cliente }}" class="form-control" placeholder="Endereço...">
+					<input type="text" name="endereco" required value="{{ $cliente->endereco_cliente }}" class="form-control" placeholder="Endereço  do Cliente...">
 				</div>
 			</div>
 		</div>
@@ -80,10 +82,10 @@
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
 				Alterar Cliente
 			</button>
-			<button class="btn btn-danger" type="reset">
+			<a class="btn btn-danger" href="{{ url('saida/cliente') }}" role="button">
 				<i class="fa fa-ban" aria-hidden="true"></i>
 				Cancelar
-			</button>
+			</a>
 		</div>
 	{!!Form::close()!!}
 @stop
