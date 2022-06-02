@@ -16,9 +16,10 @@ class FornecedorController extends Controller {
 			$palavra = trim($request->get('buscaTexto'));
 			
 			$fornecedores = DB::table('fornecedores')
-				->where('tipo_fornecedor', '!=', '0')
 				->where('nome_fornecedor', 'LIKE', '%'.$palavra.'%')
+				->where('estado_fornecedor', '=', '1')
 				->orwhere('numero_documento_fornecedor', 'LIKE', '%'.$palavra.'%')
+				->where('estado_fornecedor', '=', '1')
 				->orderBy('id_fornecedor', 'desc')
 				->paginate(5);
 			

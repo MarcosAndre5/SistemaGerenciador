@@ -94,6 +94,8 @@ class EntradaController extends Controller {
 				'e.serie_comprovante_entrada', 'e.numero_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada',
 				DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada) as total'))
 			->where('e.id_entrada', '=', $id)
+			->groupBy('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
+				'e.serie_comprovante_entrada', 'e.numero_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada')
 			->first();
 
 		$informacoesEntrada = DB::table('informacoesEntrada as i')
@@ -101,7 +103,7 @@ class EntradaController extends Controller {
 			->select('p.nome_produto as produto', 'i.quantidade_informacoesEntrada', 'i.valor_entrada_informacoesEntrada', 'i.valor_saida_informacoesEntrada')
 			->get();
 
-		return view('entrada.compra.show', ['entrada'=>$entrada, 'informacoes'=>$info]);
+		return view('entrada.compra.show', ['entrada'=>$entrada, 'informacoes'=>$informacoesEntrada]);
 	}
 
 	public function destroy($id){

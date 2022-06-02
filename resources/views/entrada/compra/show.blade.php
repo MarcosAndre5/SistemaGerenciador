@@ -46,10 +46,11 @@
 						<tbody>
 							@foreach ($informacoes as $info)
 								<tr>
-									<td>{{ info->nome_produto }}</td>
-									<td>{{ info->quantidade_informacoesEntrada }}</td>
-									<td>{{ info->valor_entrada_informacoesEntrada }}</td>
-									<td>{{ info->valor_saida_informacoesEntrada }}</td>
+									<td>{{ $info->produto }}</td>
+									<td>{{ $info->quantidade_informacoesEntrada }}</td>
+									<td>{{ $info->valor_entrada_informacoesEntrada }}</td>
+									<td>{{ $info->valor_saida_informacoesEntrada }}</td>
+									<td>{{ $info->quantidade_informacoesEntrada * $info->valor_saida_informacoesEntrada }}</td>
 								</tr>
 							@endforeach
 						</tbody>
