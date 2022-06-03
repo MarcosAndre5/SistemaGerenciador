@@ -68,8 +68,8 @@
 
 		<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 			<div class="form-group">
-				<a class="btn btn-danger" href="{{ url('entrada/compra') }}" role="button">
-					<i class="fa fa-ban" aria-hidden="true"></i>
+				<a class="btn btn-warning" href="{{ url('entrada/compra') }}" role="button">
+					<i class="fa fa-arrow-left" aria-hidden="true"></i>
 					Retornar
 				</a>
 			</div>
