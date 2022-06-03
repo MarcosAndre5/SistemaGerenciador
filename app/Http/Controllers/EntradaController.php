@@ -101,6 +101,7 @@ class EntradaController extends Controller {
 		$informacoesEntrada = DB::table('informacoesEntrada as i')
 			->join('produtos as p', 'i.id_produto_informacoesEntrada', '=', 'p.id_produto')
 			->select('p.nome_produto as produto', 'i.quantidade_informacoesEntrada', 'i.valor_entrada_informacoesEntrada', 'i.valor_saida_informacoesEntrada')
+			->where('i.id_entrada_informacoesEntrada', '=', $id)
 			->get();
 
 		return view('entrada.compra.show', ['entrada'=>$entrada, 'informacoes'=>$informacoesEntrada]);

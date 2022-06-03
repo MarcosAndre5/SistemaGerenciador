@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Entradas > Fornecedores > EDITAR FORNECEDOR')
+
 @section('conteudo')
 <div class="row">
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -22,14 +24,14 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="nome">Nome</label>
-					<input type="text" name="nome" required value="{{ $fornecedor->nome_fornecedor }}" class="form-control" placeholder="Nome...">
+					<input type="text" name="nome" required value="{{ $fornecedor->nome_fornecedor }}" class="form-control" placeholder="Nome do Fornecedor...">
 				</div>
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="telefone">Telefone</label>
-					<input type="text" name="telefone" id="telefone" class="form-control" value="{{ $fornecedor->telefone_fornecedor }}" placeholder="Telefone...">
+					<input type="text" name="telefone" id="telefone" class="form-control" value="{{ $fornecedor->telefone_fornecedor }}" placeholder="Telefone do Fornecedor...">
 				</div>
 			</div>
 			
@@ -56,21 +58,21 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="numero_documento">Número Documento</label>
-					<input type="number" name="numero_documento" required value="{{ $fornecedor->numero_documento_fornecedor }}" class="form-control" placeholder="Número do Documento...">
+					<input type="number" name="numero_documento" required value="{{ $fornecedor->numero_documento_fornecedor }}" class="form-control" placeholder="Número do documento do Fornecedor...">
 				</div>
 			</div>
 			
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="email">Email</label>
-					<input type="text" name="email" value="{{ $fornecedor->email_fornecedor }}" class="form-control">
+					<input type="text" name="email" value="{{ $fornecedor->email_fornecedor }}" class="form-control" placeholder="Email  do Fornecedor...">
 				</div>
 			</div>
 			
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="endereco">Endereço</label>
-					<input type="text" name="endereco" required value="{{ $fornecedor->endereco_fornecedor }}" class="form-control" placeholder="Endereço...">
+					<input type="text" name="endereco" required value="{{ $fornecedor->endereco_fornecedor }}" class="form-control" placeholder="Endereço do Fornecedor...">
 				</div>
 			</div>
 		</div>
@@ -80,10 +82,10 @@
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
 				Alterar Fornecedor
 			</button>
-			<button class="btn btn-danger" type="reset">
+			<a class="btn btn-danger" href="{{ url('entrada/fornecedor') }}" role="button">
 				<i class="fa fa-ban" aria-hidden="true"></i>
 				Cancelar
-			</button>
+			</a>
 		</div>
 	{!! Form::close() !!}
 @stop

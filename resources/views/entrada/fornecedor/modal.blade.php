@@ -2,19 +2,19 @@
 	{{ Form::Open(array('action'=>array('FornecedorController@destroy', $fornecedor->id_fornecedor), 'method'=>'delete')) }}
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header bg-primary">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					 <span aria-hidden="true">X</span>
 				</button>
-				<h4 class="modal-title">Apagar Fornecedor</h4>
+				<h4 class="modal-title">Deletar Fornecedor</h4>
 			</div>
 			<div class="modal-body">
-				<p>Confirme se deseja apagar a fornecedor <b>{{ $fornecedor->nome_fornecedor }}</b></p>
+				<p>Confirme se deseja deletar o fornecedor <b>{{ $fornecedor->nome_fornecedor }}</b></p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">
-					<i class="fa fa-times" aria-hidden="true"></i>
-					Fechar
+				<button type="button" class="btn btn-danger" data-dismiss="modal">
+					<i class="fa fa-ban" aria-hidden="true"></i>
+					Cancelar
 				</button>
 				<button type="submit" class="btn btn-primary">
 					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
