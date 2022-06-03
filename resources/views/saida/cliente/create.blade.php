@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Saídas > Clientes > NOVO CLIENTE')
+@section('title', 'Saídas > Clientes > CADASTRAR NOVO CLIENTE')
 
 @section('conteudo')
 	<div class="row">
@@ -50,7 +50,7 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="numero_documento">Número Documento</label>
-					<input type="text" name="numero_documento" required value="{{ old('numero_documento') }}" class="form-control" placeholder="Número do Documento...">
+					<input type="text" name="numero_documento" required value="{{ old('numero_documento') }}" class="form-control" placeholder="Número do documento Cliente...">
 				</div>
 			</div>
 			

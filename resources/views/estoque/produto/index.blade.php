@@ -43,20 +43,22 @@
 										<img src="{{ asset('imagens/produtos/'.$produto->imagem_produto) }}" alt="{{ $produto->nome_produto }}" width="50px" heigth="50px" class="img-thumbnail">
 									</a>
 								@else
-									Nenhuma Imagem Cadastrada
+									<a href="" data-target="#modal-imagem-{{ $produto->id_produto }}" data-toggle="modal">
+										<img src="{{ asset('imagens/produtos/semImagem.jpg') }}" alt="{{ $produto->nome_produto }}" width="50px" heigth="50px" class="img-thumbnail">
+									</a>
 								@endif
 							</td>
 							<td>
 								<a href="{{ url('estoque/produto/editar/'.$produto->id_produto) }}">
 									<button class="btn btn-info">
 										<i class="fa fa-pencil" aria-hidden="true"></i>
-										Editar
+										Editar Produto
 									</button>
 								</a>
 								<a href="" data-target="#modal-delete-{{ $produto->id_produto }}" data-toggle="modal">
 									<button class="btn btn-danger">
 										<i class="fa fa-trash" aria-hidden="true"></i>
-										Excluir
+										Deletar Produto
 									</button>
 								</a>
 							</td>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Estoque > Produto > ADICIONAR NOVO PRODUTO')
+@section('title', 'Estoque > Produto > CADASTRAR NOVO PRODUTO')
 
 @section('conteudo')
 	<div class="row">
