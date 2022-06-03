@@ -43,13 +43,13 @@
 								<a href="{{URL::action('FornecedorController@edit', $fornecedor->id_fornecedor)}}">
 									<button class="btn btn-info">
 										<i class="fa fa-pencil" aria-hidden="true"></i>
-										Editar
+										Editar Fornecedor
 									</button>
 								</a>
 								<a href="" data-target="#modal-delete-{{$fornecedor->id_fornecedor}}" data-toggle="modal">
 									<button class="btn btn-danger">
 										<i class="fa fa-trash" aria-hidden="true"></i>
-										Excluir
+										Deletar Fornecedor
 									</button>
 								</a>
 							</td>

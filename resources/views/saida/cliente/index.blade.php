@@ -43,13 +43,13 @@
 								<a href="{{ URL::action('ClienteController@edit', $cliente->id_cliente) }}">
 									<button class="btn btn-info">
 										<i class="fa fa-pencil" aria-hidden="true"></i>
-										Editar
+										Editar Cliente
 									</button>
 								</a>
 								<a href="" data-target="#modal-delete-{{ $cliente->id_cliente }}" data-toggle="modal">
 									<button class="btn btn-danger">
 										<i class="fa fa-trash" aria-hidden="true"></i>
-										Excluir
+										Deletar Cliente
 									</button>
 								</a>
 							</td>

@@ -12,13 +12,13 @@
 				<p>Confirme se deseja cancelar a compra de <b>{{ \Carbon\Carbon::parse($entrada->data_hora_entrada)->format('d/m/Y') }}</b></p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">
-					<i class="fa fa-times" aria-hidden="true"></i>
-					Fechar
+				<button type="submit" class="btn btn-danger">
+					<i class="fa fa-trash" aria-hidden="true"></i>
+					Deletar
 				</button>
-				<button type="submit" class="btn btn-primary">
-					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-					Confirmar
+				<button type="button" class="btn btn-warning" data-dismiss="modal">
+					<i class="fa fa-close" aria-hidden="true"></i>
+					Cancelar Operação
 				</button>
 			</div>
 		</div>

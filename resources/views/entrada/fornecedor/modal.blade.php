@@ -12,13 +12,13 @@
 				<p>Confirme se deseja deletar o fornecedor <b>{{ $fornecedor->nome_fornecedor }}</b></p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">
-					<i class="fa fa-ban" aria-hidden="true"></i>
-					Cancelar
+				<button type="submit" class="btn btn-danger">
+					<i class="fa fa-trash" aria-hidden="true"></i>
+					Deletar
 				</button>
-				<button type="submit" class="btn btn-primary">
-					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-					Confirmar
+				<button type="button" class="btn btn-warning" data-dismiss="modal">
+					<i class="fa fa-close" aria-hidden="true"></i>
+					Cancelar Operação
 				</button>
 			</div>
 		</div>

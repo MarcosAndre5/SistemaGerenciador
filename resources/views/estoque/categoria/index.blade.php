@@ -36,13 +36,13 @@
 								<a href="{{ url('estoque/categoria/editar/'.$categoria->id_categoria) }}">
 									<button class="btn btn-info">
 										<i class="fa fa-pencil" aria-hidden="true"></i>
-										Editar
+										Editar Categoria
 									</button>
 								</a>
 								<a href="" data-target="#modal-delete-{{ $categoria->id_categoria }}" data-toggle="modal">
 									<button class="btn btn-danger">
 										<i class="fa fa-trash" aria-hidden="true"></i>
-										Excluir
+										Deletar Categoria
 									</button>
 								</a>
 							</td>

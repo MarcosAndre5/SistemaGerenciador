@@ -58,7 +58,7 @@
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="numero_documento">Número Documento</label>
-					<input type="text" name="numero_documento" required value="{{ $cliente->numero_documento_cliente }}" class="form-control" placeholder="Número do Documento...">
+					<input type="text" name="numero_documento" required value="{{ $cliente->numero_documento_cliente }}" class="form-control" placeholder="Número do documento do Cliente...">
 				</div>
 			</div>
 
