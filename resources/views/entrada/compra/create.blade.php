@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Entradas > Registro de Entradas > CADASTRAR NOVA ENTRADA DE PRODUTOS')
+
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -86,15 +88,24 @@
 
 					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
-							<label for="num_doc">Preço Compra</label>
+							<label for="num_doc">Preço do Produto na Compra</label>
 							<input type="number" name="preco_compra" min="0" value="{{old('preco_compra')}}" id="preco_compra" class="form-control" placeholder="Preço de Compra...">
 						</div>
 					</div>
 
 					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
-							<label for="num_doc">Preço Venda</label>
+							<label for="num_doc">Preço do Produto na Venda</label>
 							<input type="number" name="preco_venda" min="0" value="{{ old('preco_venda') }}" id="preco_venda" class="form-control" placeholder="Preço de Venda...">
+						</div>
+					</div>
+
+					<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
+						<div class="form-group">
+							<button type="button" id="botaoAdicionar" class="btn btn-primary">
+								<i class="fa fa-plus" aria-hidden="true"></i>	
+								Adicionar a Tabela
+							</button>
 						</div>
 					</div>
 
@@ -104,27 +115,19 @@
 								<th>Deletar Linha</th>
 								<th>Produto</th>
 								<th>Quantidade</th>
-								<th>Preço de Compra</th>
-								<th>Preço de Venda</th>
-								<th>Total Compra</th>
+								<th>Preço do Produto na Compra</th>
+								<th>Preço do Produto na Venda</th>
+								<th>Lucro da Empresa</th>
 							</thead>
 							<tfoot>
 								<th>Total</th>
 								<th></th>
 								<th></th>
-								<th></th>
-								<th></th>
-								<th id="campoTotal">R$ 0,00</th>
+								<th id="custoEntrada">0,00 R$</th>
+								<th id="custoSaida">0,00 R$</th>
+								<th id="lucro">0,00 R$</th>
 							</tfoot>
 						</table>
-					</div>
-					<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
-						<div class="form-group">
-							<button type="button" id="botaoAdicionar" class="btn btn-primary">
-								<i class="fa fa-plus" aria-hidden="true"></i>	
-								Adicionar
-							</button>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -152,10 +155,12 @@
 				});
 			});
 
-			var contador = totalEntrada = 0;
-			subtotal = [];
-
 			$("#botaoSalvar").hide();
+
+			var contador = custoEntrada = custoSaida = lucroEmpresa = 0;
+			subTotalEntrada = [];
+			subTotalSaida = [];
+			subLucro = [];
 
 			function adicionarLinhaTabela(){
 				idproduto = $("#id_produto").val();
@@ -165,8 +170,13 @@
 				preco_venda = $("#preco_venda").val();
 				
 				if(idproduto != "" && quantidade != "" && quantidade > 0 && preco_compra != "" && preco_compra >= 0 && preco_venda != "" && preco_venda >= 0){
-					subtotal[contador] = quantidade * preco_compra;
-					totalEntrada += subtotal[contador];
+					subTotalEntrada[contador] = quantidade * preco_compra;
+					subTotalSaida[contador] = quantidade * preco_venda;
+					subLucro[contador] = subTotalSaida[contador] - subTotalEntrada[contador];
+					
+					custoEntrada += subTotalEntrada[contador];
+					custoSaida += subTotalSaida[contador];
+					lucroEmpresa += subLucro[contador];
 					
 					var linhaTabela = 
 						'<tr class="selected" id="linhaTabela'+contador+'">'+
@@ -192,7 +202,7 @@
 								preco_venda+
 							'</td>'+
 							'<td>'+
-								subtotal[contador]+
+								subLucro[contador]+
 							'</td>'+
 						'</tr>';
 					
@@ -200,7 +210,9 @@
 					
 					limparCampos();
 					
-					$('#campoTotal').html('R$: ' + totalEntrada);
+					$("#custoEntrada").html(custoEntrada.toFixed(2) + ' R$');
+					$("#custoSaida").html(custoSaida.toFixed(2) + ' R$');
+					$("#lucro").html(lucroEmpresa.toFixed(2) + ' R$');
 					
 					ocultarBotaoSalvar();
 					
@@ -216,13 +228,13 @@
 			}
 
 			function ocultarBotaoSalvar(){
-				totalEntrada > 0 ? $("#botaoSalvar").show() : $("#botaoSalvar").hide();
+				custoEntrada > 0 ? $("#botaoSalvar").show() : $("#botaoSalvar").hide();
 			}
 
 			function apagar(index){
-				totalEntrada -= subtotal[index];
+				custoEntrada -= subtotal[index];
 				
-				$("#campoTotal").html("R$: " + totalEntrada);
+				$("#campoTotal").html("R$: " + custoEntrada);
 				$("#linhaTabela" + index).remove();
 				
 				ocultarBotaoSalvar();

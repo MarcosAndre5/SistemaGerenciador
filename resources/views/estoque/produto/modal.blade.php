@@ -44,7 +44,12 @@
 				@endif
 			</div>
 			<div class="modal-footer">
-				@if (!$produto->imagem_produto)
+				@if ($produto->imagem_produto)
+					<a class="btn btn-success" href="{{ url('estoque/produto/editar/'.$produto->id_produto) }}" role="button">
+						<i class="fa fa-picture-o" aria-hidden="true"></i>
+						Alterar Imagem
+					</a>
+				@else
 					<a class="btn btn-success" href="{{ url('estoque/produto/editar/'.$produto->id_produto) }}" role="button">
 						<i class="fa fa-picture-o" aria-hidden="true"></i>
 						Cadastrar Imagem
