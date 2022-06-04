@@ -129,7 +129,7 @@
 								<li>
 									<a href="{{ url('entrada/compra') }}">
 										<i class="fa fa-circle-o"></i>
-										Compras
+										Registro de Entradas
 									</a>
 								</li>
 							</ul>

@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Entradas > Registro de Entradas > DETALHAMENTO ENTRADA')
+
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-6 col-sm-6 col-xs-12">
