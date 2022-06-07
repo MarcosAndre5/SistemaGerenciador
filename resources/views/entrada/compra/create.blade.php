@@ -50,14 +50,14 @@
 			<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 				<div class="form-group">
 					<label for="num_doc">Série Comprovante</label>
-					<input type="text" name="serie_comprovante" required value="{{ old('serie_comprovante') }}" class="form-control" placeholder="Série do comprovante...">
+					<input type="number" name="serie_comprovante" required value="{{ old('serie_comprovante') }}" class="form-control" placeholder="Série do comprovante...">
 				</div>
 			</div>
 				
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="num_doc">Número Comprovante</label>
-					<input type="text" name="numero_comprovante" required value="{{ old('numero_comprovante') }}" class="form-control" placeholder="Número do comprovante...">
+					<input type="number" name="numero_comprovante" required value="{{ old('numero_comprovante') }}" class="form-control" placeholder="Número do comprovante...">
 				</div>
 			</div>
 		</div>
@@ -104,7 +104,7 @@
 						<div class="form-group">
 							<button type="button" id="botaoAdicionar" class="btn btn-primary">
 								<i class="fa fa-plus" aria-hidden="true"></i>	
-								Adicionar a Tabela
+								Adicionar na Tabela
 							</button>
 						</div>
 					</div>
@@ -158,6 +158,7 @@
 			$("#botaoSalvar").hide();
 
 			var contador = custoEntrada = custoSaida = lucroEmpresa = 0;
+			
 			subTotalEntrada = [];
 			subTotalSaida = [];
 			subLucro = [];
@@ -179,31 +180,31 @@
 					lucroEmpresa += subLucro[contador];
 					
 					var linhaTabela = 
-						'<tr class="selected" id="linhaTabela'+contador+'">'+
-							'<td>'+
-								'<button type="button" class="btn btn-danger" onclick="apagar('+contador+');">'+
-									'X'+
-								'</button>'+
-							'</td>'+
-							'<td>'+
-								'<input type="hidden" name="idproduto[]" value="'+idproduto+'">'+
-								produto+
-							'</td>'+
-							'<td>'+
-								'<input type="hidden" name="quantidade[]" value="'+quantidade+'">'+
-								quantidade+
-							'</td>'+
-							'<td>'+
-								'<input type="hidden" name="preco_compra[]" value="'+preco_compra+'">'+
-								preco_compra+
-							'</td>'+
-							'<td>'+
-								'<input type="hidden" name="preco_venda[]" value="'+preco_venda+'">'+
-								preco_venda+
-							'</td>'+
-							'<td>'+
-								subLucro[contador]+
-							'</td>'+
+						'<tr class="selected" id="linhaTabela' + contador + '">' +
+							'<td>' +
+								'<button type="button" class="btn btn-danger" onclick="apagar(' + contador + ');">' +
+									'X' +
+								'</button>' +
+							'</td>' +
+							'<td>' +
+								'<input type="hidden" name="idproduto[]" value="' + idproduto + '">' +
+								produto +
+							'</td>' +
+							'<td>' +
+								'<input type="hidden" name="quantidade[]" value="' + quantidade + '">' +
+								quantidade +
+							'</td>' +
+							'<td>' +
+								'<input type="hidden" name="preco_compra[]" value="' + preco_compra + '">' +
+								preco_compra + ' R$' +
+							'</td>' +
+							'<td>' +
+								'<input type="hidden" name="preco_venda[]" value="' + preco_venda + '">' +
+								preco_venda + ' R$' +
+							'</td>' +
+							'<td>' +
+								subLucro[contador] + ' R$' +
+							'</td>' +
 						'</tr>';
 					
 					contador++;
@@ -232,7 +233,7 @@
 			}
 
 			function apagar(index){
-				custoEntrada -= subtotal[index];
+				custoEntrada -= subTotalEntrada[index];
 				
 				$("#campoTotal").html("R$: " + custoEntrada);
 				$("#linhaTabela" + index).remove();
