@@ -27,7 +27,7 @@ class EntradaController extends Controller {
 					DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada) as total'))
 				->where('estado_entrada', '=', '1')
 				->where('e.numero_comprovante_entrada', 'LIKE', '%'.$palavra.'%')
-				->orderBy('e.id_entrada', 'desc')
+				->orderBy('e.data_hora_entrada', 'desc')
 				->groupBy('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
 					'e.serie_comprovante_entrada', 'e.numero_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada')
 				->paginate(5);
