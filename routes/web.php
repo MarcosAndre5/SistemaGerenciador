@@ -18,9 +18,9 @@ Route::get('estoque/produto/editar/{id}', 'ProdutoController@edit');
 Route::resource('saida/cliente', 'ClienteController');
 Route::get('saida/cliente/editar/{id}', 'ClienteController@edit');
 
-// Vendas
-//Route::resource('saida/vendas', 'VendasController');
-//Route::get('saida/vendas/editar/{id}', 'VendasController@edit');
+/* Vendas */
+Route::resource('saida/vendas', 'SaidaController');
+//Route::get('saida/vendas/editar/{id}', 'SaidaController@edit');
 
 /* ENTRADAS */
 // Fornecedor

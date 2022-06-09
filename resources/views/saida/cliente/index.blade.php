@@ -22,23 +22,21 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
-						<th>Id</th>
 						<th>Nome</th>
+						<th>Endereço</th>
 						<th>Email</th>
 						<th>Telefone</th>
-						<th>Tipo Documento</th>
 						<th>Número Documento</th>
-						<th>Endereço</th>
+						<th>Tipo Documento</th>
 					</thead>
 					@foreach ($clientes as $cliente)
 						<tr>
-							<td>{{ $cliente->id_cliente }}</td>
 							<td>{{ $cliente->nome_cliente }}</td>
+							<td>{{ $cliente->endereco_cliente }}</td>
 							<td>{{ $cliente->email_cliente }}</td>
 							<td>{{ $cliente->telefone_cliente }}</td>
-							<td>{{ $cliente->documento_cliente }}</td>
 							<td>{{ $cliente->numero_documento_cliente }}</td>
-							<td>{{ $cliente->endereco_cliente }}</td>
+							<td>{{ $cliente->documento_cliente }}</td>
 							<td>
 								<a href="{{ URL::action('ClienteController@edit', $cliente->id_cliente) }}">
 									<button class="btn btn-info">
