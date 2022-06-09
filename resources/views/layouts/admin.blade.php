@@ -104,7 +104,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="/">
+									<a href="{{ url('saida/vendas') }}">
 										<i class="fa fa-circle-o"></i>
 										Vendas
 									</a>

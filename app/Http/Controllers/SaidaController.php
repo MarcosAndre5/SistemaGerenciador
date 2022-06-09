@@ -34,13 +34,17 @@ class SaidaController extends Controller {
 	}
 
 	public function create(){
-		$fornecedores = DB::table('fornecedores')->get();
+		$clientes = DB::table('clientes')->get();
+		
 		$produtos = DB::table('produtos as p')
-			->select('p.id_produto', 'p.codigo_produto', 'p.nome_produto')
+			->join('informacoesEntrada as i', 'p.id_produto', '=', 'i.id_produto_informacoesEntrada')
+			->select('p.id_produto', 'p.codigo_produto', 'p.nome_produto', 'p.estoque_produto',
+				DB::raw('avg(i.valor_saida_informacoesEntrada) as preco_medio'))
+			->where('p.estoque_produto', '>', '0')
 			->where('p.estado_produto', '=', '1')
 			->get();
-		
-		return view('entrada.compra.create', ['fornecedores'=>$fornecedores, 'produtos'=>$produtos]);
+			
+		return view('saida.vendas.create', ['clientes'=>$clientes, 'produtos'=>$produtos]);
 	}
 
 	public function store(EntradaFormRequest $request){

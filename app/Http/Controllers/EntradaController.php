@@ -38,6 +38,7 @@ class EntradaController extends Controller {
 
 	public function create(){
 		$fornecedores = DB::table('fornecedores')->get();
+		
 		$produtos = DB::table('produtos as p')
 			->select('p.id_produto', 'p.codigo_produto', 'p.nome_produto')
 			->where('p.estado_produto', '=', '1')
