@@ -50,16 +50,16 @@ class EntradaController extends Controller {
 	public function store(EntradaFormRequest $request){
 		try{
 			DB::beginTransaction();
+			
 			$entrada = new Entrada;
 			
+			$data = Carbon::now('America/Recife');
 			$entrada->id_fornecedor_entrada = $request->get('id_fornecedor');
 			$entrada->tipo_comprovante_entrada = $request->get('tipo_comprovante');
 			$entrada->serie_comprovante_entrada = $request->get('serie_comprovante');
 			$entrada->numero_comprovante_entrada = $request->get('numero_comprovante');
 			$entrada->taxa_entrada = $request->get('taxa_entrada');
-			$entrada->estado_entrada = 1;
-
-			$data = Carbon::now('America/Recife');
+			$entrada->estado_entrada = '1';
 			$entrada->data_hora_entrada = $data->toDateTimeString();
 			
 			$entrada->save();
