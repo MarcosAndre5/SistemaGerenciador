@@ -42,57 +42,59 @@ class SaidaController extends Controller {
 				DB::raw('avg(i.valor_saida_informacoesEntrada) as preco_medio'))
 			->where('p.estoque_produto', '>', '0')
 			->where('p.estado_produto', '=', '1')
+			->groupBy('p.id_produto', 'p.codigo_produto', 'p.nome_produto', 'p.estoque_produto')
 			->get();
-			
+			dd($produtos);
 		return view('saida.vendas.create', ['clientes'=>$clientes, 'produtos'=>$produtos]);
 	}
 
-	public function store(EntradaFormRequest $request){
+	public function store(SaidaFormRequest $request){
 		try{
 			DB::beginTransaction();
-			$entrada = new Entrada;
 			
-			$entrada->id_fornecedor_entrada = $request->get('id_fornecedor');
-			$entrada->tipo_comprovante_entrada = $request->get('tipo_comprovante');
-			$entrada->serie_comprovante_entrada = $request->get('serie_comprovante');
-			$entrada->numero_comprovante_entrada = $request->get('numero_comprovante');
-			$entrada->taxa_entrada = $request->get('taxa_entrada');
-			$entrada->estado_entrada = 1;
+			$saida = new Saida;
 
 			$data = Carbon::now('America/Recife');
-			$entrada->data_hora_entrada = $data->toDateTimeString();
+			$saida->id_cliente_saida = $request->get('id_fornecedor');
+			$saida->tipo_comprovante_saida = $request->get('tipo_comprovante');
+			$saida->serie_comprovante_saida = $request->get('serie_comprovante');
+			$saida->numero_comprovante_saida = $request->get('numero_comprovante');
+			$saida->taxa_saida = $request->get('taxa_entrada');
+			$saida->total_saida = $request->get('total_saida');
+			$saida->estado_saida = '1';
+			$saida->data_hora_saida = $data->toDateTimeString();
 			
-			$entrada->save();
+			$saida->save();
 
-			$id_produto = $request->get('idproduto');
+			$id_produto = $request->get('id_produto');
 			$quantidade = $request->get('quantidade');
-			$valor_entrada = $request->get('preco_compra');
+			$desconto = $request->get('desconto');
 			$valor_saida = $request->get('preco_venda');
 
 			for($i = 0; $i < count($id_produto); $i++){
-				$informacoesEntrada = new InformacoesEntrada;
+				$informacoesSaida = new InformacoesSaida;
 
-				$informacoesEntrada->id_entrada_informacoesEntrada = $entrada->id_entrada;
-				$informacoesEntrada->id_produto_informacoesEntrada = $id_produto[$i];
-				$informacoesEntrada->quantidade_informacoesEntrada = $quantidade[$i];
-				$informacoesEntrada->valor_entrada_informacoesEntrada = $valor_entrada[$i];
-				$informacoesEntrada->valor_saida_informacoesEntrada = $valor_saida[$i];
+				$informacoesSaida->id_saida_informacoesSaida = $saida->id_saida;
+				$informacoesSaida->id_produto_informacoesSaida = $id_produto[$i];
+				$informacoesSaida->quantidade_informacoesSaida = $quantidade[$i];
+				$informacoesSaida->desconto_informacoesSaida = $desconto[$i];
+				$informacoesSaida->valor_saida_informacoesSaida = $valor_saida[$i];
 
-				$informacoesEntrada->save();
+				$informacoesSaida->save();
 			}
 			DB::commit();
 		}catch(\Exception $excecao){
 			DB::rollback();
 		}
-		return Redirect::to('entrada/compra');
+		return Redirect::to('saida/vendas');
 	}
 
 	public function show($id){
-		$entrada = DB::table('entradas as e')
-			->join('fornecedores as f', 'f.id_fornecedor', '=', 'e.id_fornecedor_entrada')
-			->join('informacoesEntrada as i', 'i.id_entrada_informacoesEntrada', '=', 'e.id_entrada')
-			->select('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
-				'e.serie_comprovante_entrada', 'e.numero_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada',
+		$saida = DB::table('saidas as s')
+			->join('clientes as c', 'c.id_cliente', '=', 's.id_cliente_saida')
+			->join('informacoesSaida as i', 'i.id_saida_informacoesSaida', '=', 's.id_saida')
+			->select('s.id_saida', 's.data_hora_saida', 'c.nome_cliente', 's.tipo_comprovante_saida',
+				's.serie_comprovante_saida', 's.numero_comprovante_saida', 's.taxa_saida', 's.estado_saida',
 				DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada) as total'))
 			->where('e.id_entrada', '=', $id)
 			->groupBy('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
