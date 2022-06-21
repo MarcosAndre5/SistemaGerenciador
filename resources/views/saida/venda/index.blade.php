@@ -1,19 +1,19 @@
 @extends('layouts.admin')
 
-@section('title', 'Entradas > REGISTRO DE ENTRADAS')
+@section('title', 'Saídas > REGISTRO DE SAÍDAS')
 
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-			<h3>Lista de Entradas de Produtos</h3>
-			<a href="compra/create">
+			<h3>Lista de Saídas de Produtos</h3>
+			<a href="saida/vendas">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
-					Cadastrar Nova Entrada de Produtos
+					Cadastrar Nova Saída de Produtos
 				</button>
 			</a>
 			<br></br>
-			@include('entrada.compra.search')
+			@include('saida.venda.search')
 		</div>
 	</div>
 
@@ -24,40 +24,40 @@
 					<thead>
 						<th>Data</th>	
 						<th>Nº Comprovante</th>	
-						<th>Fornecedor</th>
+						<th>Cliente</th>
 						<th>Forma de Pagamento</th>
 						<th>Série Comprovante</th>
 						<th>Custo Total</th>
 						<th>Opções</th>
 					</thead>
-					@foreach ($entradas as $entrada)
+					@foreach ($saidas as $saida)
 						<tr>
-							<td>{{ \Carbon\Carbon::parse($entrada->data_hora_entrada)->format('d/m/Y') }}</td>	
-							<td>{{ $entrada->numero_comprovante_entrada }}</td>
-							<td>{{ $entrada->nome_fornecedor }}</td>
-							<td>{{ $entrada->tipo_comprovante_entrada }}</td>
-							<td>{{ $entrada->serie_comprovante_entrada }}</td>
-							<td>{{ $entrada->total }} R$</yd>
+							<td>{{ \Carbon\Carbon::parse($saida->data_hora_saida)->format('d/m/Y') }}</td>	
+							<td>{{ $saida->numero_comprovante_saida }}</td>
+							<td>{{ $saida->nome_cliente }}</td>
+							<td>{{ $saida->tipo_comprovante_saida }}</td>
+							<td>{{ $saida->serie_comprovante_saida }}</td>
+							<td>{{ $saida->total_saida }} R$</yd>
  							<td>
-								<a href="{{ URL::action('EntradaController@show', $entrada->id_entrada) }}">
+								<a href="{{ URL::action('SaidaController@show', $saida->id_saida) }}">
 									<button class="btn btn-info">
 										<i class="fa fa-eye" aria-hidden="true"></i>
 										Ver Detalhes
 									</button>
 								</a>
-								<a href="" data-target="#modal-delete-{{ $entrada->id_entrada }}" data-toggle="modal">
+								<a href="" data-target="#modal-delete-{{ $saida->id_saida }}" data-toggle="modal">
 									<button class="btn btn-danger">
 										<i class="fa fa-trash" aria-hidden="true"></i>
-										Anular Entrada
+										Anular Saída
 									</button>
 								</a>
 							</td>
 						</tr>
-						@include('entrada.compra.modal')
+						@include('saide.venda.modal')
 					@endforeach
 				</table>
 			</div>
-			{{ $entradas->render() }}
+			{{ $saidas->render() }}
 		</div>
 	</div>
 @stop

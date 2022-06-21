@@ -29,7 +29,7 @@ class SaidaController extends Controller {
 				->orderBy('s.data_hora_saida', 'desc')
 				->paginate(5);
 				
-			return view('saida.vendas.index', ['saidas'=>$saidas, 'buscaTexto'=>$palavra]);
+			return view('saida.venda.index', ['saidas'=>$saidas, 'buscaTexto'=>$palavra]);
 		}
 	}
 
@@ -44,7 +44,7 @@ class SaidaController extends Controller {
 			->where('p.estado_produto', '=', '1')
 			->groupBy('p.id_produto', 'p.codigo_produto', 'p.nome_produto', 'p.estoque_produto')
 			->get();
-			dd($produtos);
+			
 		return view('saida.vendas.create', ['clientes'=>$clientes, 'produtos'=>$produtos]);
 	}
 
@@ -94,29 +94,26 @@ class SaidaController extends Controller {
 			->join('clientes as c', 'c.id_cliente', '=', 's.id_cliente_saida')
 			->join('informacoesSaida as i', 'i.id_saida_informacoesSaida', '=', 's.id_saida')
 			->select('s.id_saida', 's.data_hora_saida', 'c.nome_cliente', 's.tipo_comprovante_saida',
-				's.serie_comprovante_saida', 's.numero_comprovante_saida', 's.taxa_saida', 's.estado_saida',
-				DB::raw('sum(i.quantidade_informacoesEntrada * i.valor_entrada_informacoesEntrada) as total'))
-			->where('e.id_entrada', '=', $id)
-			->groupBy('e.id_entrada', 'e.data_hora_entrada', 'f.nome_fornecedor', 'e.tipo_comprovante_entrada',
-				'e.serie_comprovante_entrada', 'e.numero_comprovante_entrada', 'e.taxa_entrada', 'e.estado_entrada')
+				's.serie_comprovante_saida', 's.numero_comprovante_saida', 's.taxa_saida', 's.estado_saida', 's.total_saida')
+			->where('s.id_saida', '=', $id)
 			->first();
-
-		$informacoesEntrada = DB::table('informacoesEntrada as i')
-			->join('produtos as p', 'i.id_produto_informacoesEntrada', '=', 'p.id_produto')
-			->select('p.nome_produto as produto', 'i.quantidade_informacoesEntrada', 'i.valor_entrada_informacoesEntrada', 'i.valor_saida_informacoesEntrada')
-			->where('i.id_entrada_informacoesEntrada', '=', $id)
+		
+		$informacoesSaida = DB::table('informacoesSaida as i')
+			->join('produtos as p', 'i.id_produto_informacoesSaida', '=', 'p.id_produto')
+			->select('p.nome_produto as produto', 'i.quantidade_informacoesSaida', 'i.desconto_informacoesSaida', 'i.valor_saida_informacoesSaida')
+			->where('i.id_saida_informacoesSaida', '=', $id)
 			->get();
-
-		return view('entrada.compra.show', ['entrada'=>$entrada, 'informacoes'=>$informacoesEntrada]);
+		
+		return view('saida.vendas.show', ['saida'=>$saida, 'informacoes'=>$informacoesSaida]);
 	}
 
 	public function destroy($id){
-		$entrada = Entrada::findOrFail($id);
+		$saida = Saida::findOrFail($id);
 		
-		$entrada->estado_entrada = '0';
+		$saida->estado_saida = '0';
 		
-		$entrada->update();
+		$saida->update();
 
-		return Redirect::to('entrada/compra');
+		return Redirect::to('saida/vendas');
 	}
 }

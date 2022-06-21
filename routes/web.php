@@ -20,7 +20,7 @@ Route::get('saida/cliente/editar/{id}', 'ClienteController@edit');
 
 /* Vendas */
 Route::resource('saida/vendas', 'SaidaController');
-//Route::get('saida/vendas/editar/{id}', 'SaidaController@edit');
+Route::get('saida/vendas/editar/{id}', 'SaidaController@edit');
 
 /* ENTRADAS */
 // Fornecedor
