@@ -21,6 +21,7 @@ Route::get('saida/cliente/editar/{id}', 'ClienteController@edit');
 /* Vendas */
 Route::resource('saida/venda', 'SaidaController');
 Route::get('saida/venda/editar/{id}', 'SaidaController@edit');
+Route::get('saida/venda/detalhes/{id}', 'SaidaController@show');
 
 /* ENTRADAS */
 // Fornecedor
@@ -30,3 +31,4 @@ Route::get('entrada/fornecedor/editar/{id}', 'FornecedorController@edit');
 // Compras
 Route::resource('entrada/compra', 'EntradaController');
 Route::get('entrada/compra/editar/{id}', 'EntradaController@edit');
+Route::get('entrada/compra/detalhes/{id}', 'EntradaController@show');

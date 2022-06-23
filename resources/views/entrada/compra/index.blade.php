@@ -39,7 +39,7 @@
 							<td>{{ $entrada->serie_comprovante_entrada }}</td>
 							<td>{{ $entrada->total }} R$</yd>
  							<td>
-								<a href="{{ URL::action('EntradaController@show', $entrada->id_entrada) }}">
+								<a href="{{ url('entrada/compra/detalhes/'.$entrada->id_entrada) }}">
 									<button class="btn btn-info">
 										<i class="fa fa-eye" aria-hidden="true"></i>
 										Ver Detalhes

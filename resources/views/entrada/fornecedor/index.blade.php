@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Lista de Fornecedores</h3>
-			<a href="{{ URL::action('FornecedorController@create') }}">
+			<a href="{{ url('entrada/fornecedor/create') }}">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
 					Cadastrar Novo Fornecedor
