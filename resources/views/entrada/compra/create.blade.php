@@ -6,10 +6,10 @@
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<h3>Nova Entrada de Produtos</h3>
-			@if(count($errors) > 0)
+			@if (count($errors) > 0)
 				<div class="alert alert-danger">
 					<ul>
-						@foreach($errors->all() as $error)
+						@foreach ($errors->all() as $error)
 							<li>{{ $error }}</li>
 						@endforeach
 					</ul>
@@ -26,7 +26,7 @@
 					<label for="nome">Fornecedor</label>
 					<select name="id_fornecedor" id="id_fornecedor" class="form-control selectpicker" data-live-search="true" required>
 						<option value="">Selecione...</option>
-						@foreach($fornecedores as $fornecedor)
+						@foreach ($fornecedores as $fornecedor)
 							<option value="{{ $fornecedor->id_fornecedor }}">
 								{{ $fornecedor->nome_fornecedor }}
 							</option>
@@ -70,7 +70,7 @@
 							<label for="nome">Produto</label>
 							<select name="id_produto" id="id_produto" class="form-control selectpicker" data-live-search="true">
 								<option value="">Selecione...</option>
-								@foreach($produtos as $produto)
+								@foreach ($produtos as $produto)
 									<option value="{{ $produto->id_produto }}">
 										{{ $produto->nome_produto }}
 									</option>

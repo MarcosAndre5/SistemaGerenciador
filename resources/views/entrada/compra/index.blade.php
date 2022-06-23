@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Lista de Entradas de Produtos</h3>
-			<a href="compra/create">
+			<a href="{{ url('entrada/compra/create') }}">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
 					Cadastrar Nova Entrada de Produtos

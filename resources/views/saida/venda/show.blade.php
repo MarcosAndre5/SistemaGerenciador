@@ -70,7 +70,7 @@
 
 		<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 			<div class="form-group">
-				<a class="btn btn-warning" href="{{ url('saida/vendas') }}" role="button">
+				<a class="btn btn-warning" href="{{ url('saida/venda') }}" role="button">
 					<i class="fa fa-arrow-left" aria-hidden="true"></i>
 					Retornar
 				</a>

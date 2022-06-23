@@ -1,4 +1,4 @@
-{!! Form::open(array('url'=>'saida/vendas', 'method'=>'GET', 'autocomplete'=>'off', 'role'=>'search')) !!}
+{!! Form::open(array('url'=>'saida/venda', 'method'=>'GET', 'autocomplete'=>'off', 'role'=>'search')) !!}
 	<div class="form-group">
 		<div class="input-group">
 			<input type="text" class="form-control" name="buscaTexto" placeholder="Buscar Registro de Saída por Número de Comprovante..." value="{{ $buscaTexto }}">

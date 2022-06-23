@@ -104,7 +104,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="{{ url('saida/vendas') }}">
+									<a href="{{ url('saida/venda') }}">
 										<i class="fa fa-circle-o"></i>
 										Registro de Saídas
 									</a>
