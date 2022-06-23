@@ -39,7 +39,7 @@
 							<td>{{ $saida->serie_comprovante_saida }}</td>
 							<td>{{ $saida->total_saida }} R$</yd>
  							<td>
-								<a href="{{ URL::action('SaidaController@show', $saida->id_saida) }}">
+								<a href="{{ url('saida/venda/detalhes/'.$saida->id_saida) }}">
 									<button class="btn btn-info">
 										<i class="fa fa-eye" aria-hidden="true"></i>
 										Ver Detalhes

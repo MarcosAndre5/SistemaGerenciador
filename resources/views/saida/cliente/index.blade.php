@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Lista de Clientes</h3>
-			<a href="{{ URL::action('ClienteController@create') }}">
+			<a href="{{ url('saida/cliente/create') }}">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
 					Cadastrar Novo Cliente
@@ -38,7 +38,7 @@
 							<td>{{ $cliente->numero_documento_cliente }}</td>
 							<td>{{ $cliente->documento_cliente }}</td>
 							<td>
-								<a href="{{ URL::action('ClienteController@edit', $cliente->id_cliente) }}">
+								<a href="{{ url('saida/cliente/editar/'.$cliente->id_cliente) }}">
 									<button class="btn btn-info">
 										<i class="fa fa-pencil" aria-hidden="true"></i>
 										Editar Cliente
