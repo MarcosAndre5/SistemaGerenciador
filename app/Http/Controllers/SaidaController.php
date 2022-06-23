@@ -45,7 +45,7 @@ class SaidaController extends Controller {
 			->groupBy('p.id_produto', 'p.codigo_produto', 'p.nome_produto', 'p.estoque_produto')
 			->get();
 			
-		return view('saida.vendas.create', ['clientes'=>$clientes, 'produtos'=>$produtos]);
+		return view('saida.venda.create', ['clientes'=>$clientes, 'produtos'=>$produtos]);
 	}
 
 	public function store(SaidaFormRequest $request){
@@ -59,7 +59,7 @@ class SaidaController extends Controller {
 			$saida->tipo_comprovante_saida = $request->get('tipo_comprovante');
 			$saida->serie_comprovante_saida = $request->get('serie_comprovante');
 			$saida->numero_comprovante_saida = $request->get('numero_comprovante');
-			$saida->taxa_saida = $request->get('taxa_entrada');
+			$saida->taxa_saida = $request->get('taxa_saida');
 			$saida->total_saida = $request->get('total_saida');
 			$saida->estado_saida = '1';
 			$saida->data_hora_saida = $data->toDateTimeString();
@@ -86,7 +86,7 @@ class SaidaController extends Controller {
 		}catch(\Exception $excecao){
 			DB::rollback();
 		}
-		return Redirect::to('saida/vendas');
+		return Redirect::to('saida/venda');
 	}
 
 	public function show($id){
@@ -104,7 +104,7 @@ class SaidaController extends Controller {
 			->where('i.id_saida_informacoesSaida', '=', $id)
 			->get();
 		
-		return view('saida.vendas.show', ['saida'=>$saida, 'informacoes'=>$informacoesSaida]);
+		return view('saida.venda.show', ['saida'=>$saida, 'informacoes'=>$informacoesSaida]);
 	}
 
 	public function destroy($id){
@@ -114,6 +114,6 @@ class SaidaController extends Controller {
 		
 		$saida->update();
 
-		return Redirect::to('saida/vendas');
+		return Redirect::to('saida/venda');
 	}
 }

@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Lista de Saídas de Produtos</h3>
-			<a href="saida/vendas">
+			<a href="{{ url('saida/venda/create') }}">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
 					Cadastrar Nova Saída de Produtos
