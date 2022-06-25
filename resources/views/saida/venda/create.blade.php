@@ -65,31 +65,31 @@
 		<div class="row">
 			<div class="panel panel-primary">
 				<div class="panel-body">
-					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+					<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 						<div class="form-group">
 							<label for="nome">Produto</label>
 							<select name="id_produto" id="id_produto" class="form-control selectpicker" data-live-search="true">
 								<option value="">Selecione...</option>
 								@foreach ($produtos as $produto)
-									<option value="{{ $produto->id_produto }}">
-										{{ $produto->nome_produto }} Qtd. {{ $produto->estoque_produto }}
+									<option value="{{ $produto->id_produto }}_{{ $produto->estoque_produto }}_{{ $produto->preco_medio }}">
+										{{ $produto->nome_produto }}
 									</option>
 								@endforeach
 							</select>
 						</div>
 					</div>
 
-					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+					<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 						<div class="form-group">
-							<label for="quantidade">Quantidade</label>
-							<input type="number" name="quantidade" min="1" max="{{ $produto->estoque_produto }}" value="{{ old('quantidade') }}" id="quantidade" class="form-control" placeholder="Quantidade...">
+							<label for="estoque">Quantidade em Estoque</label>
+							<input type="number" name="estoque" min="0" value="{{ old('estoque') }}" id="estoque" class="form-control" placeholder="Quantidade em Estoque..." disabled>
 						</div>
 					</div>
 
-					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+					<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 						<div class="form-group">
 							<label for="preco_venda">Preço do Produto na Venda</label>
-							<input type="number" name="preco_venda" min="0" value="{{ old('preco_venda') }}" id="preco_venda" class="form-control" placeholder="Preço de Venda...">
+							<input type="number" name="preco_venda" min="0" value="{{ old('preco_venda') }}" id="preco_venda" class="form-control" placeholder="Preço de Venda..." disabled>
 						</div>
 					</div>
 
@@ -100,7 +100,14 @@
 						</div>
 					</div>
 
-					<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<div class="form-group">
+							<label for="quantidade">Quantidade</label>
+							<input type="number" name="quantidade" min="1" value="{{ old('quantidade') }}" id="quantidade" class="form-control" placeholder="Quantidade...">
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
 						<div class="form-group">
 							<button type="button" id="botaoAdicionar" class="btn btn-primary">
 								<i class="fa fa-plus" aria-hidden="true"></i>	
@@ -115,17 +122,19 @@
 								<th>Deletar Linha</th>
 								<th>Produto</th>
 								<th>Quantidade</th>
-								<th>Preço do Produto na Compra</th>
 								<th>Preço do Produto na Venda</th>
-								<th>Lucro da Empresa</th>
+								<th>Desconto</th>
+								<th>Total</th>
 							</thead>
 							<tfoot>
 								<th>Total</th>
 								<th></th>
 								<th></th>
-								<th id="custoEntrada">0,00 R$</th>
-								<th id="custoSaida">0,00 R$</th>
-								<th id="lucro">0,00 R$</th>
+								<th></th>
+								<th></th>
+								<th id="total">0,00 R$
+									<input type="hidden" name="total_saida" id="total_saida">
+								</th>
 							</tfoot>
 						</table>
 					</div>

@@ -49,27 +49,20 @@
 					<input type="number" name="codigo" value="{{ old('codigo') }}" class="form-control" placeholder="Código do Produto..." required>
 				</div>
 			</div>
-			
+
 			<div class="col-lg-6 col-sm-6 col-xs-12">
-				<div class="form-group">
-					<label for="estoque">Quantidade Em Estoque</label>
-					<input type="number" name="estoque" value="{{ old('estoque') }}" class="form-control" placeholder="Quantidade do Produto..." required>
+					<div class="form-group">
+					<label for="imagem">Imagem</label>
+					<input type="file" name="imagem" class="form-control">
 				</div>
 			</div>
-
+			
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
 					<div class="form-floating">
 						<textarea class="form-control" name="descricao" placeholder="Descrição do Produto..." style="height: 100px; resize: none;" maxlength="100"></textarea>
 					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-6 col-sm-6 col-xs-12">
-					<div class="form-group">
-					<label for="imagem">Imagem</label>
-					<input type="file" name="imagem" class="form-control">
 				</div>
 			</div>
 		</div>

@@ -43,7 +43,7 @@ class ProdutoController extends Controller {
 		$produto->id_categoria_produto = $request->get('idcategoria');
 		$produto->codigo_produto = $request->get('codigo');
 		$produto->nome_produto = $request->get('nome');
-		$produto->estoque_produto = $request->get('estoque');
+		$produto->estoque_produto = '0';
 		$produto->descricao_produto = $request->get('descricao');
 		$produto->estado_produto = '1';
 		
@@ -77,7 +77,6 @@ class ProdutoController extends Controller {
 		$produto->nome_produto = $request->get('nome');
 		$produto->estoque_produto = $request->get('estoque');
 		$produto->descricao_produto = $request->get('descricao');
-		$produto->estado_produto = '1';
 
 		if(Input::hasFile('imagem') && $produto->imagem_produto != ''){
 			$file = Input::file('imagem');
