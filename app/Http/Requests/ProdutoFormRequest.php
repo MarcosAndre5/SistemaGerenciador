@@ -13,7 +13,6 @@ class ProdutoFormRequest extends FormRequest {
     public function rules(){
         return [
             'idcategoria' => 'required',
-            'estoque' => 'required',
             'codigo' => 'max:45',
             'nome' => 'required|max:45',
             'descricao' => 'max:100',
