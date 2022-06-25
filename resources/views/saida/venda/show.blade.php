@@ -6,8 +6,8 @@
 	<div class="row">
 		<div class="col-lg-6 col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label for="nome">Fornecedor</label>
-				<p>{{ $saida->nome_fornecedor }}</p>
+				<label for="nome">Cliente</label>
+				<p>{{ $saida->nome_cliente }}</p>
 			</div>
 		</div>
 

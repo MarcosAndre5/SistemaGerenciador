@@ -53,7 +53,7 @@
 								</a>
 							</td>
 						</tr>
-						@include('saide.venda.modal')
+						@include('saida.venda.modal')
 					@endforeach
 				</table>
 			</div>
