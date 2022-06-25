@@ -5,11 +5,11 @@
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<h3>Nova Entrada de Produtos</h3>
+			<h3>Nova Saída de Produtos</h3>
 			@if (count($errors) > 0)
 				<div class="alert alert-danger">
 					<ul>
-						@foreach($errors->all() as $error)
+						@foreach ($errors->all() as $error)
 							<li>{{ $error }}</li>
 						@endforeach
 					</ul>
@@ -18,17 +18,17 @@
 		</div>
 	</div>
 
-	{!! Form::open(array('url'=>'entrada/compra', 'method'=>'POST', 'autocomplete'=>'off')) !!}
+	{!! Form::open(array('url'=>'saida/venda', 'method'=>'POST', 'autocomplete'=>'off')) !!}
 		{{ Form::token() }}
 		<div class="row">
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
-					<label for="nome">Fornecedor</label>
-					<select name="id_fornecedor" id="id_fornecedor" class="form-control selectpicker" data-live-search="true" required>
+					<label for="nome">CLiente</label>
+					<select name="id_cliente" id="id_cliente" class="form-control selectpicker" data-live-search="true" required>
 						<option value="">Selecione...</option>
-						@foreach ($fornecedores as $fornecedor)
-							<option value="{{ $fornecedor->id_fornecedor }}">
-								{{ $fornecedor->nome_fornecedor }}
+						@foreach ($clientes as $cliente)
+							<option value="{{ $cliente->id_cliente }}">
+								{{ $cliente->nome_cliente }}
 							</option>
 						@endforeach
 					</select>
@@ -70,9 +70,9 @@
 							<label for="nome">Produto</label>
 							<select name="id_produto" id="id_produto" class="form-control selectpicker" data-live-search="true">
 								<option value="">Selecione...</option>
-								@foreach($produtos as $produto)
+								@foreach ($produtos as $produto)
 									<option value="{{ $produto->id_produto }}">
-										{{ $produto->nome_produto }}
+										{{ $produto->nome_produto }} Qtd. {{ $produto->estoque_produto }}
 									</option>
 								@endforeach
 							</select>
@@ -81,22 +81,22 @@
 
 					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
-							<label for="num_doc">Quantidade</label>
-							<input type="number" name="quantidade" min="1" value="{{ old('quantidade') }}" id="quantidade" class="form-control" placeholder="Quantidade...">
+							<label for="quantidade">Quantidade</label>
+							<input type="number" name="quantidade" min="1" max="{{ $produto->estoque_produto }}" value="{{ old('quantidade') }}" id="quantidade" class="form-control" placeholder="Quantidade...">
 						</div>
 					</div>
 
 					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
-							<label for="num_doc">Preço do Produto na Compra</label>
-							<input type="number" name="preco_compra" min="0" value="{{old('preco_compra')}}" id="preco_compra" class="form-control" placeholder="Preço de Compra...">
-						</div>
-					</div>
-
-					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-						<div class="form-group">
-							<label for="num_doc">Preço do Produto na Venda</label>
+							<label for="preco_venda">Preço do Produto na Venda</label>
 							<input type="number" name="preco_venda" min="0" value="{{ old('preco_venda') }}" id="preco_venda" class="form-control" placeholder="Preço de Venda...">
+						</div>
+					</div>
+
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<div class="form-group">
+							<label for="desconto">Desconto</label>
+							<input type="number" name="desconto" min="0" value="{{ old('desconto') }}" id="desconto" class="form-control" placeholder="Desconto...">
 						</div>
 					</div>
 
@@ -139,7 +139,7 @@
 						<i class="fa fa-floppy-o" aria-hidden="true"></i>
 						Salvar
 					</button>
-					<a class="btn btn-danger" href="{{ url('entrada/compra') }}" role="button">
+					<a class="btn btn-danger" href="{{ url('saida/venda') }}" role="button">
 						<i class="fa fa-ban" aria-hidden="true"></i>
 						Cancelar
 					</a>
