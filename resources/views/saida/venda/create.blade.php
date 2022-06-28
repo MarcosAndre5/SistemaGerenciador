@@ -71,8 +71,8 @@
 							<select name="id_produto" id="id_produto" class="form-control selectpicker" data-live-search="true">
 								<option value="">Selecione...</option>
 								@foreach ($produtos as $produto)
-									<option value="{{ $produto->id_produto }}_{{ $produto->estoque_produto }}_{{ $produto->preco_medio }}">
-										{{ $produto->nome_produto }}
+									<option value="{{ $produto->id_produto }}{{ $produto->estoque_produto }}{{ $produto->preco_medio }}">
+										{{ $produto->nome_produto }} # Cod.{{ $produto->codigo_produto }}
 									</option>
 								@endforeach
 							</select>
@@ -95,15 +95,15 @@
 
 					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
-							<label for="desconto">Desconto</label>
-							<input type="number" name="desconto" min="0" value="{{ old('desconto') }}" id="desconto" class="form-control" placeholder="Desconto...">
+							<label for="quantidade">Quantidade</label>
+							<input type="number" name="quantidade" min="1" value="{{ old('quantidade') }}" id="quantidade" class="form-control" placeholder="Quantidade de Produtos...">
 						</div>
 					</div>
 
 					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
-							<label for="quantidade">Quantidade</label>
-							<input type="number" name="quantidade" min="1" value="{{ old('quantidade') }}" id="quantidade" class="form-control" placeholder="Quantidade...">
+							<label for="desconto">Desconto</label>
+							<input type="number" name="desconto" min="0" value="{{ old('desconto') }}" id="desconto" class="form-control" placeholder="Desconto no Produto...">
 						</div>
 					</div>
 
@@ -155,7 +155,7 @@
 				</div>
 			</div>
 		</div>
-	{!!Form::close()!!}
+	{!! Form::close() !!}
 	@push('scripts')
 		<script>
 			$(document).ready(function(){
@@ -165,6 +165,15 @@
 			});
 
 			$("#botaoSalvar").hide();
+
+			$("#id_produto").change(mostrarValores);
+
+			function mostrarValores(){
+				dadosProduto = document.getElementById('id_produto').value;
+
+				$("#estoque").val(dadosProduto[1]);
+				$("#preco_venda").val(dadosProduto[2]);
+			}
 
 			var contador = custoEntrada = custoSaida = lucroEmpresa = 0;
 			
