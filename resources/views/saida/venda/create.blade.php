@@ -177,25 +177,31 @@
 
 			var contador = custoEntrada = custoSaida = lucroEmpresa = 0;
 			
-			subTotalEntrada = [];
+			subTotal = [];
 			subTotalSaida = [];
 			subLucro = [];
 
 			function adicionarLinhaTabela(){
-				idproduto = $("#id_produto").val();
-				produto = $("#id_produto option:selected").text();
-				quantidade = $("#quantidade").val();
-				preco_compra = $("#preco_compra").val();
-				preco_venda = $("#preco_venda").val();
+				dadosProduto = document.getElementById('id_produto').value
+
+				idproduto = dadosProduto[0]
+				estoque = dadosProduto[1]
+				produto = $("#id_produto option:selected").text()
+				quantidade = $("#quantidade").val()
+				desconto = $("#desconto").val()
+				preco_venda = $("#preco_venda").val()
 				
-				if(idproduto != "" && quantidade != "" && quantidade > 0 && preco_compra != "" && preco_compra >= 0 && preco_venda != "" && preco_venda >= 0){
-					subTotalEntrada[contador] = quantidade * preco_compra;
-					subTotalSaida[contador] = quantidade * preco_venda;
-					subLucro[contador] = subTotalSaida[contador] - subTotalEntrada[contador];
-					
-					custoEntrada += subTotalEntrada[contador];
-					custoSaida += subTotalSaida[contador];
-					lucroEmpresa += subLucro[contador];
+				
+				if(!idproduto)
+					alert('Erro! Produto não selecionado.')
+				else if(!quantidade || quantidade <= 0)
+					alert('Erro! Quantidade de Produtos não especificada.')
+				else if(quantidade > estoque)
+					alert('Erro! Quantidade vendida não pode ser maior que a Quantidade em Estoque.')
+				else{
+					desconto = desconto ? desconto : 0
+					subTotal[contador] = quantidade * preco_venda - desconto
+					total += subTotal[contador]
 					
 					var linhaTabela = 
 						'<tr class="selected" id="linhaTabela' + contador + '">' +
@@ -213,21 +219,21 @@
 								quantidade +
 							'</td>' +
 							'<td>' +
-								'<input type="hidden" name="preco_compra[]" value="' + preco_compra + '">' +
-								preco_compra + ' R$' +
-							'</td>' +
-							'<td>' +
 								'<input type="hidden" name="preco_venda[]" value="' + preco_venda + '">' +
 								preco_venda + ' R$' +
 							'</td>' +
 							'<td>' +
-								subLucro[contador] + ' R$' +
+								'<input type="hidden" name="desconto[]" value="' + desconto + '">' +
+								desconto + ' R$' +
+							'</td>' +
+							'<td>' +
+								subTotal[contador] + ' R$' +
 							'</td>' +
 						'</tr>';
 					
 					contador++;
 					
-					limparCampos();
+					//limparCampos();
 					
 					$("#custoEntrada").html(custoEntrada.toFixed(2) + ' R$');
 					$("#custoSaida").html(custoSaida.toFixed(2) + ' R$');
@@ -236,8 +242,7 @@
 					ocultarBotaoSalvar();
 					
 					$('#detalhes').append(linhaTabela);
-				} else
-					alert('Erro ao inserir dados. Existe um ou mais campos vazios.');
+				}
 			}
 
 			function limparCampos(){
