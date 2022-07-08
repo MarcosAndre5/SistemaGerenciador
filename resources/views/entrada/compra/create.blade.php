@@ -146,43 +146,51 @@
 				</div>
 			</div>
 		</div>
-	{!!Form::close()!!}
+	{!! Form::close() !!}
 	@push('scripts')
 		<script>
 			$(document).ready(function(){
 				$('#botaoAdicionar').click(function(){
-					adicionarLinhaTabela();
-				});
-			});
+					adicionarLinhaTabela()
+				})
+			})
 
-			$("#botaoSalvar").hide();
+			$("#botaoSalvar").hide()
 
-			var contador = custoEntrada = custoSaida = lucroEmpresa = 0;
+			var contador = custoEntrada = custoSaida = lucroEmpresa = 0
 			
-			subTotalEntrada = [];
-			subTotalSaida = [];
-			subLucro = [];
+			subTotalEntrada = []
+			subTotalSaida = []
+			subLucro = []
 
 			function adicionarLinhaTabela(){
-				idproduto = $("#id_produto").val();
-				produto = $("#id_produto option:selected").text();
-				quantidade = $("#quantidade").val();
-				preco_compra = $("#preco_compra").val();
-				preco_venda = $("#preco_venda").val();
+				idproduto = $("#id_produto").val()
+				produto = $("#id_produto option:selected").text()
+				quantidade = $("#quantidade").val()
+				preco_compra = $("#preco_compra").val()
+				preco_venda = $("#preco_venda").val()
 				
-				if(idproduto != "" && quantidade != "" && quantidade > 0 && preco_compra != "" && preco_compra >= 0 && preco_venda != "" && preco_venda >= 0){
-					subTotalEntrada[contador] = quantidade * preco_compra;
-					subTotalSaida[contador] = quantidade * preco_venda;
-					subLucro[contador] = subTotalSaida[contador] - subTotalEntrada[contador];
+				if(!idproduto)
+					alert('Erro! Produto não selecionado.')
+				else if(!quantidade || quantidade <= 0)
+					alert('Erro! Quantidade de Produtos não especificada.')
+				else if(!preco_compra || preco_compra < 0)
+					alert('Erro! Preço do Produto na Compra não especificado.')
+				else if(!preco_venda || preco_venda < 0)
+					alert('Erro! Preço do Produto na Venda não especificado.')
+				else {
+					subTotalEntrada[contador] = quantidade * preco_compra
+					subTotalSaida[contador] = quantidade * preco_venda
+					subLucro[contador] = subTotalSaida[contador] - subTotalEntrada[contador]
 					
-					custoEntrada += subTotalEntrada[contador];
-					custoSaida += subTotalSaida[contador];
-					lucroEmpresa += subLucro[contador];
+					custoEntrada += subTotalEntrada[contador]
+					custoSaida += subTotalSaida[contador]
+					lucroEmpresa += subLucro[contador]
 					
 					var linhaTabela = 
 						'<tr class="selected" id="linhaTabela' + contador + '">' +
 							'<td>' +
-								'<button type="button" class="btn btn-danger" onclick="apagar(' + contador + ');">' +
+								'<button type="button" class="btn btn-danger" onclick="apagar(' + contador + ')">' +
 									'X' +
 								'</button>' +
 							'</td>' +
@@ -205,40 +213,39 @@
 							'<td>' +
 								subLucro[contador] + ' R$' +
 							'</td>' +
-						'</tr>';
+						'</tr>'
 					
-					contador++;
+					contador++
 					
-					limparCampos();
+					limparCampos()
 					
-					$("#custoEntrada").html(custoEntrada.toFixed(2) + ' R$');
-					$("#custoSaida").html(custoSaida.toFixed(2) + ' R$');
-					$("#lucro").html(lucroEmpresa.toFixed(2) + ' R$');
+					$("#custoEntrada").html(custoEntrada.toFixed(2) + ' R$')
+					$("#custoSaida").html(custoSaida.toFixed(2) + ' R$')
+					$("#lucro").html(lucroEmpresa.toFixed(2) + ' R$')
 					
-					ocultarBotaoSalvar();
+					ocultarBotaoSalvar()
 					
-					$('#detalhes').append(linhaTabela);
-				} else
-					alert('Erro ao inserir dados. Existe um ou mais campos vazios.');
+					$('#detalhes').append(linhaTabela)
+				}
 			}
 
 			function limparCampos(){
-				$("#quantidade").val("");
-				$("#preco_venda").val("");
-				$("#preco_compra").val("");
+				$("#quantidade").val("")
+				$("#preco_venda").val("")
+				$("#preco_compra").val("")
 			}
 
 			function ocultarBotaoSalvar(){
-				custoEntrada > 0 ? $("#botaoSalvar").show() : $("#botaoSalvar").hide();
+				custoEntrada > 0 ? $("#botaoSalvar").show() : $("#botaoSalvar").hide()
 			}
 
 			function apagar(index){
-				custoEntrada -= subTotalEntrada[index];
+				custoEntrada -= subTotalEntrada[index]
 				
-				$("#campoTotal").html("R$: " + custoEntrada);
-				$("#linhaTabela" + index).remove();
+				$("#campoTotal").html("R$: " + custoEntrada)
+				$("#linhaTabela" + index).remove()
 				
-				ocultarBotaoSalvar();
+				ocultarBotaoSalvar()
 			}
 		</script>
 	@endpush

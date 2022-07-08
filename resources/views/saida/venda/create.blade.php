@@ -71,7 +71,7 @@
 							<select name="id_produto" id="id_produto" class="form-control selectpicker" data-live-search="true">
 								<option value="">Selecione...</option>
 								@foreach ($produtos as $produto)
-									<option value="{{ $produto->id_produto }}{{ $produto->estoque_produto }}{{ $produto->preco_medio }}">
+									<option value="{{ $produto->id_produto }}.{{ $produto->estoque_produto }}.{{ $produto->preco_medio }}">
 										{{ $produto->nome_produto }} # Cod.{{ $produto->codigo_produto }}
 									</option>
 								@endforeach
@@ -160,37 +160,31 @@
 		<script>
 			$(document).ready(function(){
 				$('#botaoAdicionar').click(function(){
-					adicionarLinhaTabela();
-				});
-			});
+					adicionarLinhaTabela()
+				})
+			})
 
-			$("#botaoSalvar").hide();
+			$("#botaoSalvar").hide()
 
-			$("#id_produto").change(mostrarValores);
+			$("#id_produto").change(mostrarValores)
 
 			function mostrarValores(){
-				dadosProduto = document.getElementById('id_produto').value;
+				dadosProduto = document.getElementById('id_produto').value.split('.')
 
-				$("#estoque").val(dadosProduto[1]);
-				$("#preco_venda").val(dadosProduto[2]);
+				$("#estoque").val(dadosProduto[1])
+				$("#preco_venda").val(dadosProduto[2])
 			}
 
-			var contador = custoEntrada = custoSaida = lucroEmpresa = 0;
+			var contador = valorTotalSaida = 0
+			subTotal = []
 			
-			subTotal = [];
-			subTotalSaida = [];
-			subLucro = [];
-
 			function adicionarLinhaTabela(){
-				dadosProduto = document.getElementById('id_produto').value
-
-				idproduto = dadosProduto[0]
-				estoque = dadosProduto[1]
+				idproduto = $("#id_produto").val();
 				produto = $("#id_produto option:selected").text()
 				quantidade = $("#quantidade").val()
+				estoque = $("#estoque").val();
+				preco_venda = $("#preco_venda").val();
 				desconto = $("#desconto").val()
-				preco_venda = $("#preco_venda").val()
-				
 				
 				if(!idproduto)
 					alert('Erro! Produto não selecionado.')
@@ -198,15 +192,15 @@
 					alert('Erro! Quantidade de Produtos não especificada.')
 				else if(quantidade > estoque)
 					alert('Erro! Quantidade vendida não pode ser maior que a Quantidade em Estoque.')
-				else{
+				else {
 					desconto = desconto ? desconto : 0
 					subTotal[contador] = quantidade * preco_venda - desconto
-					total += subTotal[contador]
+					valorTotalSaida += subTotal[contador]
 					
 					var linhaTabela = 
 						'<tr class="selected" id="linhaTabela' + contador + '">' +
 							'<td>' +
-								'<button type="button" class="btn btn-danger" onclick="apagar(' + contador + ');">' +
+								'<button type="button" class="btn btn-danger" onclick="apagar(' + contador + ')">' +
 									'X' +
 								'</button>' +
 							'</td>' +
@@ -229,39 +223,38 @@
 							'<td>' +
 								subTotal[contador] + ' R$' +
 							'</td>' +
-						'</tr>';
+						'</tr>'
 					
-					contador++;
+					contador++
 					
-					//limparCampos();
+					limparCampos()
 					
-					$("#custoEntrada").html(custoEntrada.toFixed(2) + ' R$');
-					$("#custoSaida").html(custoSaida.toFixed(2) + ' R$');
-					$("#lucro").html(lucroEmpresa.toFixed(2) + ' R$');
+					$("#total").html(valorTotalSaida.toFixed(2) + ' R$')
+					$("#total_saida").val(valorTotalSaida)
 					
-					ocultarBotaoSalvar();
+					ocultarBotaoSalvar()
 					
-					$('#detalhes').append(linhaTabela);
+					$('#detalhes').append(linhaTabela)
 				}
 			}
 
 			function limparCampos(){
-				$("#quantidade").val("");
-				$("#preco_venda").val("");
-				$("#preco_compra").val("");
+				$("#quantidade").val('')
+				$("#desconto").val('')
 			}
 
 			function ocultarBotaoSalvar(){
-				custoEntrada > 0 ? $("#botaoSalvar").show() : $("#botaoSalvar").hide();
+				valorTotalSaida > 0 ? $("#botaoSalvar").show() : $("#botaoSalvar").hide()
 			}
 
 			function apagar(index){
-				custoEntrada -= subTotalEntrada[index];
+				valorTotalSaida -= subTotal[index]
 				
-				$("#campoTotal").html("R$: " + custoEntrada);
-				$("#linhaTabela" + index).remove();
+				$("#total").html("R$: " + valorTotalSaida)
+				$("#total_saida").val(valorTotalSaida)
+				$("#linhaTabela" + index).remove()
 				
-				ocultarBotaoSalvar();
+				ocultarBotaoSalvar()
 			}
 		</script>
 	@endpush
