@@ -71,11 +71,18 @@
 							<select name="id_produto" id="id_produto" class="form-control selectpicker" data-live-search="true">
 								<option value="">Selecione...</option>
 								@foreach ($produtos as $produto)
-									<option value="{{ $produto->id_produto }}">
+									<option value="{{ $produto->id_produto }}.{{ $produto->preco_produto }}">
 										{{ $produto->nome_produto }}
 									</option>
 								@endforeach
 							</select>
+						</div>
+					</div>
+
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<div class="form-group">
+							<label for="num_doc">Preço do Produto na Venda</label>
+							<input type="number" name="preco_venda" min="0" value="{{ old('preco_venda') }}" id="preco_venda" class="form-control" placeholder="Preço de Venda..." disabled>
 						</div>
 					</div>
 
@@ -90,13 +97,6 @@
 						<div class="form-group">
 							<label for="num_doc">Preço do Produto na Compra</label>
 							<input type="number" name="preco_compra" min="0" value="{{old('preco_compra')}}" id="preco_compra" class="form-control" placeholder="Preço de Compra...">
-						</div>
-					</div>
-
-					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-						<div class="form-group">
-							<label for="num_doc">Preço do Produto na Venda</label>
-							<input type="number" name="preco_venda" min="0" value="{{ old('preco_venda') }}" id="preco_venda" class="form-control" placeholder="Preço de Venda...">
 						</div>
 					</div>
 
@@ -156,6 +156,14 @@
 			})
 
 			$("#botaoSalvar").hide()
+
+			$("#id_produto").change(mostrarValores)
+
+			function mostrarValores(){
+				dadosProduto = document.getElementById('id_produto').value.split('.')
+
+				$("#preco_venda").val(dadosProduto[1])
+			}
 
 			var contador = custoEntrada = custoSaida = lucroEmpresa = 0
 			

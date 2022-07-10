@@ -51,18 +51,25 @@
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-xs-12">
-					<div class="form-group">
-					<label for="imagem">Imagem</label>
-					<input type="file" name="imagem" class="form-control">
+				<div class="form-group">
+					<label for="codigo">Preço</label>
+					<input type="number" name="preco" value="{{ old('preco') }}" class="form-control" placeholder="Preço do Produto..." required>
 				</div>
 			</div>
-			
+
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
 					<div class="form-floating">
 						<textarea class="form-control" name="descricao" placeholder="Descrição do Produto..." style="height: 100px; resize: none;" maxlength="100"></textarea>
 					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+					<div class="form-group">
+					<label for="imagem">Imagem</label>
+					<input type="file" name="imagem" class="form-control">
 				</div>
 			</div>
 		</div>

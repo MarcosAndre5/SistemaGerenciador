@@ -18,7 +18,7 @@ class ProdutoController extends Controller {
 			
 			$produtos = DB::table('produtos as p')
 				->join('categorias as c', 'p.id_categoria_produto', '=', 'c.id_categoria')
-				->select('p.id_produto', 'p.nome_produto', 'p.codigo_produto', 'p.estoque_produto',
+				->select('p.id_produto', 'p.nome_produto', 'p.codigo_produto', 'p.estoque_produto', 'p.preco_produto',
 					'c.nome_categoria as categorias', 'p.descricao_produto', 'p.imagem_produto', 'p.estado_produto')
 				->where('p.estado_produto', '=', '1')
 				->where('p.nome_produto', 'LIKE', '%'.$palavra.'%')
@@ -31,8 +31,7 @@ class ProdutoController extends Controller {
 	}
 
 	public function create(){
-		$categorias = DB::table('categorias')
-			->where('estado_categoria', '=', '1')->get();
+		$categorias = DB::table('categorias')->where('estado_categoria', '=', '1')->get();
 
 		return view('estoque.produto.create', ['categorias'=>$categorias]);
 	}
@@ -43,8 +42,9 @@ class ProdutoController extends Controller {
 		$produto->id_categoria_produto = $request->get('idcategoria');
 		$produto->codigo_produto = $request->get('codigo');
 		$produto->nome_produto = $request->get('nome');
-		$produto->estoque_produto = '0';
 		$produto->descricao_produto = $request->get('descricao');
+		$produto->preco_produto = $request->get('preco');
+		$produto->estoque_produto = '0';
 		$produto->estado_produto = '1';
 		
 		if(Input::hasFile('imagem')){
@@ -64,9 +64,10 @@ class ProdutoController extends Controller {
 
 	public function edit($id){
 		$produto = Produto::findOrFail($id);
+		
 		$categorias = DB::table('categorias')->where('estado_categoria', '=', '1')->get();
 		
-		return view('estoque.produto.edit', ['produto' => $produto, 'categorias' => $categorias]);
+		return view('estoque.produto.edit', ['produto'=>$produto, 'categorias'=>$categorias]);
 	}
 
 	public function update(ProdutoFormRequest $request, $id){
@@ -75,8 +76,8 @@ class ProdutoController extends Controller {
 		$produto->id_categoria_produto = $request->get('idcategoria');
 		$produto->codigo_produto = $request->get('codigo');
 		$produto->nome_produto = $request->get('nome');
-		$produto->estoque_produto = $request->get('estoque');
 		$produto->descricao_produto = $request->get('descricao');
+		$produto->preco_produto = $request->get('preco');
 
 		if(Input::hasFile('imagem') && $produto->imagem_produto != ''){
 			$file = Input::file('imagem');
