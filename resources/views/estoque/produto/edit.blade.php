@@ -57,8 +57,8 @@
 			
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="form-group">
-					<label for="estoque">Quantidade Em Estoque</label>
-					<input name="estoque" value="{{ $produto->estoque_produto }}" class="form-control" placeholder="Quantidade do Produto..." readonly required>
+					<label for="codigo">Preço</label>
+					<input type="number" name="preco" value="{{ $produto->preco_produto }}" class="form-control" placeholder="Preço do Produto..." required>
 				</div>
 			</div>
 

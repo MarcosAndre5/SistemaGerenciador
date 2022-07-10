@@ -22,21 +22,21 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
-						<th>Id</th>
 						<th>Código</th>
 						<th>Nome Produto</th>
 						<th>Categoria</th>
 						<th>Qtd. Estoque</th>
+						<th>Preço do Produto</th>
 						<th>Imagem</th>
 						<th>Opções</th>
 					</thead>
 					@foreach ($produtos as $produto)
 						<tr>
-							<td>{{ $produto->id_produto }}</td>
 							<td>{{ $produto->codigo_produto }}</td>
 							<td>{{ $produto->nome_produto }}</td>
 							<td>{{ $produto->categorias }}</td>
 							<td>{{ $produto->estoque_produto }}</td>
+							<td>{{ $produto->preco_produto }} R$</td>
 							<td>
 								@if ($produto->imagem_produto)
 									<a href="" data-target="#modal-imagem-{{ $produto->id_produto }}" data-toggle="modal">

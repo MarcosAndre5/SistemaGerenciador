@@ -185,7 +185,8 @@
 				estoque = $("#estoque").val();
 				preco_venda = $("#preco_venda").val();
 				desconto = $("#desconto").val()
-				
+				console.log(quantidade)
+				console.log(estoque)
 				if(!idproduto)
 					alert('Erro! Produto não selecionado.')
 				else if(!quantidade || quantidade <= 0)
