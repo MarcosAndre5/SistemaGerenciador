@@ -177,26 +177,29 @@
 
 			var contador = valorTotalSaida = 0
 			subTotal = []
+			produtosNaLista = []
 			
 			function adicionarLinhaTabela(){
-				idproduto = $("#id_produto").val();
+				idproduto = parseInt($("#id_produto").val())
 				produto = $("#id_produto option:selected").text()
-				quantidade = $("#quantidade").val()
-				estoque = $("#estoque").val();
-				preco_venda = $("#preco_venda").val();
-				desconto = $("#desconto").val()
-				console.log(quantidade)
-				console.log(estoque)
+				quantidade = parseInt($("#quantidade").val())
+				estoque = parseInt($("#estoque").val())
+				preco_venda = parseFloat($("#preco_venda").val())
+				desconto = parseFloat($("#desconto").val())
+				
 				if(!idproduto)
 					alert('Erro! Produto não selecionado.')
 				else if(!quantidade || quantidade <= 0)
 					alert('Erro! Quantidade de Produtos não especificada.')
 				else if(quantidade > estoque)
 					alert('Erro! Quantidade vendida não pode ser maior que a Quantidade em Estoque.')
+				else if(produtosNaLista.includes(idproduto))
+					alert('Erro! O Produto já esta na lista.')
 				else {
 					desconto = desconto ? desconto : 0
 					subTotal[contador] = quantidade * preco_venda - desconto
 					valorTotalSaida += subTotal[contador]
+					produtosNaLista[contador] = idproduto
 					
 					var linhaTabela = 
 						'<tr class="selected" id="linhaTabela' + contador + '">' +

@@ -172,11 +172,11 @@
 			subLucro = []
 
 			function adicionarLinhaTabela(){
-				idproduto = $("#id_produto").val()
+				idproduto = parseInt($("#id_produto").val())
 				produto = $("#id_produto option:selected").text()
-				quantidade = $("#quantidade").val()
-				preco_compra = $("#preco_compra").val()
-				preco_venda = $("#preco_venda").val()
+				quantidade = parseInt($("#quantidade").val())
+				preco_compra = parseFloat($("#preco_compra").val())
+				preco_venda = parseFloat($("#preco_venda").val())
 				
 				if(!idproduto)
 					alert('Erro! Produto não selecionado.')
