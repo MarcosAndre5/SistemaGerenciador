@@ -1,19 +1,10 @@
 @extends('layouts.admin')
 
+@section('title', 'AÇAÍ DO RIO')
+
 @section('conteudo')
-	<!DOCTYPE html>
-	<html>
-		<head>
-			<style>
-				img {
-					display: block;
-					margin-left: auto;
-					margin-right: auto;
-				}
-			</style>
-		</head>
-		<body>
-			<img src="img/construcao.png" class="center" width="60%" height="420px">
-		</body>
-	</html>
+<h1 style="text-align: center">
+	<img src="{{ asset('img/baner.png') }}" width="30%"><br><br>
+	<i>Açaí do Rio</i> - O melhor você <b>encontra aqui!</b>
+</h1>
 @stop

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>SIGEVE</title>
+		<title>AÇAÍ DO RIO</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-		<link rel="shortcut icon" href="{{asset('img/logo.ico')}}">
+		<link rel="shortcut icon" href="{{asset('img/logo.png')}}">
 		<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
 		<link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
@@ -15,15 +15,15 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 	</head>
-	<body class="hold-transition skin-blue sidebar-mini">
+	<body class="hold-transition skin-purple sidebar-mini">
 		<div class="wrapper">
 			<header class="main-header">
 				<a href="index2.html" class="logo">
 					<span class="logo-mini">
-						<b>SGV</b>
+						<b>ADR</b>
 					</span>
 					<span class="logo-lg">
-						<b>SIGEVE</b>
+						<b>AÇAÍ DO RIO</b>
 					</span>
 				</a>
 				<nav class="navbar navbar-static-top" role="navigation">
