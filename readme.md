@@ -4,22 +4,24 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/marcosandre5/sistema?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/marcosandre5/sistema?style=for-the-badge)
 
-<img src="exemplo-image.png" alt="exemplo imagem">
+<img src="acai_do_rio.png" alt="Açaí do Rio">
 
 > Este sistema tem como objetivo o gerenciamento de médias e pequenas empresas no que diz respeito a estoque de produtos e pessoas(clientes, funcionários e fornecedores) assim como também se atenta ao bom funcionamento da parte financeira da empresa.
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [x] Produtos
-- [x] Categorias
-- [x] Clientes
+- [x] Login
+- [ ] Usuários
+- [ ] Produtos
+- [ ] Categorias
+- [ ] Clientes
 - [ ] Fornecedores
 - [ ] Funcionários
 
 ## 💻 Pré-requisitos
 
-* PHP <= 7
-* Laravel >= 5.4
+* PHP <= 7.4
+* Laravel >= 5.5
 * MySQL
 * Servidor Web
 
