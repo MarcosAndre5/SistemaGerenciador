@@ -34,25 +34,38 @@
 					</a>
 					<div class="navbar-custom-menu">
 						<ul class="nav navbar-nav">
+							
 							<li class="dropdown user user-menu">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<small class="bg-red">Online</small>
-									<span class="hidden-xs">
-										Marcos André Azevedo de Assis
-									</span>
+									<span class="hidden-xs">{{ Auth::user()->name }}</span>
+									<small class="bg-green">Online</small>
+									&nbsp;<i class="fa fa-sort-desc" aria-hidden="true"></i>
 								</a>
 								<ul class="dropdown-menu">
 									<li class="user-header">
 										<p>
-											Marcos André Azevedo de Assis
-											<small>Projeto de TCC</small>
+											Açaí do Rio.<br></br>
+											{{ Auth::user()->name }}.<br></br>
+											<small>
+												<b>Email:</b> {{ Auth::user()->email }}.<br>
+											</small>
 										</p>
 									</li>
 									<li class="user-footer">
 										<div class="pull-right">
-											<a href="#" class="btn btn-default btn-flat">
-												Fechar
+											<a href="{{ url('logout') }}" class="btn btn-danger btn-flat"
+												onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+												Sair <i class="fa fa-sign-out" aria-hidden="true"></i>
 											</a>
+											<!--a href="{{ route('logout') }}"
+                                            	onclick="event.preventDefault();
+													document.getElementById('logout-form').submit();">
+												Logout
+											</a-->
+
+											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+												{{ csrf_field() }}
+											</form>
 										</div>
 									</li>
 								</ul>
