@@ -18,7 +18,7 @@
 	<body class="hold-transition skin-purple sidebar-mini">
 		<div class="wrapper">
 			<header class="main-header">
-				<a href="index2.html" class="logo">
+				<a href="{{ url('/') }}" class="logo">
 					<span class="logo-mini">
 						<b>ADR</b>
 					</span>
@@ -34,18 +34,18 @@
 					</a>
 					<div class="navbar-custom-menu">
 						<ul class="nav navbar-nav">
-							
 							<li class="dropdown user user-menu">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<img src="{{ asset('img/logo.png') }}" alt="Logo FUNPEC" class="user-image">
 									<span class="hidden-xs">{{ Auth::user()->name }}</span>
 									<small class="bg-green">Online</small>
 									&nbsp;<i class="fa fa-sort-desc" aria-hidden="true"></i>
 								</a>
 								<ul class="dropdown-menu">
 									<li class="user-header">
+										<img src="{{ asset('img/logo.png') }}" class="img-circle" alt="Logo FUNPEC">
 										<p>
-											Açaí do Rio.<br></br>
-											{{ Auth::user()->name }}.<br></br>
+											{{ Auth::user()->name }}
 											<small>
 												<b>Email:</b> {{ Auth::user()->email }}.<br>
 											</small>
@@ -62,7 +62,6 @@
 													document.getElementById('logout-form').submit();">
 												Logout
 											</a-->
-
 											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 												{{ csrf_field() }}
 											</form>
@@ -80,10 +79,25 @@
 						<li class="header"></li>
 						<li class="treeview">
 							<a href="#">
-								<i class="fa fa-th"></i>
+								<i class="fa fa-user"></i>
 								<span>
-									Estoque
+									USUÁRIOS
 								</span>
+								<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a href="{{ url('usuario') }}">
+										<i class="fa fa-circle-o"></i>
+										Lista de Usuarios
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<i class="fa fa-th"></i>
+								<span>Produtos</span>
 								<i class="fa fa-angle-left pull-right"></i>
 							</a>
 							<ul class="treeview-menu">
@@ -96,7 +110,7 @@
 								<li>
 									<a href="{{ url('estoque/produto') }}">
 										<i class="fa fa-circle-o"></i>
-										Produtos
+										Estoque
 									</a>
 								</li>
 							</ul>
@@ -143,23 +157,6 @@
 									<a href="{{ url('entrada/compra') }}">
 										<i class="fa fa-circle-o"></i>
 										Registro de Entradas
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li class="treeview">
-							<a href="#">
-								<i class="fa fa-user"></i>
-								<span>
-									Login
-								</span>
-								<i class="fa fa-angle-left pull-right"></i>
-							</a>
-							<ul class="treeview-menu">
-								<li>
-									<a href="/">
-										<i class="fa fa-circle-o"></i>
-										Usuarios
 									</a>
 								</li>
 							</ul>
@@ -226,9 +223,11 @@
 				<b>Versão</b> 0.0.1
 			</div>
 			<strong>
-				Copyright &copy; 2021 - 2022 <a href="">Marcos André</a>.
+				Copyright &copy; 2024 - {{ date('Y') }} |
+				<a href="https://www.instagram.com/acaidorio_distribuidora?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Açaí do Rio</a>.
 			</strong>
-			Todos os direitos reservados.
+			Todos os direitos reservados. |
+			<a href="https://github.com/MarcosAndre5" target="_blank">Marcos André Azevedo de Assis</a>. 🇧🇷
 		</footer>
 		<script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
 		@stack('scripts')
