@@ -1,8 +1,13 @@
 <?php
 // Em construção
-Route::get('/', function () {
-    return view('auth.login');
-});
+//Route::get('/', function () { return view('home'); });
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+
+// USUÁRIOS
+Route::resource('usuario', 'UsuarioController');
 
 /* ESTOQUE */
 // Categorias
@@ -32,7 +37,3 @@ Route::get('entrada/fornecedor/editar/{id}', 'FornecedorController@edit');
 Route::resource('entrada/compra', 'EntradaController');
 Route::get('entrada/compra/editar/{id}', 'EntradaController@edit');
 Route::get('entrada/compra/detalhes/{id}', 'EntradaController@show');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

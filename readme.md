@@ -4,9 +4,9 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/marcosandre5/sistema?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/marcosandre5/sistema?style=for-the-badge)
 
-<img src="acai_do_rio.png" alt="Açaí do Rio">
+Este sistema visa gerenciar pequenas e médias empresas, focando no controle de estoque, na administração de clientes, funcionários e fornecedores, e na eficiência das operações financeiras da empresa.
 
-> Este sistema tem como objetivo o gerenciamento de médias e pequenas empresas no que diz respeito a estoque de produtos e pessoas(clientes, funcionários e fornecedores) assim como também se atenta ao bom funcionamento da parte financeira da empresa.
+<img src="acai_do_rio.png" alt="Açaí do Rio">
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
