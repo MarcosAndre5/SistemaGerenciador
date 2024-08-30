@@ -38,7 +38,15 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<img src="{{ asset('img/logo.png') }}" alt="Logo FUNPEC" class="user-image">
 									<span class="hidden-xs">{{ Auth::user()->name }}</span>
-									<small class="bg-green">Online</small>
+									<small class="bg-green">
+										@if(Auth::user()->id_cargo == 1)
+											Administrado do Sistema
+										@elseif(Auth::user()->id_cargo == 2)
+											Gerente
+										@else
+											Vendedor Interno/Externo
+										@endif
+									</small>
 									&nbsp;<i class="fa fa-sort-desc" aria-hidden="true"></i>
 								</a>
 								<ul class="dropdown-menu">
@@ -87,9 +95,15 @@
 							</a>
 							<ul class="treeview-menu">
 								<li>
-									<a href="{{ url('usuario') }}">
-										<i class="fa fa-circle-o"></i>
-										Lista de Usuarios
+									<a href="{{ url('colaborador') }}">
+										<i class="fa fa-users" aria-hidden="true"></i>
+										Colaboradores
+									</a>
+								</li>
+								<li>
+									<a href="{{ url('cargo') }}">
+										<i class="fa fa-sitemap" aria-hidden="true"></i>
+										Cargos
 									</a>
 								</li>
 							</ul>
