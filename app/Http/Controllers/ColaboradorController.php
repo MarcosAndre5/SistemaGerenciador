@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
-class UsuarioController extends Controller {
+class ColaboradorController extends Controller {
     public function __construct() { $this->middleware('auth'); }
     
     public function index(Request $request) {
         if($request){
 			$buscaTexto = trim($request->get('buscaTexto'));
-            $usuarios = User::paginate(10);
+            $colaboradores = User::paginate(5);
 
-            return view('usuario.index', compact('buscaTexto', 'usuarios'));
+            return view('colaborador.index', compact('buscaTexto', 'colaboradores'));
         }
     }
 

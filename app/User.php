@@ -15,6 +15,7 @@ class User extends Model implements Authenticatable {
 		'name',
 		'email',
 		'password',
+		'id_cargo',
 		'remember_token',
 		'created_at',
 		'updated_at',

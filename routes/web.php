@@ -7,7 +7,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // USUÁRIOS
-Route::resource('usuario', 'UsuarioController');
+Route::resource('colaborador', 'ColaboradorController');
+Route::resource('cargo', 'CargoController');
 
 /* ESTOQUE */
 // Categorias
