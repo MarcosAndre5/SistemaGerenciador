@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Cargo extends Model {
-    protected $table = 'cargo';
+    protected $table = 'cargos';
 	protected $primaryKey = 'id';
 
 	public $timestamps = false;

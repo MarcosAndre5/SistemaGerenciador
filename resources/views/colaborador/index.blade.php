@@ -5,7 +5,7 @@
 @section('conteudo')
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-			<h3>Lista de Colaboradores</h3>
+			<h3>Colaboradores</h3>
 			<a href="{{ url('colaborador/create') }}">
 				<button class="btn btn-success">
 					<i class="fa fa-plus" aria-hidden="true"></i>
@@ -22,24 +22,18 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
-						<th>NOME</th>
-						<th>EMAIL</th>
-						<th>CARGO</th>
-						<th>AÇÕES</th>
+						<tr>
+							<th class="text-center">NOME</th>
+							<th class="text-center">EMAIL</th>
+							<th class="text-center">CARGO</th>
+							<th class="text-center">AÇÕES</th>
+						</tr>
 					</thead>
 					@foreach($colaboradores as $colaborador)
 						<tr>
 							<td>{{ $colaborador->name }}</td>
 							<td>{{ $colaborador->email }}</td>
-							<td>
-								@if($colaborador->id_cargo == 1)
-									Administrado do Sistema
-								@elseif($colaborador->id_cargo == 2)
-									Gerente
-								@else
-									Vendedor Interno/Externo
-								@endif
-							</td>
+							<td>{{ $colaborador->cargo }}</td>
 							<td>
 								<a href="{{ URL::action('FornecedorController@edit', $colaborador->id) }}">
 									<button class="btn btn-info">

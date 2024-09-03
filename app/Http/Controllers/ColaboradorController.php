@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\User;
+use App\Cargo;
 use Illuminate\Http\Request;
 
 class ColaboradorController extends Controller {
@@ -10,21 +12,21 @@ class ColaboradorController extends Controller {
     
     public function index(Request $request) {
         if($request){
-			$buscaTexto = trim($request->get('buscaTexto'));
-            $colaboradores = User::paginate(5);
+			$palavra = trim($request->get('palavra'));
+            $colaboradores = DB::table('users')
+                ->join('cargos', 'users.id_cargo', '=', 'cargos.id')
+                ->select('users.*', 'cargos.descricao AS cargo')
+                ->where('users.name', 'LIKE', '%'.$palavra.'%')
+                ->paginate(5);
 
-            return view('colaborador.index', compact('buscaTexto', 'colaboradores'));
+            return view('colaborador.index', compact('palavra', 'colaboradores'));
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function create() {
+        $cargos = Cargo::orderBy('descricao')->get();
+
+        return view('colaborador.create', compact('cargos'));
     }
 
     /**
