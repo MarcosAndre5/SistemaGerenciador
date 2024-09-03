@@ -36,8 +36,10 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
-						<th>DESCRIÇÃO</th>
-						<th>AÇÕES</th>
+						<tr>
+							<th class="text-center">DESCRIÇÃO</th>
+							<th class="text-center">AÇÕES</th>
+						</tr>
 					</thead>
 					@foreach($cargos as $cargo)
 						<tr>

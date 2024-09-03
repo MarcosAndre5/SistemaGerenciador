@@ -32,12 +32,10 @@
 		<hr>
 		<div class="form-group">
 			<a class="btn btn-warning" href="{{ url('cargo') }}" role="button">
-				<i class="fa fa-arrow-left" aria-hidden="true"></i>
-				Voltar
+				<i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
 			</a>
 			<button class="btn btn-primary" type="submit">
-				<i class="fa fa-floppy-o" aria-hidden="true"></i>
-				Salvar Cargo
+				<i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar Cargo
 			</button>
 		</div>
 	{!!Form::close()!!}
